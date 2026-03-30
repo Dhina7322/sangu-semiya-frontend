@@ -124,7 +124,7 @@ const ProductDetail = () => {
             <div className="bg-white p-12 rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden group hover:shadow-xl transition-all duration-500">
                 <h3 className="text-2xl font-black text-slate-900 mb-8 flex items-center uppercase tracking-tighter"><span className="w-8 h-8 bg-blue-50 text-blue-500 rounded-xl flex items-center justify-center mr-4 text-xs tracking-normal">🌾</span> Health & Preparation</h3>
                 <div className="space-y-6">
-                  <p className="text-slate-600 font-medium bg-slate-50 p-6 rounded-2xl border border-slate-100 italic">"Grown from high-grade wheat, our semiya retains its structure and golden hue even after cooking, ensuring no stickiness for your signature dishes."</p>
+                  <p className="text-slate-600 font-medium bg-slate-50 p-6 rounded-2xl border border-slate-100 italic">&quot;Grown from high-grade wheat, our semiya retains its structure and golden hue even after cooking, ensuring no stickiness for your signature dishes.&quot;</p>
                   <ul className="grid grid-cols-1 gap-4 font-black text-xs text-slate-600 uppercase tracking-tight">
                     <li className="flex items-center gap-3"><svg className="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"/></svg> 100% Raw Hard Wheat Suji</li>
                     <li className="flex items-center gap-3"><svg className="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"/></svg> Roasted to Perfection</li>

@@ -14,6 +14,12 @@ const Home = () => {
       { title: "Quick Cooking", icon: "⏱️", description: "Ready in just 5-7 minutes." }
     ]
   });
+
+  const [featuredProducts, setFeaturedProducts] = useState([
+    { _id: '1', name: "Roasted Vermicelli", description: "Golden roasted for that perfect aroma and non-sticky texture.", images: ["https://images.unsplash.com/photo-1610450949065-226e6ba1f0e4?w=500"], category: "Signature" },
+    { _id: '2', name: "Raw Wheat Semiya", description: "100% pure hard wheat semolina. The healthy choice for every meal.", images: ["https://images.unsplash.com/photo-1626808642875-0aa545482dfb?w=500"], category: "Classic" },
+    { _id: '3', name: "Quick Cook Vermicelli", description: "Extra thin strands for lightning fast breakfasts.", images: ["https://images.unsplash.com/photo-1596662951482-0c4ba74a6df6?w=500"], category: "Instant" }
+  ]);
   
   const recipes = [
     { name: "Sweet Semiya Payasam", img: "https://images.unsplash.com/photo-1596662951482-0c4ba74a6df6?w=400", time: "20 Mins" },
@@ -31,7 +37,12 @@ const Home = () => {
     // Attempt to override dummy data with dynamic CMS data
     axios.get('http://localhost:5001/api/homepage')
       .then(res => { if(res.data && res.data.heroBanner?.message) setData(res.data) })
-      .catch(err => console.log('Using default static data'));
+      .catch(() => console.log('Using default static data'));
+
+    // Attempt to fetch actual products
+    axios.get('http://localhost:5001/api/products')
+      .then(res => { if(res.data && res.data.length > 0) setFeaturedProducts(res.data.slice(0, 3)) })
+      .catch(() => console.log('Using default featured products'));
   }, []);
 
   return (
@@ -96,6 +107,46 @@ const Home = () => {
                 <div className="text-6xl mb-6 bg-red-50 w-24 h-24 mx-auto rounded-full items-center justify-center flex shadow-inner">{item.icon}</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
                 <p className="text-gray-600 font-medium">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
+            <div className="text-center md:text-left">
+              <h2 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">Our Premium Varieties</h2>
+              <p className="text-gray-600 max-w-xl font-medium">From classic wheat to golden roasted, explore the range that has made Sangu a household name.</p>
+            </div>
+            <Link to="/products" className="bg-primary text-white px-8 py-3 rounded-full font-bold shadow-lg shadow-red-100 hover:bg-opacity-90 transition">View All Products</Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {featuredProducts.map((product) => (
+              <div key={product._id} className="group bg-[#F9FAFB] rounded-[2.5rem] overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-500">
+                <div className="h-72 relative overflow-hidden">
+                  <img 
+                    src={product.images[0]} 
+                    alt={product.name} 
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" 
+                  />
+                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-primary shadow-sm">
+                    {product.category || 'Featured'}
+                  </div>
+                </div>
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-primary transition">{product.name}</h3>
+                  <p className="text-gray-600 mb-6 line-clamp-2 text-sm font-medium">{product.description}</p>
+                  <Link 
+                    to={`/product/${product._id}`} 
+                    className="inline-flex items-center text-primary font-black uppercase text-xs tracking-widest hover:gap-2 transition-all"
+                  >
+                    View Details <span className="ml-1">&rarr;</span>
+                  </Link>
+                </div>
               </div>
             ))}
           </div>

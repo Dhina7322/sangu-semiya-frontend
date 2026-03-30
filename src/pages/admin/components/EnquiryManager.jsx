@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 const EnquiryManager = () => {
   const [enquiries, setEnquiries] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const getAuthHeader = () => ({
+  const getAuthHeader = useCallback(() => ({
     headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` }
-  });
+  }), []);
 
-  const loadEnquiries = async () => {
+  const loadEnquiries = useCallback(async () => {
     try {
       const res = await axios.get('http://localhost:5001/api/enquiry', getAuthHeader());
       setEnquiries(res.data);
@@ -18,9 +18,9 @@ const EnquiryManager = () => {
       console.error(err);
       setLoading(false);
     }
-  };
+  }, [getAuthHeader]);
 
-  useEffect(() => { loadEnquiries(); }, []);
+  useEffect(() => { loadEnquiries(); }, [loadEnquiries]);
 
   const handleStatusChange = async (id, newStatus) => {
     try {

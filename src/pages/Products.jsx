@@ -32,7 +32,7 @@ const Products = () => {
         
         <div className="text-center mb-20 animate-fade-in-down">
           <h1 className="text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">Our Premium Range</h1>
-          <p className="text-xl text-slate-500 max-w-2xl mx-auto font-medium">Delicious, healthy, and high-quality vermicelli varieties crafted for your family's favorite recipes.</p>
+          <p className="text-xl text-slate-500 max-w-2xl mx-auto font-medium">Delicious, healthy, and high-quality vermicelli varieties crafted for your family&apos;s favorite recipes.</p>
         </div>
 
         {products.length === 0 ? (
@@ -68,7 +68,7 @@ const Products = () => {
                        Product Details
                     </Link>
                     {product.amazonLink && (
-                      <a href={product.amazonLink} target="_blank" rel="noopener noreferrer" className="block text-center w-full py-4 bg-[#FF9900] hover:bg-[#ffaa22] text-white font-black rounded-2xl transition-all duration-300 shadow-lg shadow-orange-100 flex justify-center items-center">
+                      <a href={product.amazonLink} target="_blank" rel="noopener noreferrer" className="text-center w-full py-4 bg-[#FF9900] hover:bg-[#ffaa22] text-white font-black rounded-2xl transition-all duration-300 shadow-lg shadow-orange-100 flex justify-center items-center">
                         Buy on Amazon <svg className="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" /><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" /></svg>
                       </a>
                     )}

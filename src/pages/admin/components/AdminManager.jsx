@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import EditAdminModal from './EditAdminModal';
@@ -26,13 +26,9 @@ const AdminManager = () => {
   const [editingAdmin, setEditingAdmin] = useState(null);
 
   const token = localStorage.getItem('adminToken');
-  const config = { headers: { Authorization: `Bearer ${token}` } };
+  const config = useMemo(() => ({ headers: { Authorization: `Bearer ${token}` } }), [token]);
 
-  useEffect(() => {
-    fetchAdmins();
-  }, []);
-
-  const fetchAdmins = async () => {
+  const fetchAdmins = useCallback(async () => {
     try {
       const res = await axios.get('http://localhost:5001/api/users', config);
       setAdmins(res.data);
@@ -41,7 +37,11 @@ const AdminManager = () => {
       console.error(err);
       setLoading(false);
     }
-  };
+  }, [config]);
+
+  useEffect(() => {
+    fetchAdmins();
+  }, [fetchAdmins]);
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
@@ -153,7 +153,7 @@ const AdminManager = () => {
                   <p className="text-[10px] font-semibold text-primary uppercase tracking-widest mb-4">New Credential Setup</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                      <div className="space-y-1.5">
-                       <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest pl-1 text-slate-500">Proposed Email</label>
+                       <label className="text-[10px] font-semibold uppercase tracking-widest pl-1 text-slate-500">Proposed Email</label>
                        <input 
                          type="email" 
                          value={profileData.newEmail}

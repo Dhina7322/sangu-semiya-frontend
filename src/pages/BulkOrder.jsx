@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const BulkOrder = () => {
   const location = useLocation();
@@ -11,6 +12,7 @@ const BulkOrder = () => {
     quantity: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     // If navigated from product page with query param
@@ -25,11 +27,19 @@ const BulkOrder = () => {
     setFormData({...formData, [e.target.name]: e.target.value});
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate submit
-    alert('Enquiry submitted successfully! Our team will contact you soon.');
-    setFormData({ name: '', phone: '', email: '', product: '', quantity: '', message: '' });
+    setIsSubmitting(true);
+    try {
+      await axios.post('http://localhost:5001/api/enquiry', formData);
+      alert('Enquiry submitted successfully! Our team will contact you soon.');
+      setFormData({ name: '', phone: '', email: '', product: '', quantity: '', message: '' });
+    } catch (err) {
+      console.error('Submission error:', err);
+      alert('Network issue: Please try contacting us via WhatsApp instead.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const openWhatsApp = () => {
@@ -112,8 +122,8 @@ const BulkOrder = () => {
                 <textarea name="message" value={formData.message} onChange={handleChange} className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition" rows="4" placeholder="Tell us about your requirement..."></textarea>
               </div>
 
-              <button type="submit" className="w-full bg-gray-900 hover:bg-black text-white py-4 rounded-xl font-bold text-lg shadow-lg transition transform hover:-translate-y-1">
-                Send Enquiry
+              <button type="submit" disabled={isSubmitting} className={`w-full ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-900 hover:bg-black'} text-white py-4 rounded-xl font-bold text-lg shadow-lg transition transform hover:-translate-y-1`}>
+                {isSubmitting ? 'Sending Request...' : 'Send Enquiry'}
               </button>
             </form>
           </div>

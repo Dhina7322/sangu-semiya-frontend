@@ -1,0 +1,19 @@
+
+> frontend@0.0.0 lint
+> eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0
+
+
+/Users/admin/Documents/Madhura Tach/Sangu-Semiya/sangu-semiya-frontend/src/pages/Home.jsx
+  34:14  warning  '_err' is defined but never used  no-unused-vars
+
+/Users/admin/Documents/Madhura Tach/Sangu-Semiya/sangu-semiya-frontend/src/pages/admin/components/AdminManager.jsx
+  29:9  warning  The 'config' object makes the dependencies of useCallback Hook (at line 40) change on every render. To fix this, wrap the initialization of 'config' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+✖ 2 problems (0 errors, 2 warnings)
+
+ESLint found too many warnings (maximum: 0).
+npm notice
+npm notice New minor version of npm available! 11.6.2 -> 11.12.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.12.1
+npm notice To update run: npm install -g npm@11.12.1
+npm notice

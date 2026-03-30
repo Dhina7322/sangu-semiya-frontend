@@ -9,7 +9,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold text-primary mb-4">Sangu Brand Semiya</h3>
             <p className="text-gray-600 mb-4 max-w-sm mx-auto md:mx-0">
-              Delivering healthy, delicious, and easy-to-cook vermicelli products to your family's table since 2005.
+              Delivering healthy, delicious, and easy-to-cook vermicelli products to your family&apos;s table since 2005.
             </p>
           </div>
 
