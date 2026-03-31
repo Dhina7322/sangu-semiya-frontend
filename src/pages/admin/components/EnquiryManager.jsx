@@ -1,9 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import StatusPopup from './StatusPopup';
+
 
 const EnquiryManager = () => {
   const [enquiries, setEnquiries] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [status, setStatus] = useState({ isOpen: false, message: '', type: 'success' });
+
 
   const getAuthHeader = useCallback(() => ({
     headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` }
@@ -26,10 +30,13 @@ const EnquiryManager = () => {
     try {
       await axios.put(`http://127.0.0.1:5001/api/enquiry/${id}/status`, { status: newStatus }, getAuthHeader());
       setEnquiries(enquiries.map(e => e._id === id ? { ...e, status: newStatus } : e));
+      setStatus({ isOpen: true, message: `Lead status set to ${newStatus}`, type: 'success' });
     } catch (err) {
       console.error('Failed to update status', err);
+      setStatus({ isOpen: true, message: 'Failed to update lead status', type: 'error' });
     }
   };
+
 
   const getStatusColor = (status) => {
     if(status === 'Resolved') return 'bg-emerald-50 text-emerald-600 border-emerald-100';
@@ -83,7 +90,14 @@ const EnquiryManager = () => {
           </tbody>
         </table>
       </div>
+      <StatusPopup 
+        isOpen={status.isOpen}
+        message={status.message}
+        type={status.type}
+        onClose={() => setStatus({ ...status, isOpen: false })}
+      />
     </div>
+
   );
 };
 

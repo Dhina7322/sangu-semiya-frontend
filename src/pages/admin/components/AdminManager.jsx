@@ -2,6 +2,9 @@ import { useState, useEffect, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import EditAdminModal from './EditAdminModal';
+import StatusPopup from './StatusPopup';
+import ConfirmPopup from './ConfirmPopup';
+
 
 const AdminManager = () => {
   const navigate = useNavigate();
@@ -25,8 +28,19 @@ const AdminManager = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editingAdmin, setEditingAdmin] = useState(null);
 
+  // Status Notification State
+  const [status, setStatus] = useState({ isOpen: false, message: '', type: 'success' });
+  
+  // Custom Confirmation State
+  const [confirm, setConfirm] = useState({ isOpen: false, adminId: null });
+
+
   const token = localStorage.getItem('adminToken');
   const config = useMemo(() => ({ headers: { Authorization: `Bearer ${token}` } }), [token]);
+
+  const showStatus = (message, type = 'success') => {
+    setStatus({ isOpen: true, message, type });
+  };
 
   const fetchAdmins = useCallback(async () => {
     try {
@@ -39,6 +53,7 @@ const AdminManager = () => {
     }
   }, [config]);
 
+
   useEffect(() => {
     fetchAdmins();
   }, [fetchAdmins]);
@@ -46,9 +61,10 @@ const AdminManager = () => {
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     if (!profileData.currentEmail || !profileData.currentPassword) {
-       alert('Verification required: Please enter current email and password.');
+       showStatus('Verification required: Please enter current email and password.', 'error');
        return;
     }
+
 
     setProfileLoading(true);
     try {
@@ -60,28 +76,31 @@ const AdminManager = () => {
         password: profileData.newPassword
       };
       
-      await axios.put('http://127.0.0.1:5001/api/users/profile', payload, config);
-      alert('Security Credentials Updated Successfully. Please log in again.');
-      localStorage.removeItem('adminToken');
-      localStorage.removeItem('adminRole');
-      navigate('/admin/login');
+      await axios.put('http://localhost:5001/api/users/profile', payload, config);
+      showStatus('Security Credentials Updated Successfully. Please log in again.');
+      setTimeout(() => {
+        localStorage.removeItem('adminToken');
+        localStorage.removeItem('adminRole');
+        navigate('/admin/login');
+      }, 2000);
     } catch (err) {
-      alert(err.response?.data?.message || 'Verification failed. Incorrect current credentials.');
+      showStatus(err.response?.data?.message || 'Verification failed. Incorrect current credentials.', 'error');
     } finally {
       setProfileLoading(false);
     }
   };
 
+
   const handleCreateSubAdmin = async (e) => {
     e.preventDefault();
     setCreateLoading(true);
     try {
-      await axios.post('http://127.0.0.1:5001/api/users/subadmin', newSubAdmin, config);
+      await axios.post('http://localhost:5001/api/users/subadmin', newSubAdmin, config);
       alert('Sub-Admin created successfully');
       setNewSubAdmin({ email: '', password: '' });
       fetchAdmins();
     } catch (err) {
-      alert(err.response?.data?.message || 'Creation failed');
+      showStatus(err.response?.data?.message || 'Creation failed', 'error');
     } finally {
       setCreateLoading(false);
     }
@@ -90,13 +109,14 @@ const AdminManager = () => {
   const handleDeleteAdmin = async (id) => {
     if (window.confirm('Eradicate this sub-admin account?')) {
       try {
-        await axios.delete(`http://127.0.0.1:5001/api/users/${id}`, config);
+        await axios.delete(`http://localhost:5001/api/users/${id}`, config);
         fetchAdmins();
       } catch (err) {
         alert(err.response?.data?.message || 'Delete failed');
       }
     }
   };
+
 
   if (loading) return <div className="text-xs font-semibold text-primary animate-pulse py-10 tracking-widest uppercase">Synchronizing Administration System...</div>;
 
@@ -280,11 +300,12 @@ const AdminManager = () => {
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
                         </button>
                         <button 
-                          onClick={() => handleDeleteAdmin(admin._id)} 
+                          onClick={() => setConfirm({ isOpen: true, adminId: admin._id })} 
                           className="p-2 text-slate-300 hover:text-red-400 transition-colors hover:bg-red-50 rounded-lg"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
                         </button>
+
                       </>
                     )}
                   </td>
@@ -295,7 +316,22 @@ const AdminManager = () => {
         </div>
       </div>
 
+      <ConfirmPopup 
+        isOpen={confirm.isOpen}
+        onClose={() => setConfirm({ ...confirm, isOpen: false })}
+        onConfirm={confirmDeleteAdmin}
+        title="Purge Admin Account?"
+        message="This will permanently revoke system access for this user. This operation cannot be undone."
+      />
+
+      <StatusPopup 
+        isOpen={status.isOpen}
+        message={status.message}
+        type={status.type}
+        onClose={() => setStatus({ ...status, isOpen: false })}
+      />
     </div>
+
   );
 };
 

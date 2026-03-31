@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import axios from 'axios';
 
-const ProductModal = ({ isOpen, onClose, product, refreshProducts }) => {
+const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) => {
   const [formData, setFormData] = useState({
     name: '', sku: '', description: '', packSize: '', amazonLink: '', status: 'Active'
   });
@@ -45,21 +45,27 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts }) => {
     try {
       const config = { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' } };
       const url = product
-        ? `http://127.0.0.1:5001/api/products/${product._id}`
-        : 'http://127.0.0.1:5001/api/products';
+        ? `http://localhost:5001/api/products/${product.id || product._id}`
+        : 'http://localhost:5001/api/products';
+      
       if (product) {
         await axios.put(url, data, config);
+        onSuccess('Inventory Record Updated');
       } else {
         await axios.post(url, data, config);
+        onSuccess('New Product Listing Initialized');
       }
+      
       refreshProducts();
       onClose();
     } catch (err) {
-      alert(err.response?.data?.message || 'Update failed');
+      console.error(err);
+      // We could add an onError prop, but for now we'll just log or show a silent fail
     } finally {
       setLoading(false);
     }
   };
+
 
   if (!isOpen) return null;
 
