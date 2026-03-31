@@ -16,15 +16,15 @@ const Home = () => {
   });
 
   const [featuredProducts, setFeaturedProducts] = useState([
-    { _id: '1', name: "Roasted Vermicelli", description: "Golden roasted for that perfect aroma and non-sticky texture.", images: ["https://images.unsplash.com/photo-1610450949065-226e6ba1f0e4?w=500"], category: "Signature" },
-    { _id: '2', name: "Raw Wheat Semiya", description: "100% pure hard wheat semolina. The healthy choice for every meal.", images: ["https://images.unsplash.com/photo-1626808642875-0aa545482dfb?w=500"], category: "Classic" },
-    { _id: '3', name: "Quick Cook Vermicelli", description: "Extra thin strands for lightning fast breakfasts.", images: ["https://images.unsplash.com/photo-1596662951482-0c4ba74a6df6?w=500"], category: "Instant" }
+    { _id: '1', name: "Roasted Vermicelli", description: "Golden roasted for that perfect aroma and non-sticky texture.", images: ["https://images.unsplash.com/photo-1611060205850-205934522401?auto=format&fit=crop&w=500&q=80"], category: "Signature" },
+    { _id: '2', name: "Raw Wheat Semiya", description: "100% pure hard wheat semolina. The healthy choice for every meal.", images: ["https://images.unsplash.com/photo-1542332213-9b5a5a3fab35?auto=format&fit=crop&w=500&q=80"], category: "Classic" },
+    { _id: '3', name: "Quick Cook Vermicelli", description: "Extra thin strands for lightning fast breakfasts.", images: ["https://images.unsplash.com/photo-1616431718012-39f50682136e?auto=format&fit=crop&w=500&q=80"], category: "Instant" }
   ]);
   
   const recipes = [
-    { name: "Sweet Semiya Payasam", img: "https://images.unsplash.com/photo-1596662951482-0c4ba74a6df6?w=400", time: "20 Mins" },
-    { name: "Spicy Semiya Upma", img: "https://images.unsplash.com/photo-1626808642875-0aa545482dfb?w=400", time: "15 Mins" },
-    { name: "Semiya Vegetable Biryani", img: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400", time: "30 Mins" }
+    { name: "Sweet Semiya Payasam", img: "https://images.unsplash.com/photo-1626450949065-226e6ba1f0e4?auto=format&fit=crop&w=400&q=80", time: "20 Mins" },
+    { name: "Spicy Semiya Upma", img: "https://images.unsplash.com/photo-1589113103551-24867990b790?auto=format&fit=crop&w=400&q=80", time: "15 Mins" },
+    { name: "Semiya Vegetable Biryani", img: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=400&q=80", time: "30 Mins" }
   ];
 
   const steps = [
@@ -78,7 +78,7 @@ const Home = () => {
               <div className="absolute top-0 -left-10 w-72 h-72 bg-secondary rounded-full mix-blend-multiply opacity-50 blur-3xl animate-blob"></div>
               <div className="absolute top-0 -right-10 w-72 h-72 bg-primary rounded-full mix-blend-multiply opacity-20 blur-3xl animate-blob animation-delay-2000"></div>
               <div className="relative bg-white p-3 rounded-3xl shadow-2xl transform rotate-2 hover:rotate-0 transition duration-500">
-                 <img src="https://images.unsplash.com/photo-1610450949065-226e6ba1f0e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sangu Semiya bowl" className="rounded-2xl w-full object-cover h-[450px]" />
+                 <img src="https://images.unsplash.com/photo-1611060205850-205934522401?auto=format&fit=crop&w=800&q=80" alt="Sangu Semiya bowl" className="rounded-2xl w-full object-cover h-[450px]" />
                  <div className="absolute -bottom-6 -left-6 bg-white px-6 py-4 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-4">
                    <span className="text-4xl">🌾</span>
                    <div>
