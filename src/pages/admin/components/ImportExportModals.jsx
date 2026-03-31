@@ -25,7 +25,7 @@ export const ImportModal = ({ isOpen, onClose, refreshProducts }) => {
     const formData = new FormData();
     formData.append('csvFile', file);
     try {
-      await axios.post('http://localhost:5001/api/products/utils/import', formData, {
+      await axios.post('http://127.0.0.1:5001/api/products/utils/import', formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('adminToken')}`,
           'Content-Type': 'multipart/form-data'
@@ -122,7 +122,7 @@ export const ImportModal = ({ isOpen, onClose, refreshProducts }) => {
 export const ExportModal = ({ isOpen, onClose }) => {
   const handleExport = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/products/utils/export', {
+      const response = await axios.get('http://127.0.0.1:5001/api/products/utils/export', {
         headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` },
         responseType: 'blob'
       });

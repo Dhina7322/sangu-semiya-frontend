@@ -15,7 +15,7 @@ const CMSManager = () => {
 
   const loadCMS = async () => {
     try {
-      const res = await axios.get('http://localhost:5001/api/homepage');
+      const res = await axios.get('http://127.0.0.1:5001/api/homepage');
       if (res.data) setFormData(res.data);
       setLoading(false);
     } catch (err) {
@@ -40,7 +40,7 @@ const CMSManager = () => {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      await axios.put('http://localhost:5001/api/homepage', formData, getAuthHeader());
+      await axios.put('http://127.0.0.1:5001/api/homepage', formData, getAuthHeader());
       alert('Content updated successfully!');
     } catch (err) {
       console.error('Failed to update CMS', err);

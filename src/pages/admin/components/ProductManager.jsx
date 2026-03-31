@@ -18,7 +18,7 @@ const ProductManager = () => {
   const loadProducts = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5001/api/products');
+      const res = await axios.get('http://127.0.0.1:5001/api/products');
       setProducts(res.data);
       setFilteredProducts(res.data);
       setLoading(false);
@@ -44,7 +44,7 @@ const ProductManager = () => {
 
   const handleDelete = async (id) => {
     if(window.confirm('Eradicate this product from inventory?')) {
-      await axios.delete(`http://localhost:5001/api/products/${id}`, {
+      await axios.delete(`http://127.0.0.1:5001/api/products/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` }
       });
       loadProducts();

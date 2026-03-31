@@ -30,7 +30,7 @@ const AdminManager = () => {
 
   const fetchAdmins = useCallback(async () => {
     try {
-      const res = await axios.get('http://localhost:5001/api/users', config);
+      const res = await axios.get('http://127.0.0.1:5001/api/users', config);
       setAdmins(res.data);
       setLoading(false);
     } catch (err) {
@@ -60,7 +60,7 @@ const AdminManager = () => {
         password: profileData.newPassword
       };
       
-      await axios.put('http://localhost:5001/api/users/profile', payload, config);
+      await axios.put('http://127.0.0.1:5001/api/users/profile', payload, config);
       alert('Security Credentials Updated Successfully. Please log in again.');
       localStorage.removeItem('adminToken');
       localStorage.removeItem('adminRole');
@@ -76,7 +76,7 @@ const AdminManager = () => {
     e.preventDefault();
     setCreateLoading(true);
     try {
-      await axios.post('http://localhost:5001/api/users/subadmin', newSubAdmin, config);
+      await axios.post('http://127.0.0.1:5001/api/users/subadmin', newSubAdmin, config);
       alert('Sub-Admin created successfully');
       setNewSubAdmin({ email: '', password: '' });
       fetchAdmins();
@@ -90,7 +90,7 @@ const AdminManager = () => {
   const handleDeleteAdmin = async (id) => {
     if (window.confirm('Eradicate this sub-admin account?')) {
       try {
-        await axios.delete(`http://localhost:5001/api/users/${id}`, config);
+        await axios.delete(`http://127.0.0.1:5001/api/users/${id}`, config);
         fetchAdmins();
       } catch (err) {
         alert(err.response?.data?.message || 'Delete failed');

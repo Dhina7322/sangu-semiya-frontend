@@ -35,12 +35,12 @@ const Home = () => {
 
   useEffect(() => {
     // Attempt to override dummy data with dynamic CMS data
-    axios.get('http://localhost:5001/api/homepage')
+    axios.get('http://127.0.0.1:5001/api/homepage')
       .then(res => { if(res.data && res.data.heroBanner?.message) setData(res.data) })
       .catch(() => console.log('Using default static data'));
 
     // Attempt to fetch actual products
-    axios.get('http://localhost:5001/api/products')
+    axios.get('http://127.0.0.1:5001/api/products')
       .then(res => { if(res.data && res.data.length > 0) setFeaturedProducts(res.data.slice(0, 3)) })
       .catch(() => console.log('Using default featured products'));
   }, []);

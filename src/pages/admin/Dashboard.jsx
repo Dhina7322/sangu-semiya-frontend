@@ -26,8 +26,8 @@ const Dashboard = () => {
 
     const fetchMetrics = async () => {
       try {
-        const prod = await axios.get('http://localhost:5001/api/products');
-        const enq = await axios.get('http://localhost:5001/api/enquiry', { headers: { Authorization: `Bearer ${token}` } });
+        const prod = await axios.get('http://127.0.0.1:5001/api/products');
+        const enq = await axios.get('http://127.0.0.1:5001/api/enquiry', { headers: { Authorization: `Bearer ${token}` } });
         setMetrics({
           products: prod.data.length,
           enquiries: enq.data.length,

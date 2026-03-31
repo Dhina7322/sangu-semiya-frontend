@@ -11,7 +11,7 @@ const EnquiryManager = () => {
 
   const loadEnquiries = useCallback(async () => {
     try {
-      const res = await axios.get('http://localhost:5001/api/enquiry', getAuthHeader());
+      const res = await axios.get('http://127.0.0.1:5001/api/enquiry', getAuthHeader());
       setEnquiries(res.data);
       setLoading(false);
     } catch (err) {
@@ -24,7 +24,7 @@ const EnquiryManager = () => {
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      await axios.put(`http://localhost:5001/api/enquiry/${id}/status`, { status: newStatus }, getAuthHeader());
+      await axios.put(`http://127.0.0.1:5001/api/enquiry/${id}/status`, { status: newStatus }, getAuthHeader());
       setEnquiries(enquiries.map(e => e._id === id ? { ...e, status: newStatus } : e));
     } catch (err) {
       console.error('Failed to update status', err);

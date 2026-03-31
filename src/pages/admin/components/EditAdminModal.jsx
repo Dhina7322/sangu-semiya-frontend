@@ -26,7 +26,7 @@ const EditAdminModal = ({ admin, isOpen, onClose, onUpdate }) => {
       const payload = { email };
       if (password) payload.password = password;
 
-      await axios.put(`http://localhost:5001/api/users/${admin._id}`, payload, config);
+      await axios.put(`http://127.0.0.1:5001/api/users/${admin._id}`, payload, config);
       onUpdate();
       onClose();
     } catch (err) {

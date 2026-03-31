@@ -45,8 +45,8 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts }) => {
     try {
       const config = { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' } };
       const url = product
-        ? `http://localhost:5001/api/products/${product._id}`
-        : 'http://localhost:5001/api/products';
+        ? `http://127.0.0.1:5001/api/products/${product._id}`
+        : 'http://127.0.0.1:5001/api/products';
       if (product) {
         await axios.put(url, data, config);
       } else {

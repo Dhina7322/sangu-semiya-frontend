@@ -31,7 +31,7 @@ const BulkOrder = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await axios.post('http://localhost:5001/api/enquiry', formData);
+      await axios.post('http://127.0.0.1:5001/api/enquiry', formData);
       alert('Enquiry submitted successfully! Our team will contact you soon.');
       setFormData({ name: '', phone: '', email: '', product: '', quantity: '', message: '' });
     } catch (err) {
