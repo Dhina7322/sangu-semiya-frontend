@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import StatusPopup from './StatusPopup';
+
 
 const CMSManager = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +10,8 @@ const CMSManager = () => {
     aboutText: ''
   });
   const [loading, setLoading] = useState(true);
+  const [status, setStatus] = useState({ isOpen: false, message: '', type: 'success' });
+
 
   const getAuthHeader = () => ({
     headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` }
@@ -41,11 +45,13 @@ const CMSManager = () => {
     e.preventDefault();
     try {
       await axios.put('http://localhost:5001/api/homepage', formData, getAuthHeader());
-      alert('Content updated successfully!');
+      setStatus({ isOpen: true, message: 'Content updated successfully!', type: 'success' });
     } catch (err) {
       console.error('Failed to update CMS', err);
+      setStatus({ isOpen: true, message: 'Failed to update CMS', type: 'error' });
     }
   };
+
 
   if (loading) return <div className="text-xs font-bold text-slate-400 animate-pulse">Warming up CMS...</div>;
 
@@ -107,6 +113,12 @@ const CMSManager = () => {
         </section>
 
       </form>
+      <StatusPopup 
+        isOpen={status.isOpen}
+        message={status.message}
+        type={status.type}
+        onClose={() => setStatus({ ...status, isOpen: false })}
+      />
     </div>
   );
 };
