@@ -78,7 +78,7 @@ const Home = () => {
               <div className="absolute top-0 -left-10 w-72 h-72 bg-secondary rounded-full mix-blend-multiply opacity-50 blur-3xl animate-blob"></div>
               <div className="absolute top-0 -right-10 w-72 h-72 bg-primary rounded-full mix-blend-multiply opacity-20 blur-3xl animate-blob animation-delay-2000"></div>
               <div className="relative bg-white p-3 rounded-3xl shadow-2xl transform rotate-2 hover:rotate-0 transition duration-500">
-                 <img src="https://images.unsplash.com/photo-1610450949065-226e6ba1f0e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sangu Semiya bowl" className="rounded-2xl w-full object-cover h-[450px]" />
+                 <img src="https://images.unsplash.com/photo-1596662951482-0c4ba74a6df6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sangu Semiya bowl" className="rounded-2xl w-full object-cover h-[450px]" />
                  <div className="absolute -bottom-6 -left-6 bg-white px-6 py-4 rounded-2xl shadow-xl border border-gray-100 flex items-center gap-4">
                    <span className="text-4xl">🌾</span>
                    <div>
