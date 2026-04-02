@@ -84,39 +84,39 @@ const Home = () => {
     <div className="w-full bg-white font-sans selection:bg-secondary selection:text-white">
       
       {/* 1. HERO SECTION */}
-      <section className="relative bg-white pt-10 pb-10 lg:pt-16 lg:pb-24 overflow-hidden flex items-center">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-slate-50 skew-x-[-12deg] translate-x-20 z-0 border-l border-slate-100 opacity-40"></div>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="relative bg-white pt-24 pb-12 lg:pt-28 lg:pb-24 overflow-hidden flex items-center">
+        <div className="absolute top-0 right-0 w-full md:w-1/2 h-full bg-slate-50 skew-x-[-12deg] translate-x-20 z-0 border-l border-slate-100 opacity-40 transform-gpu backface-hidden"></div>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full mb-8 lg:mb-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             
-            <div className="text-center lg:text-left space-y-4 animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 py-1 px-3 rounded-full bg-red-50 border border-red-100 text-secondary font-semibold text-[8px] tracking-widest uppercase">
+            <div className="text-center lg:text-left space-y-5 animate-fade-in-up mt-8 lg:mt-0">
+              <div className="inline-flex items-center gap-2 py-1 px-4 rounded-full bg-red-50 border border-red-100 text-secondary font-bold text-[9px] tracking-widest uppercase shadow-sm">
                 Established 1982
               </div>
-              <h1 className="text-3xl lg:text-5xl font-semibold text-slate-900 tracking-tight leading-tight">
+              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-slate-900 tracking-tight leading-tight">
                 {data.heroBanner?.message || "Authentic & Nutritious Food"}
               </h1>
-              <p className="text-base text-slate-500 max-w-sm mx-auto lg:mx-0 font-normal leading-relaxed">
+              <p className="text-base md:text-lg text-slate-600 max-w-sm md:max-w-md mx-auto lg:mx-0 font-medium leading-relaxed">
                 {data.heroBanner?.subMessage || "Offering delectable and authentic traditional foods for over three decades — trusted by families since 1982."}
               </p>
               
-              <div className="flex flex-wrap gap-2.5 justify-center lg:justify-start pt-2">
-                <a href="https://amazon.in" target="_blank" rel="noreferrer" className="group bg-slate-900 hover:bg-secondary text-white px-5 py-3 rounded-lg font-semibold text-[10px] tracking-widest uppercase transition-all duration-300 flex items-center gap-2">
+              <div className="flex flex-wrap gap-3 justify-center lg:justify-start pt-4">
+                <a href="https://amazon.in" target="_blank" rel="noreferrer" className="group bg-slate-900 hover:bg-secondary text-white px-6 py-3.5 rounded-xl font-bold text-[11px] tracking-widest uppercase transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg">
                   Shop on Amazon 
-                  <span>→</span>
+                  <span className="transform group-hover:translate-x-1 transition-transform">→</span>
                 </a>
-                <Link to="/products" className="bg-white border border-slate-200 text-slate-400 hover:border-secondary hover:text-secondary px-5 py-3 rounded-lg font-semibold text-[10px] tracking-widest uppercase transition-all duration-300 flex items-center justify-center">
+                <Link to="/products" className="bg-white border border-slate-200 text-slate-500 hover:border-secondary hover:text-secondary px-6 py-3.5 rounded-xl font-bold text-[11px] tracking-widest uppercase transition-all duration-300 flex items-center justify-center shadow-sm hover:shadow-md">
                   View Catalog
                 </Link>
               </div>
             </div>
             
-            <div className="relative mx-auto w-full max-w-md lg:max-w-none">
-              <div className="relative p-2 rounded-2xl group border border-slate-100 bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
+            <div className="relative mx-auto w-full max-w-md lg:max-w-none pt-4 lg:pt-0">
+              <div className="relative p-2.5 rounded-3xl group border border-slate-100 bg-white/80 shadow-lg hover:shadow-xl transition-all duration-500 transform-gpu">
                    <img 
                     src={data.heroBanner?.heroImage || "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&q=80&w=800"} 
                     alt="Sangu Brand Semiya" 
-                    className="rounded-xl w-full object-cover h-[400px] lg:h-[500px]" 
+                    className="rounded-2xl w-full object-cover h-[350px] md:h-[450px] lg:h-[550px] shadow-inner" 
                    />
               </div>
             </div>
