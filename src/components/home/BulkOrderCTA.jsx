@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { FiMessageCircle } from 'react-icons/fi';
 
 const BulkOrderCTA = () => (
+  <section className="bg-white py-14 lg:py-20 lg:pb-32 overflow-hidden">
     <div className="max-w-7xl mx-auto px-6 lg:px-8">
-      <div className="bg-slate-900 rounded-3xl p-10 lg:p-14 overflow-hidden relative shadow-sm">
+      <div className="bg-slate-900 rounded-3xl p-10 lg:p-20 overflow-hidden relative shadow-2xl">
         <div className="absolute inset-0 opacity-5">
           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -16,22 +17,23 @@ const BulkOrderCTA = () => (
           </svg>
         </div>
         
-        <div className="relative z-10 max-w-xl space-y-4">
-          <span className="text-secondary font-semibold uppercase tracking-widest text-[8px] px-3 py-1 bg-white/5 border border-white/5 rounded-full inline-block">Grow with Sangu</span>
-          <h2 className="text-2xl md:text-3xl font-semibold text-white tracking-tight leading-tight">Distributor & Wholesale Partnership</h2>
-          <p className="text-sm text-slate-400 font-normal leading-relaxed opacity-80">Partnering with over 10+ dealers across Tamil Nadu. Access premium margins and priority shipping with Coimbatore's most trusted vermicelli brand since 1982.</p>
+        <div className="relative z-10 max-w-2xl space-y-6">
+          <span className="text-secondary font-bold uppercase tracking-widest text-[9px] px-4 py-2 bg-white/5 border border-white/10 rounded-full inline-block">Grow with Sangu</span>
+          <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">Distributor & Wholesale Partnership</h2>
+          <p className="text-base text-slate-400 font-normal leading-relaxed opacity-80">Partnering with over 10+ dealers across Tamil Nadu. Access premium margins, high-converting marketing collateral, and priority shipping. Partner with Coimbatore's most trusted vermicelli brand — established in 1982.</p>
           
-          <div className="flex flex-wrap gap-3 pt-3">
-            <Link to="/contact-us" className="bg-secondary hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold text-[10px] tracking-widest uppercase transition-all duration-300 shadow-md text-center">
+          <div className="flex flex-wrap gap-4 pt-4">
+            <Link to="/contact-us" className="bg-secondary hover:bg-red-700 text-white px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-lg text-center">
               Bulk Enquiry
             </Link>
-            <a href="https://wa.me/919677707416" target="_blank" rel="noreferrer" className="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-lg font-semibold text-[10px] tracking-widest uppercase transition-all duration-300 border border-white/10 flex items-center justify-center gap-2">
-               <FiMessageCircle size={14} /> WhatsApp Us
+            <a href="https://wa.me/919677707416" target="_blank" rel="noreferrer" className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-lg flex items-center justify-center gap-2">
+               <FiMessageCircle size={18} /> WhatsApp Us
             </a>
           </div>
         </div>
       </div>
     </div>
+  </section>
 );
 
 export default BulkOrderCTA;

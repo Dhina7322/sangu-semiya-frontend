@@ -139,9 +139,7 @@ const Home = () => {
         </section>
       )}
 
-      <section className="py-14 lg:py-20">
-        <ProductionProcess steps={steps} />
-      </section>
+      <ProductionProcess steps={steps} />
 
       <section className="py-14 lg:py-20">
         <ProductBenefits benefits={benefits} />
@@ -183,9 +181,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="py-14 lg:py-20">
-        <MilestoneSection />
-      </section>
+      <MilestoneSection />
 
       <section className="pb-14 lg:pb-20">
         <BulkOrderCTA />
