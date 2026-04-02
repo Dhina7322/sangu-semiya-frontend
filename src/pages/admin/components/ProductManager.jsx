@@ -62,7 +62,7 @@ const ProductManager = () => {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5001/api/products/${confirm.productId}`, {
+      await axios.delete(`http://127.0.0.1:5001/api/products/${confirm.productId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` }
       });
       showStatus('Inventory removed successfully');

@@ -12,14 +12,35 @@ const BulkOrder = () => {
     quantity: '',
     message: ''
   });
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await axios.get('http://127.0.0.1:5001/api/products');
+        setProducts(res.data);
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching products', err);
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
     // If navigated from product page with query param
     const searchParams = new URLSearchParams(location.search);
     const prodName = searchParams.get('product');
-    if (prodName) {
-      setFormData(prev => ({ ...prev, product: prodName }));
+    const size = searchParams.get('size');
+    if (prodName || size) {
+      setFormData(prev => ({ 
+        ...prev, 
+        product: prodName || '', 
+        message: size ? `Source: ${size} variant. ` : '' 
+      }));
     }
   }, [location]);
 
@@ -43,7 +64,7 @@ const BulkOrder = () => {
   };
 
   const openWhatsApp = () => {
-    const text = `Hi Sangu Semiya team, I want to bulk order %0a*Product:* ${formData.product || 'Any'} %0a*Quantity:* ${formData.quantity || 'TBD'}`;
+    const text = `Hi Sangu Semiya team, I want to bulk order %0a*Product:* ${formData.product || 'Any'} %0a*Quantity:* ${formData.quantity || 'TBD'} %0a*Message:* ${formData.message || 'N/A'}`;
     window.open(`https://wa.me/919876543210?text=${text}`, '_blank');
   };
 
@@ -106,9 +127,10 @@ const BulkOrder = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-2">Interested Product *</label>
                   <select name="product" value={formData.product} onChange={handleChange} required className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition bg-white">
                     <option value="">Select Product...</option>
-                    <option value="Roasted Vermicelli">Roasted Vermicelli</option>
-                    <option value="Wheat Vermicelli">Wheat Vermicelli</option>
-                    <option value="All Products">All Products</option>
+                    {products.map((p) => (
+                      <option key={p.id || p._id} value={p.name}>{p.name}</option>
+                    ))}
+                    <option value="All Products">Combination / All Products</option>
                   </select>
                 </div>
                 <div>
