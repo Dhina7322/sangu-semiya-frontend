@@ -94,8 +94,18 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/bulk-order" className="text-sm text-red-100 hover:text-white transition-colors duration-200">
+                <Link to="/contact-us" className="text-sm text-red-100 hover:text-white transition-colors duration-200">
                   Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/media" className="text-sm text-red-100 hover:text-white transition-colors duration-200">
+                  Media & Awards
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog" className="text-sm text-red-100 hover:text-white transition-colors duration-200">
+                  Blog & Recipe
                 </Link>
               </li>
               <li>

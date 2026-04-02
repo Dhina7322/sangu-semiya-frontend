@@ -110,7 +110,7 @@ const Navbar = () => {
             <div className="hidden md:flex items-center gap-7">
               <Link to="/media" className={navLinkClass('/media')}>Media &amp; Awards</Link>
               <Link to="/blog" className={navLinkClass('/blog')}>Blog &amp; Recipe</Link>
-              <Link to="/bulk-order" className={navLinkClass('/bulk-order')}>Contact Us</Link>
+              <Link to="/contact-us" className={navLinkClass('/contact-us')}>Contact Us</Link>
             </div>
 
             {/* Mobile Hamburger */}
@@ -152,7 +152,7 @@ const Navbar = () => {
 
               <Link to="/media" onClick={toggleMenu} className="block py-2.5 text-white hover:text-primary font-medium transition">Media & Awards</Link>
               <Link to="/blog" onClick={toggleMenu} className="block py-2.5 text-white hover:text-primary font-medium transition">Blog &amp; Recipe</Link>
-              <Link to="/bulk-order" onClick={toggleMenu} className="block py-2.5 text-white hover:text-primary font-medium transition">Contact Us</Link>
+              <Link to="/contact-us" onClick={toggleMenu} className="block py-2.5 text-white hover:text-primary font-medium transition">Contact Us</Link>
             </div>
           </div>
         )}

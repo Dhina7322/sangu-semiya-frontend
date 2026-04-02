@@ -9,32 +9,36 @@ import ProductBenefits from '../components/home/ProductBenefits';
 import BulkOrderCTA from '../components/home/BulkOrderCTA';
 import AmazonStrip from '../components/home/AmazonStrip';
 import EnquirySection from '../components/home/EnquirySection';
+import FounderSection from '../components/home/FounderSection';
+import MilestoneSection from '../components/home/MilestoneSection';
+import ProductRange from '../components/home/ProductRange';
 
 const Home = () => {
   const [data, setData] = useState({
     heroBanner: { 
       message: "Sangu Brand Semiya", 
-      subMessage: "Discover the professional touch with our premium wheat strands. Healthy, Delicious & Quick to Cook since 2005." 
+      subMessage: "Offering delectable and authentic traditional foods for over three decades. Trusted by families across Tamil Nadu since 1982." 
     },
     whyChooseUs: [
       { title: "Quick Cooking", icon: "https://img.icons8.com/3d-fluency/94/stopwatch.png", description: "Ready in just 5-7 minutes for your busy mornings." },
       { title: "Easy to Digest", icon: "https://img.icons8.com/3d-fluency/94/tea-leaves.png", description: "Light on the stomach, made from 100% hard wheat." },
-      { title: "Healthy Variants", icon: "https://img.icons8.com/3d-fluency/94/wheat.png", description: "Zero Maida, high fiber, and nutritionally rich." },
+      { title: "Healthy Variants", icon: "https://img.icons8.com/3d-fluency/94/wheat.png", description: "Ragi, Kambu & Wheat — Zero Maida, high fiber." },
       { title: "Multiple Uses", icon: "https://img.icons8.com/3d-fluency/94/steaming-bowl.png", description: "Perfect for Payasam, Upma, Biryani, and more." },
-      { title: "Long Shelf Life", icon: "https://img.icons8.com/3d-fluency/94/security-shield.png", description: "Stays fresh longer with our triple-layer packaging." }
+      { title: "Long Shelf Life", icon: "https://img.icons8.com/3d-fluency/94/security-shield.png", description: "Stays fresh longer with our quality packaging." }
     ]
   });
 
   const [featuredProducts, setFeaturedProducts] = useState([
-    { _id: '1', name: "Classic Wheat Semiya", description: "100% pure hard wheat semolina.", images: ["https://images.unsplash.com/photo-1627286301435-06f157f12270?auto=format&fit=crop&q=80&w=800"], category: "Signature", price: "₹45.00" },
-    { _id: '2', name: "Golden Roasted Vermicelli", description: "Expertly roasted for a non-sticky texture.", images: ["https://images.unsplash.com/photo-1598515214041-0ca2dd675d0b?auto=format&fit=crop&q=80&w=800"], category: "Classic", price: "₹52.00" },
-    { _id: '3', name: "Fine Strand Vermicelli", description: "Extra thin strands made from premium durum wheat.", images: ["https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&q=80&w=800"], category: "Instant", price: "₹48.00" }
+    { _id: '1', name: "Roasted Vermicelli", description: "Premium roasted vermicelli, non-sticky & golden.", images: ["https://images.unsplash.com/photo-1627286301435-06f157f12270?auto=format&fit=crop&q=80&w=800"], category: "Signature", price: "180g | 450g" },
+    { _id: '2', name: "Ragi Vermicelli", description: "Nutrient-rich Ragi vermicelli for healthy living.", images: ["https://images.unsplash.com/photo-1598515214041-0ca2dd675d0b?auto=format&fit=crop&q=80&w=800"], category: "Healthy", price: "180g | 450g" },
+    { _id: '3', name: "Veg Noodles", description: "Quick-cook vegetable noodles for the whole family.", images: ["https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&q=80&w=800"], category: "Noodles", price: "180g" },
+    { _id: '4', name: "Chinese Noodles", description: "Authentic Chinese-style noodles, perfect stir-fry base.", images: ["https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&q=80&w=800"], category: "Noodles", price: "200g | 1Kg" }
   ]);
   
   const [recipes, setRecipes] = useState([
     { name: "Sweet Semiya Payasam", img: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&q=80&w=600", time: "20 Mins" },
     { name: "Spicy Semiya Upma", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=600", time: "15 Mins" },
-    { name: "Fine Vegetable Biryani", img: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&q=80&w=600", time: "30 Mins" }
+    { name: "Vermicelli Biryani", img: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&q=80&w=600", time: "30 Mins" }
   ]);
 
   const steps = [
@@ -61,7 +65,21 @@ const Home = () => {
       try {
         const res = await axios.get('http://localhost:5001/api/homepage');
         if(res.data) {
-          setData(prev => ({ ...prev, ...res.data }));
+          const apiData = { ...res.data };
+          // Only use API whyChooseUs if it has real content (not test placeholders)
+          if (apiData.whyChooseUs?.length > 0) {
+            const hasTestData = apiData.whyChooseUs.some(item => 
+              item.title === 'Test' || item.description === 'Testing'
+            );
+            if (hasTestData) delete apiData.whyChooseUs;
+          }
+          // Only use API heroBanner if it has meaningful content
+          if (apiData.heroBanner) {
+            if (!apiData.heroBanner.subMessage || apiData.heroBanner.subMessage.length < 30) {
+              delete apiData.heroBanner;
+            }
+          }
+          setData(prev => ({ ...prev, ...apiData }));
           if (res.data.recipes?.length > 0) setRecipes(res.data.recipes);
         }
       } catch (err) { console.log('Using default home data'); }
@@ -82,7 +100,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="w-full bg-white font-sans selection:bg-primary selection:text-white">
+    <div className="w-full bg-white font-sans selection:bg-secondary selection:text-white">
       
       {/* 1. HERO SECTION */}
       <section className="relative bg-white pt-32 pb-16 lg:pt-48 lg:pb-40 overflow-hidden flex items-center min-h-[90vh]">
@@ -91,25 +109,25 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             
             <div className="text-center lg:text-left space-y-8 animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 py-2 px-5 rounded-full bg-red-50 border border-red-100 text-primary font-black text-[11px] tracking-[0.2em] uppercase shadow-sm">
-                <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-                Perfecting Texture Since 2005
+              <div className="inline-flex items-center gap-2 py-2 px-5 rounded-full bg-red-50 border border-red-100 text-secondary font-black text-[11px] tracking-[0.2em] uppercase shadow-sm">
+                <span className="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+                Perfecting Texture Since 1982
               </div>
               <h1 className="text-64px-to-88px font-black text-slate-900 tracking-[-0.04em] leading-[0.95]">
-                {data.heroBanner?.message || "Authentic &"} <br/>
-                <span className="text-primary italic">Nutritious</span>
+                Authentic & <br/>
+                <span className="text-secondary italic">Nutritious</span>
               </h1>
               <style dangerouslySetInnerHTML={{ __html: `.text-64px-to-88px { font-size: clamp(3.5rem, 8vw, 5.5rem); }` }} />
               <p className="text-xl text-slate-500 max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed">
-                {data.heroBanner?.subMessage || "Quick to cook, easy to digest. Discover the joy of perfect semiya every time."}
+                Offering delectable and authentic traditional foods for over three decades. Trusted by families across Tamil Nadu since 1982.
               </p>
               
               <div className="flex flex-wrap gap-5 justify-center lg:justify-start pt-6">
-                <a href="https://amazon.in" target="_blank" rel="noreferrer" className="group bg-slate-900 hover:bg-primary text-white px-10 py-5 rounded-2xl font-black text-sm tracking-widest uppercase shadow-2xl transition-all duration-500 flex items-center gap-3">
+                <a href="https://amazon.in" target="_blank" rel="noreferrer" className="group bg-slate-900 hover:bg-secondary text-white px-10 py-5 rounded-2xl font-black text-sm tracking-widest uppercase shadow-2xl transition-all duration-500 flex items-center gap-3">
                   Shop on Amazon 
                   <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
                 </a>
-                <Link to="/products" className="bg-white border-2 border-slate-100 text-slate-900 hover:border-primary hover:text-primary px-10 py-5 rounded-2xl font-black text-sm tracking-widest uppercase transition-all duration-500 flex items-center justify-center">
+                <Link to="/products" className="bg-white border-2 border-slate-100 text-slate-900 hover:border-secondary hover:text-secondary px-10 py-5 rounded-2xl font-black text-sm tracking-widest uppercase transition-all duration-500 flex items-center justify-center">
                   Explore Catalog
                 </Link>
               </div>
@@ -117,11 +135,11 @@ const Home = () => {
             
             <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
               <div className="absolute top-0 -left-10 w-96 h-96 bg-red-100/50 rounded-full blur-[100px] animate-blob"></div>
-              <div className="absolute bottom-0 -right-10 w-96 h-96 bg-primary/10 rounded-full blur-[100px] animate-blob animation-delay-4000"></div>
+              <div className="absolute bottom-0 -right-10 w-96 h-96 bg-secondary/10 rounded-full blur-[100px] animate-blob animation-delay-4000"></div>
               <div className="relative p-4 rounded-[4rem] group border border-slate-100 shadow-2xl bg-white/50 backdrop-blur-sm">
                    <img 
                     src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&q=80&w=1000" 
-                    alt="Sangu Semiya Gourmet" 
+                    alt="Sangu Brand Semiya - Premium Vermicelli" 
                     className="rounded-[3.2rem] w-full object-cover h-[500px] lg:h-[600px] shadow-sm transform hover:scale-[1.02] transition-transform duration-700" 
                    />
               </div>
@@ -131,6 +149,13 @@ const Home = () => {
       </section>
 
       <AmazonStrip />
+
+      {/* Founder Section */}
+      <FounderSection />
+
+      {/* Product Range from real website */}
+      <ProductRange />
+
       {data.whyChooseUs && <WhyChooseUs data={data.whyChooseUs} />}
       <ProductionProcess steps={steps} />
       <ProductBenefits benefits={benefits} />
@@ -140,10 +165,10 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
             <div className="max-w-2xl">
-              <span className="text-primary font-black text-[10px] tracking-[0.3em] uppercase mb-4 block">Premium Selection</span>
+              <span className="text-secondary font-black text-[10px] tracking-[0.3em] uppercase mb-4 block">Premium Selection</span>
               <h2 className="text-5xl md:text-6xl font-black text-slate-900 tracking-tighter">Gold-Standard Range</h2>
             </div>
-            <Link to="/products" className="group flex items-center gap-4 text-slate-900 font-black uppercase text-xs tracking-widest pb-2 border-b-2 border-slate-900 hover:text-primary hover:border-primary transition-all duration-300">
+            <Link to="/products" className="group flex items-center gap-4 text-slate-900 font-black uppercase text-xs tracking-widest pb-2 border-b-2 border-slate-900 hover:text-secondary hover:border-secondary transition-all duration-300">
                Explore Full Catalog
                <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
             </Link>
@@ -159,7 +184,7 @@ const Home = () => {
                     className="w-full h-full object-contain p-8 transform group-hover:scale-105 transition duration-500" 
                   />
                   {idx === 0 && (
-                    <div className="absolute top-4 right-4 bg-primary text-white text-[9px] font-black uppercase py-1 px-3 rounded-full shadow-lg">
+                    <div className="absolute top-4 right-4 bg-secondary text-white text-[9px] font-black uppercase py-1 px-3 rounded-full shadow-lg">
                       Best Seller
                     </div>
                   )}
@@ -167,9 +192,9 @@ const Home = () => {
 
                 <div className="text-left px-1">
                   <Link to={`/product/${p.name}`}>
-                    <h3 className="text-sm font-bold text-slate-800 hover:text-primary transition-colors line-clamp-1 mb-1 uppercase tracking-tight">{p.name}</h3>
+                    <h3 className="text-sm font-bold text-slate-800 hover:text-secondary transition-colors line-clamp-1 mb-1 uppercase tracking-tight">{p.name}</h3>
                   </Link>
-                  <p className="text-primary font-black text-lg">{p.price || "₹45.00"}</p>
+                  <p className="text-secondary font-black text-lg">{p.price || "₹45.00"}</p>
                   <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-1.5">{p.category || "Authentic"}</p>
                 </div>
               </div>
@@ -178,6 +203,9 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Milestone Section */}
+      <MilestoneSection />
+
       <BulkOrderCTA />
       <EnquirySection trustCards={trustCards} />
       
@@ -185,7 +213,7 @@ const Home = () => {
       <section className="py-32 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
            <div className="mb-16 space-y-4">
-              <span className="inline-block py-1.5 px-4 rounded-full bg-red-50 border border-red-100 text-primary font-black text-[10px] tracking-[0.3em] uppercase shadow-sm">Kitchen Ready</span>
+              <span className="inline-block py-1.5 px-4 rounded-full bg-red-50 border border-red-100 text-secondary font-black text-[10px] tracking-[0.3em] uppercase shadow-sm">Kitchen Ready</span>
               <h2 className="text-5xl md:text-6xl font-black text-slate-900 tracking-tighter">Cooking Inspiration</h2>
            </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -195,7 +223,7 @@ const Home = () => {
                   <div className="h-80 overflow-hidden">
                     <img src={recipe.img} alt={recipe.name} className="w-full h-full object-cover transform group-hover:scale-110 transition duration-1000" />
                   </div>
-                  <div className="p-10 text-center font-black text-2xl text-slate-900 group-hover:text-primary transition-colors italic">{recipe.name}</div>
+                  <div className="p-10 text-center font-black text-2xl text-slate-900 group-hover:text-secondary transition-colors italic">{recipe.name}</div>
                 </div>
              ))}
           </div>
