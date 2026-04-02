@@ -49,7 +49,6 @@ const CMSManager = () => {
   };
 
   const compressAndSet = (file, section, index, field) => {
-    // Pre-check file size (warn if over 5MB raw)
     if (file.size > 5 * 1024 * 1024) {
       setStatus({ isOpen: true, message: 'File is very large. Please use a smaller image (under 5MB).', type: 'error' });
       return;
@@ -62,7 +61,7 @@ const CMSManager = () => {
       img.src = event.target.result;
       img.onload = () => {
         const canvas = document.createElement('canvas');
-        const MAX_WIDTH = 800;
+        const MAX_WIDTH = 1200; // Increased quality for banners
         let width = img.width;
         let height = img.height;
 
@@ -75,9 +74,10 @@ const CMSManager = () => {
         canvas.height = height;
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, width, height);
-        const quality = section === 'whyChooseUs' ? 0.4 : 0.6;
-        const dataUrl = canvas.toDataURL('image/jpeg', quality);
-
+        
+        // Use JPEG with 0.7 compression for better quality
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
+        
         if (section === 'whyChooseUs') {
           handleCardChange(index, field, dataUrl);
         } else {
@@ -125,7 +125,7 @@ const CMSManager = () => {
           <h2 className="text-lg font-bold text-slate-800 tracking-tight">Appearance Tuning</h2>
           <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-widest mt-1">Manage global brand presence</p>
         </div>
-        <button onClick={handleSave} className="bg-primary text-white text-[10px] font-black uppercase px-8 py-3 rounded-xl hover:scale-105 transition-all shadow-lg">Deploy Changes</button>
+        <button onClick={handleSave} className="bg-primary text-white text-[10px] font-black uppercase px-8 py-3 rounded-xl hover:scale-105 transition-all shadow-lg shadow-primary/20">Deploy Changes</button>
       </header>
 
       <form onSubmit={handleSave} className="space-y-10">
@@ -200,7 +200,7 @@ const CMSManager = () => {
                 <div className="space-y-3">
                   <label className="block w-full cursor-pointer">
                     <div className="bg-slate-50 border border-slate-100 rounded-lg py-2 text-center hover:border-secondary transition-colors">
-                      <span className="text-[8px] font-bold text-slate-400 uppercase">image choose us</span>
+                      <span className="text-[8px] font-bold text-slate-400 uppercase">Change Icon</span>
                     </div>
                     <input type="file" className="hidden" accept="image/*" onChange={(e) => handleFileUpload(e, 'whyChooseUs', idx, 'icon')} />
                   </label>
@@ -241,5 +241,5 @@ const CMSManager = () => {
     </div>
   );
 };
-}
+
 export default CMSManager;
