@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowRight } from 'react-icons/fi';
 
-const products = [
+const fallbackProducts = [
   { name: 'Roasted Vermicelli', sizes: '180g | 450g', color: 'from-amber-50 to-orange-50', border: 'border-amber-100', emoji: '🌾' },
   { name: 'Veg Noodles', sizes: '180g', color: 'from-green-50 to-emerald-50', border: 'border-green-100', emoji: '🥬' },
   { name: 'Ragi Vermicelli', sizes: '180g | 450g', color: 'from-rose-50 to-red-50', border: 'border-rose-100', emoji: '🫘' },
@@ -12,56 +12,70 @@ const products = [
   { name: 'Samba Wheat Broken', sizes: '250g | 500g', color: 'from-stone-50 to-amber-50', border: 'border-stone-200', emoji: '🥣' },
 ];
 
-const ProductRange = () => (
-  <section className="py-24 lg:py-32 bg-white">
-    <div className="max-w-7xl mx-auto px-6 lg:px-8">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-        <div className="max-w-2xl">
-          <span className="text-secondary font-black text-[10px] tracking-[0.3em] uppercase mb-4 block">
-            Complete Collection
-          </span>
-          <h2 className="text-5xl md:text-6xl font-black text-slate-900 tracking-tighter">
-            Our Product Range
-          </h2>
-        </div>
-        <Link
-          to="/products"
-          className="group flex items-center gap-4 text-slate-900 font-black uppercase text-xs tracking-widest pb-2 border-b-2 border-slate-900 hover:text-secondary hover:border-secondary transition-all duration-300"
-        >
-          View All Products
-          <FiArrowRight className="group-hover:translate-x-2 transition-transform duration-300" />
-        </Link>
-      </div>
+const ProductRange = ({ products = [] }) => {
+  const displayProducts = products.length > 0 ? products : fallbackProducts;
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map((product, i) => (
+  return (
+    <section className="py-20 lg:py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+          <div className="max-w-xl">
+            <span className="text-secondary font-medium text-[8px] tracking-widest uppercase mb-2 block">
+              Complete Collection
+            </span>
+            <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight">
+              Our Product Range
+            </h2>
+          </div>
           <Link
-            key={i}
-            to={`/product/${product.name}`}
-            className={`group bg-gradient-to-br ${product.color} ${product.border} border rounded-[2.5rem] p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 flex flex-col items-center text-center relative overflow-hidden`}
+            to="/products"
+            className="group flex items-center gap-2 text-slate-400 font-medium uppercase text-[9px] tracking-widest pb-1 border-b border-slate-50 hover:text-secondary hover:border-secondary transition-all"
           >
-            {/* Decorative circle */}
-            <div className="absolute -top-8 -right-8 w-24 h-24 bg-white/40 rounded-full blur-xl group-hover:scale-150 transition-transform duration-700"></div>
-            
-            {/* Emoji icon */}
-            <div className="text-5xl mb-6 transform group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500 relative z-10">
-              {product.emoji}
-            </div>
-            
-            {/* Name */}
-            <h3 className="text-base font-black text-slate-900 mb-2 leading-tight group-hover:text-secondary transition-colors duration-300 relative z-10">
-              {product.name}
-            </h3>
-            
-            {/* Sizes */}
-            <p className="text-xs font-bold text-slate-500 uppercase tracking-wider bg-white/70 px-4 py-1.5 rounded-full relative z-10">
-              {product.sizes}
-            </p>
+            View All Products
+            <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
           </Link>
-        ))}
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
+          {displayProducts.map((product, i) => {
+            const isApiProduct = !!product._id || !!product.id;
+            const bgColor = product.color || 'from-slate-50 to-slate-100';
+            const borderColor = product.border || 'border-slate-100';
+
+            return (
+              <Link
+                key={i}
+                to={`/product/${product.name}`}
+                className={`group bg-gradient-to-br ${bgColor} ${borderColor} border rounded-3xl p-6 lg:p-8 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center relative overflow-hidden`}
+              >
+                <div className="absolute -top-8 -right-8 w-24 h-24 bg-white/40 rounded-full blur-xl group-hover:scale-125 transition-transform duration-500"></div>
+                
+                <div className="w-20 h-20 mb-4 transform group-hover:scale-105 transition-all duration-300 relative z-10 flex items-center justify-center">
+                  {isApiProduct ? (
+                    <img 
+                      src={product.images?.[0] || 'https://via.placeholder.com/100?text=Sangu'} 
+                      alt={product.name}
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <span className="text-3xl">{product.emoji}</span>
+                  )}
+                </div>
+                
+                <h3 className="text-xs font-semibold text-slate-800 mb-2 leading-tight group-hover:text-secondary transition-colors duration-300 relative z-10 uppercase tracking-tight">
+                  {product.name}
+                </h3>
+                
+                <p className="text-[9px] font-medium text-slate-400 uppercase tracking-widest bg-white/50 px-3 py-1 rounded-full relative z-10 border border-white/50">
+                  {isApiProduct ? (product.packSize || "Authentic") : product.sizes}
+                </p>
+              </Link>
+            );
+          })}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default ProductRange;

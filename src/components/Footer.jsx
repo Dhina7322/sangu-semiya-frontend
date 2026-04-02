@@ -98,11 +98,7 @@ const Footer = () => {
                   Contact Us
                 </Link>
               </li>
-              <li>
-                <Link to="/media" className="text-sm text-red-100 hover:text-white transition-colors duration-200">
-                  Media & Awards
-                </Link>
-              </li>
+        
               <li>
                 <Link to="/blog" className="text-sm text-red-100 hover:text-white transition-colors duration-200">
                   Blog & Recipe

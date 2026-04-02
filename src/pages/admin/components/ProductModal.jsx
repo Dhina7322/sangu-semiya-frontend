@@ -105,11 +105,10 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
     const data = new FormData();
     Object.keys(formData).forEach(key => data.append(key, formData[key]));
     
-    // Create a copy of metadata to avoid modifying the UI state during processing
     const cleanMetadata = { ...metadata };
     if (metadata.bannerImage instanceof File) {
       data.append('banner_image', metadata.bannerImage);
-      delete cleanMetadata.bannerImage; // Remove file from JSON metadata
+      delete cleanMetadata.bannerImage;
     }
     data.append('metadata', JSON.stringify(cleanMetadata));
     
@@ -136,16 +135,14 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
     }
   };
 
-  // ── Feature Helpers ──
   const updateFeature = (i, key, val) => {
     const updated = [...metadata.features];
     updated[i] = { ...updated[i], [key]: val };
     setMetadata(m => ({ ...m, features: updated }));
   };
-  const addFeature = () => setMetadata(m => ({ ...m, features: [...m.features, { icon: '✅', label: '' }] }));
+  const addFeature = () => setMetadata(m => ({ ...m, features: [...m.features, { icon: 'Check', label: '' }] }));
   const removeFeature = (i) => setMetadata(m => ({ ...m, features: m.features.filter((_, idx) => idx !== i) }));
 
-  // ── Nutrition Helpers ──
   const updateNutrition = (i, key, val) => {
     const updated = [...metadata.nutrition];
     updated[i] = { ...updated[i], [key]: val };
@@ -164,7 +161,6 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
       className="flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl w-full max-w-2xl shadow-xl overflow-hidden border border-slate-100 font-sans flex flex-col" style={{ maxHeight: '90vh' }}>
 
-        {/* Header */}
         <div className="px-6 py-4 border-b border-slate-100 flex justify-between items-center shrink-0">
           <h2 className="text-sm font-bold text-slate-800 tracking-tight">
             {product ? 'Edit Product' : 'Add New Product'}
@@ -176,7 +172,6 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
           </button>
         </div>
 
-        {/* Tabs */}
         <div className="flex border-b border-slate-100 shrink-0">
           {['basic', 'content'].map(tab => (
             <button key={tab} onClick={() => setActiveTab(tab)}
@@ -186,10 +181,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
           ))}
         </div>
 
-        {/* Scrollable Body */}
         <div className="overflow-y-auto flex-1 p-6 space-y-4">
-
-          {/* ── TAB 1: BASIC INFO ── */}
           {activeTab === 'basic' && (
             <>
               <div className="grid grid-cols-2 gap-4">
@@ -238,7 +230,6 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
                 <label htmlFor="featured" className="text-xs font-semibold text-slate-600">Mark as Featured (shown on Homepage)</label>
               </div>
 
-              {/* Amazon + Price */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label className={labelCls}>Amazon Link</label>
@@ -256,7 +247,6 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
                 </div>
               </div>
 
-              {/* Image Upload */}
               <div className="border border-dashed border-slate-200 rounded-xl p-4 flex items-center gap-4 bg-slate-50/50">
                 <div className="shrink-0 w-10 h-10 bg-white rounded-lg shadow-sm border border-slate-100 flex items-center justify-center text-slate-300">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -273,10 +263,8 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
             </>
           )}
 
-          {/* ── TAB 2: PAGE CONTENT ── */}
           {activeTab === 'content' && (
             <>
-              {/* Banner Headline & Image */}
               <div className="space-y-4">
                 <div className="flex justify-between items-end">
                    <div className="flex-1 space-y-1">
@@ -302,7 +290,6 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
                 </div>
               </div>
 
-              {/* Product Features */}
               <div className="space-y-3 pt-2">
                 <div className="flex justify-between items-center">
                   <label className={labelCls}>⭐ Product Features (Mini List)</label>
@@ -310,20 +297,40 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
                 </div>
                 <div className="grid grid-cols-1 gap-3">
                   {metadata.features.map((f, i) => (
-                    <div key={i} className="flex gap-2 items-center group">
+                    <div key={i} className="flex gap-2 items-center">
                       <div className="relative">
-                        <select 
-                          value={f.icon} 
-                          onChange={e => updateFeature(i, 'icon', e.target.value)}
-                          className="w-12 h-10 border border-slate-200 rounded-xl bg-white text-center text-lg appearance-none cursor-pointer hover:border-primary transition"
+                        <button
+                          type="button"
+                          onClick={() => setOpenIconPicker(openIconPicker === i ? null : i)}
+                          className="w-12 h-10 border border-slate-200 rounded-xl bg-white flex items-center justify-center text-slate-600 hover:border-primary hover:text-primary transition shadow-sm"
                         >
-                          {ICON_OPTIONS.map(opt => (
-                            <option key={opt.name} value={opt.name}>{opt.name}</option>
-                          ))}
-                        </select>
-                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none text-slate-600">
                           {ICON_OPTIONS.find(o => o.name === f.icon)?.icon || <FiPackage />}
-                        </div>
+                        </button>
+                        
+                        {openIconPicker === i && (
+                          <>
+                            <div 
+                              className="fixed inset-0 z-[100]" 
+                              onClick={() => setOpenIconPicker(null)}
+                            />
+                            <div className="absolute top-11 left-0 z-[101] bg-white border border-slate-200 rounded-xl shadow-2xl p-3 grid grid-cols-4 gap-2 w-48 animate-fade-in ring-4 ring-slate-900/5">
+                              {ICON_OPTIONS.map(opt => (
+                                <button
+                                  key={opt.name}
+                                  type="button"
+                                  onClick={() => {
+                                    updateFeature(i, 'icon', opt.name);
+                                    setOpenIconPicker(null);
+                                  }}
+                                  className={`w-9 h-9 flex items-center justify-center rounded-lg transition-all ${f.icon === opt.name ? 'bg-primary text-white' : 'hover:bg-slate-50 text-slate-400 hover:text-primary'}`}
+                                  title={opt.name}
+                                >
+                                  {opt.icon}
+                                </button>
+                              ))}
+                            </div>
+                          </>
+                        )}
                       </div>
                       <input type="text" value={f.label} onChange={e => updateFeature(i, 'label', e.target.value)}
                         className="flex-1 text-sm border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:border-primary placeholder:text-slate-300" placeholder="Feature description..." />

@@ -162,7 +162,7 @@ const CMSManager = () => {
                   />
                   <input 
                     type="text" 
-                    placeholder="Image URL (Unsplash/CDN)"
+                    placeholder="image choose us"
                     value={formData.recipes?.[idx]?.img || ''} 
                     onChange={(e) => handleRecipeChange(idx, 'img', e.target.value)}
                     className="w-full text-[9px] font-mono text-slate-400 bg-slate-50 p-2 rounded truncate"
@@ -192,7 +192,7 @@ const CMSManager = () => {
                 <div className="space-y-3">
                   <input 
                     type="text" 
-                    placeholder="Icon URL"
+                    placeholder="image choose us"
                     value={formData.whyChooseUs?.[idx]?.icon || ''} 
                     onChange={(e) => handleCardChange(idx, 'icon', e.target.value)}
                     className="w-full text-[9px] font-mono border border-slate-100 p-2 rounded-lg bg-slate-50 focus:bg-white"
