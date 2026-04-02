@@ -49,6 +49,12 @@ const CMSManager = () => {
   };
 
   const compressAndSet = (file, section, index, field) => {
+    // Pre-check file size (warn if over 5MB raw)
+    if (file.size > 5 * 1024 * 1024) {
+      setStatus({ isOpen: true, message: 'File is very large. Please use a smaller image (under 5MB).', type: 'error' });
+      return;
+    }
+
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (event) => {
@@ -71,6 +77,13 @@ const CMSManager = () => {
         ctx.drawImage(img, 0, 0, width, height);
         const dataUrl = canvas.toDataURL('image/jpeg', 0.6);
         if (section === 'whyChooseUs') {
+        
+        // Use JPEG with aggressive compression
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.4);
+        
+        if (section === 'recipes') {
+          handleRecipeChange(index, field, dataUrl);
+        } else if (section === 'whyChooseUs') {
           handleCardChange(index, field, dataUrl);
         } else {
           handleChange(section, field, dataUrl);
