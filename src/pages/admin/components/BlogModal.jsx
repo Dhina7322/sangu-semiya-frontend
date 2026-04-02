@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { FiImage, FiFileText, FiLink, FiEye, FiImage as FiImg, FiCode, FiBold, FiItalic, FiUnderline, FiAlignLeft, FiAlignCenter, FiAlignRight } from 'react-icons/fi';
+import { FiImage, FiFileText, FiLink, FiImage as FiImg, FiCode, FiBold, FiItalic, FiUnderline, FiAlignLeft, FiAlignCenter, FiAlignRight } from 'react-icons/fi';
 
 const BlogModal = ({ isOpen, onClose, blog, onSave, loading }) => {
   const [formData, setFormData] = useState({
@@ -13,6 +13,7 @@ const BlogModal = ({ isOpen, onClose, blog, onSave, loading }) => {
   });
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState('');
+  const textareaRef = useRef(null);
 
   useEffect(() => {
     if (blog) {
@@ -60,6 +61,37 @@ const BlogModal = ({ isOpen, onClose, blog, onSave, loading }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSave({ ...formData, thumbnail: previewUrl });
+  };
+
+  const insertText = (before, after = '') => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const text = formData.content;
+    const selected = text.substring(start, end);
+    const newContent = text.substring(0, start) + before + selected + after + text.substring(end);
+    
+    setFormData(prev => ({ ...prev, content: newContent }));
+    
+    // Focus back and set cursor
+    setTimeout(() => {
+      textarea.focus();
+      textarea.setSelectionRange(start + before.length, end + before.length);
+    }, 0);
+  };
+
+  const handleToolbarImage = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const imgTag = `\n<img src="${event.target.result}" alt="Blog Image" style="width: 100%; border-radius: 12px; margin: 20px 0;" />\n`;
+        insertText(imgTag);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const inputCls = 'w-full text-sm border border-slate-100 rounded-xl px-4 py-3.5 focus:border-primary outline-none transition-all placeholder:text-slate-300 bg-slate-50/50';
@@ -111,25 +143,29 @@ const BlogModal = ({ isOpen, onClose, blog, onSave, loading }) => {
               <div>
                 <label className={labelCls}>Main Content</label>
                 <div className="border border-slate-100 rounded-2xl overflow-hidden flex flex-col">
-                  {/* Mock Editor Toolbar */}
+                  {/* Editor Toolbar */}
                   <div className="bg-slate-50/80 px-4 py-3 border-b border-slate-100 flex flex-wrap gap-4 text-slate-400">
                     <div className="flex items-center gap-3 pr-4 border-r border-slate-200">
-                      <FiBold className="cursor-pointer hover:text-primary transition" />
-                      <FiItalic className="cursor-pointer hover:text-primary transition" />
-                      <FiUnderline className="cursor-pointer hover:text-primary transition" />
+                      <FiBold className="cursor-pointer hover:text-primary transition" onClick={() => insertText('**', '**')} />
+                      <FiItalic className="cursor-pointer hover:text-primary transition" onClick={() => insertText('_', '_')} />
+                      <FiUnderline className="cursor-pointer hover:text-primary transition" onClick={() => insertText('<u>', '</u>')} />
                     </div>
                     <div className="flex items-center gap-3 pr-4 border-r border-slate-200">
-                      <FiAlignLeft className="cursor-pointer hover:text-primary transition" />
-                      <FiAlignCenter className="cursor-pointer hover:text-primary transition" />
-                      <FiAlignRight className="cursor-pointer hover:text-primary transition" />
+                      <FiAlignLeft className="cursor-pointer hover:text-primary transition" onClick={() => insertText('<div style="text-align:left">', '</div>')} />
+                      <FiAlignCenter className="cursor-pointer hover:text-primary transition" onClick={() => insertText('<div style="text-align:center">', '</div>')} />
+                      <FiAlignRight className="cursor-pointer hover:text-primary transition" onClick={() => insertText('<div style="text-align:right">', '</div>')} />
                     </div>
                     <div className="flex items-center gap-3">
-                      <FiLink className="cursor-pointer hover:text-primary transition" />
-                      <FiImg className="cursor-pointer hover:text-primary transition" />
-                      <FiCode className="cursor-pointer hover:text-primary transition" />
+                      <FiLink className="cursor-pointer hover:text-primary transition" onClick={() => insertText('[', '](url)')} />
+                      <div className="relative">
+                        <FiImg className="cursor-pointer hover:text-primary transition text-secondary" onClick={() => document.getElementById('toolbar-img').click()} />
+                        <input id="toolbar-img" type="file" className="hidden" accept="image/*" onChange={handleToolbarImage} />
+                      </div>
+                      <FiCode className="cursor-pointer hover:text-primary transition" onClick={() => insertText('`', '`')} />
                     </div>
                   </div>
                   <textarea 
+                    ref={textareaRef}
                     required 
                     rows="15" 
                     value={formData.content} 
@@ -214,11 +250,7 @@ const BlogModal = ({ isOpen, onClose, blog, onSave, loading }) => {
         </div>
 
         {/* Modal Footer */}
-        <div className="px-8 py-6 bg-slate-50 border-t border-slate-50 flex gap-4 justify-between items-center shrink-0">
-          <div className="hidden md:flex items-center gap-2 text-slate-400">
-             <FiEye size={16} />
-             <span className="text-[10px] font-black uppercase tracking-widest">Interactive Preview</span>
-          </div>
+        <div className="px-8 py-6 bg-slate-50 border-t border-slate-50 flex gap-4 justify-end items-center shrink-0">
           <div className="flex gap-3">
              <button onClick={onClose} className="px-8 py-3 text-slate-500 font-bold text-[10px] uppercase tracking-widest hover:bg-slate-100 rounded-2xl transition">
                Cancel
