@@ -55,6 +55,7 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
             <div className="text-center lg:text-left space-y-8 animate-fade-in-up">
+<<<<<<< Updated upstream
               <span className="inline-block py-1.5 px-4 rounded-full bg-red-100 text-primary font-bold text-sm tracking-widest uppercase shadow-sm">Established Since 2005</span>
               <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 tracking-tight leading-tight">
                 {data.heroBanner?.message} <br/>
@@ -70,6 +71,28 @@ const Home = () => {
                 </a>
                 <Link to="/bulk-order" className="bg-white border-2 border-primary text-primary hover:bg-red-50 px-8 py-4 rounded-full font-bold text-lg shadow-lg shadow-red-100 transition transform hover:-translate-y-1 flex items-center justify-center">
                   Bulk Enquiry
+=======
+              <div className="inline-flex items-center gap-2 py-2 px-5 rounded-full bg-red-50 border border-red-100 text-primary font-bold text-[10px] tracking-[0.2em] uppercase shadow-sm">
+                <span className="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                Perfecting Texture Since 2005
+              </div>
+              <h1 className="text-48px-to-64px font-bold text-slate-900 tracking-tight leading-[1.1] uppercase">
+                {data.heroBanner?.message || "Authentic &"} <br/>
+                <span className="text-primary italic">Nutritious</span>
+              </h1>
+              <style dangerouslySetInnerHTML={{ __html: `.text-48px-to-64px { font-size: clamp(2.5rem, 6vw, 4rem); }` }} />
+              <p className="text-lg text-slate-500 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                {data.heroBanner?.subMessage || "Quick to cook, easy to digest. Discover the joy of perfect semiya every time."}
+              </p>
+              
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-start pt-4">
+                <a href="https://amazon.in" target="_blank" rel="noreferrer" className="group bg-slate-900 hover:bg-primary text-white px-8 py-4 rounded-xl font-bold text-xs tracking-widest uppercase shadow-xl transition-all duration-500 flex items-center gap-2">
+                  Shop on Amazon 
+                  <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+                </a>
+                <Link to="/products" className="bg-white border-2 border-slate-100 text-slate-900 hover:border-primary hover:text-primary px-8 py-4 rounded-xl font-bold text-xs tracking-widest uppercase transition-all duration-500 flex items-center justify-center">
+                  Explore Catalog
+>>>>>>> Stashed changes
                 </Link>
               </div>
             </div>
@@ -115,6 +138,7 @@ const Home = () => {
 
       {/* Featured Products Section */}
       <section className="py-24 bg-white">
+<<<<<<< Updated upstream
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
             <div className="text-center md:text-left">
@@ -128,11 +152,30 @@ const Home = () => {
             {featuredProducts.map((product) => (
               <div key={product._id} className="group bg-[#F9FAFB] rounded-[2.5rem] overflow-hidden border border-gray-100 hover:shadow-2xl transition-all duration-500">
                 <div className="h-72 relative overflow-hidden">
+=======
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+            <div className="max-w-2xl">
+              <span className="text-primary font-bold text-[10px] tracking-[0.3em] uppercase mb-3 block">Premium Selection</span>
+              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight uppercase">Gold-Standard Range</h2>
+            </div>
+            <Link to="/products" className="group flex items-center gap-3 text-slate-900 font-bold uppercase text-[10px] tracking-widest pb-1.5 border-b border-slate-900 hover:text-primary hover:border-primary transition-all duration-300">
+               Explore Full Catalog
+               <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
+            {featuredProducts.map((p, idx) => (
+              <div key={p._id || p.id || idx} className="group relative flex flex-col">
+                <Link to={`/product/${p.name}`} className="relative aspect-[4/5] overflow-hidden bg-slate-50 rounded-xl mb-4 border border-slate-100">
+>>>>>>> Stashed changes
                   <img 
                     src={product.images[0]} 
                     alt={product.name} 
                     className="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" 
                   />
+<<<<<<< Updated upstream
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-primary shadow-sm">
                     {product.category || 'Featured'}
                   </div>
@@ -146,6 +189,21 @@ const Home = () => {
                   >
                     View Details <span className="ml-1">&rarr;</span>
                   </Link>
+=======
+                  {idx === 0 && (
+                    <div className="absolute top-3 right-3 bg-primary text-white text-[8px] font-bold uppercase py-1 px-3 rounded-full shadow-lg">
+                      Best Seller
+                    </div>
+                  )}
+                </Link>
+
+                <div className="text-left px-1">
+                  <Link to={`/product/${p.name}`}>
+                    <h3 className="text-xs font-bold text-slate-800 hover:text-primary transition-colors line-clamp-1 mb-1 uppercase tracking-tight">{p.name}</h3>
+                  </Link>
+                  <p className="text-primary font-bold text-base">{p.price || "₹45.00"}</p>
+                  <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest mt-1">{p.category || "Authentic"}</p>
+>>>>>>> Stashed changes
                 </div>
               </div>
             ))}
@@ -175,6 +233,7 @@ const Home = () => {
       </section>
 
       {/* Recipe Previews */}
+<<<<<<< Updated upstream
       <section className="py-24 bg-[#F9FAFB]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-end mb-12">
@@ -197,6 +256,22 @@ const Home = () => {
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-gray-900">{recipe.name}</h3>
                   </div>
+=======
+      <section className="py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+           <div className="mb-12 space-y-3">
+              <span className="inline-block py-1 px-3 rounded-full bg-red-50 border border-red-100 text-primary font-bold text-[9px] tracking-[0.2em] uppercase shadow-sm">Kitchen Ready</span>
+              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight uppercase">Cooking Inspiration</h2>
+           </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+             {recipes.map((recipe, idx) => (
+                <div key={idx} className="bg-white rounded-[2.5rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] hover:shadow-[0_45px_100px_-20px_rgba(218,41,28,0.15)] transition duration-700 group border border-slate-100 relative">
+                  <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-md px-5 py-2 rounded-2xl text-[10px] font-bold shadow-lg z-10 text-slate-900 tracking-widest border border-white/50">⏱ {recipe.time}</div>
+                  <div className="h-80 overflow-hidden">
+                    <img src={recipe.img} alt={recipe.name} className="w-full h-full object-cover transform group-hover:scale-110 transition duration-1000" />
+                  </div>
+                  <div className="p-10 text-center font-bold text-2xl text-slate-900 group-hover:text-primary transition-colors italic">{recipe.name}</div>
+>>>>>>> Stashed changes
                 </div>
              ))}
           </div>

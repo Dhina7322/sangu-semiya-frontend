@@ -51,19 +51,19 @@ const BulkOrder = () => {
     <div className="bg-gray-50 min-h-screen py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Partner with Us</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">Are you a distributor, wholesaler, or caterer? Fill out the form below for special bulk pricing and dealer benefits.</p>
+        <div className="text-center mb-12">
+          <h1 className="text-3xl font-bold text-gray-900 mb-3 uppercase tracking-tight">Partner with Us</h1>
+          <p className="text-base text-gray-500 max-w-2xl mx-auto">Are you a distributor, wholesaler, or caterer? Fill out the form below for special bulk pricing and dealer benefits.</p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-12 bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100 max-w-5xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-12 bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 max-w-5xl mx-auto">
           
           {/* Info Side */}
-          <div className="lg:w-2/5 bg-primary p-12 text-white flex flex-col justify-between relative overflow-hidden">
+          <div className="lg:w-2/5 bg-primary p-10 text-white flex flex-col justify-between relative overflow-hidden">
              <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-white opacity-10"></div>
              
              <div className="relative z-10">
-               <h3 className="text-3xl font-bold mb-6">Distributor Benefits</h3>
+               <h3 className="text-xl font-bold mb-6 uppercase tracking-wider">Distributor Benefits</h3>
                <ul className="space-y-4 mb-12">
                  <li className="flex items-center"><svg className="h-6 w-6 mr-3 text-red-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg> High profit margins</li>
                  <li className="flex items-center"><svg className="h-6 w-6 mr-3 text-red-200" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg> Marketing support & materials</li>
