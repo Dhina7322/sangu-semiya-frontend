@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
-import { FiImage, FiFileText, FiLink, FiEye, FiImage as FiImg, FiCode, FiBold, FiItalic, FiUnderline, FiAlignLeft, FiAlignCenter, FiAlignRight } from 'react-icons/fi';
+import { createPortal } from 'react-dom';
+import { FiImage, FiFileText, FiLink, FiImage as FiImg, FiCode, FiBold, FiItalic, FiUnderline, FiAlignLeft, FiAlignCenter, FiAlignRight } from 'react-icons/fi';
 
 const BlogModal = ({ isOpen, onClose, blog, onSave, loading }) => {
   const [formData, setFormData] = useState({
@@ -96,8 +97,9 @@ const BlogModal = ({ isOpen, onClose, blog, onSave, loading }) => {
   const inputCls = 'w-full text-sm border border-slate-100 rounded-xl px-4 py-3.5 focus:border-primary outline-none transition-all placeholder:text-slate-300 bg-slate-50/50';
   const labelCls = 'text-[9px] font-semibold text-slate-400 uppercase tracking-widest pl-1 mb-2 block';
 
-  return (
-    <div className="fixed inset-0 z-[9999] bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
+  return createPortal(
+    <div style={{ position: 'fixed', inset: 0, zIndex: 99999, backgroundColor: 'rgba(15,23,42,0.6)', backdropFilter: 'blur(4px)' }}
+      className="flex items-center justify-center p-4 animate-fade-in">
       <div className="bg-white rounded-[2rem] w-full max-w-4xl shadow-2xl overflow-hidden border border-slate-100 font-sans flex flex-col transform transition-all h-[90vh]">
 
         {/* Modal Header */}
@@ -248,11 +250,7 @@ const BlogModal = ({ isOpen, onClose, blog, onSave, loading }) => {
         </div>
 
         {/* Modal Footer */}
-        <div className="px-8 py-6 bg-slate-50 border-t border-slate-50 flex gap-4 justify-between items-center shrink-0">
-          <div className="hidden md:flex items-center gap-2 text-slate-400">
-             <FiEye size={16} />
-             <span className="text-[10px] font-black uppercase tracking-widest">Interactive Preview</span>
-          </div>
+        <div className="px-8 py-6 bg-slate-50 border-t border-slate-50 flex gap-4 justify-end items-center shrink-0">
           <div className="flex gap-3">
              <button onClick={onClose} className="px-8 py-3 text-slate-500 font-bold text-[10px] uppercase tracking-widest hover:bg-slate-100 rounded-2xl transition">
                Cancel
@@ -268,7 +266,8 @@ const BlogModal = ({ isOpen, onClose, blog, onSave, loading }) => {
         </div>
 
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

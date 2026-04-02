@@ -162,7 +162,6 @@ const BlogManager = () => {
                   </td>
                   <td className="px-8 py-5 text-right">
                     <div className="flex justify-end gap-3">
-                       <button className="p-3 text-slate-300 hover:text-slate-900 transition-all hover:bg-slate-100 rounded-xl" title="View Public"><FiEye size={18} /></button>
                        <button onClick={() => handleEdit(b)} className="p-3 text-slate-300 hover:text-primary transition-all hover:bg-slate-100 rounded-xl" title="Edit Story"><FiEdit size={18} /></button>
                        <button onClick={() => openDeleteConfirm(b.id || b._id)} className="p-3 text-slate-300 hover:text-red-500 transition-all hover:bg-slate-100 rounded-xl" title="Delete Story"><FiTrash2 size={18} /></button>
                     </div>
