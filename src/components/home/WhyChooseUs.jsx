@@ -1,4 +1,5 @@
 import React from 'react';
+import { FiClock, FiActivity, FiZap, FiBox, FiShield } from 'react-icons/fi';
 
 const WhyChooseUs = ({ data }) => (
   <section className="py-24 lg:py-32 bg-white">
@@ -14,8 +15,12 @@ const WhyChooseUs = ({ data }) => (
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
         {data.map((card, i) => (
           <div key={i} className="bg-[#f8fafc] p-10 rounded-[3rem] border border-slate-100 hover:bg-white hover:shadow-2xl transition-all duration-700 group flex flex-col items-start text-left">
-            <div className="w-16 h-16 mb-8 transform group-hover:scale-110 transition-transform duration-500">
-               <img src={card.icon} alt={card.title} className="w-full h-full object-contain" />
+            <div className="w-16 h-16 mb-8 transform group-hover:scale-110 transition-transform duration-500 bg-white rounded-2xl flex items-center justify-center text-primary text-3xl shadow-sm">
+               {i === 0 && <FiClock />}
+               {i === 1 && <FiActivity />}
+               {i === 2 && <FiZap />}
+               {i === 3 && <FiBox />}
+               {i === 4 && <FiShield />}
             </div>
             <h3 className="text-xl font-black text-slate-900 mb-3 leading-tight">{card.title}</h3>
             <p className="text-slate-500 text-[13px] font-medium leading-relaxed">{card.description}</p>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FiMessageCircle } from 'react-icons/fi';
 
 const BulkOrderCTA = () => (
   <section className="py-32 bg-slate-50">
@@ -19,7 +20,7 @@ const BulkOrderCTA = () => (
               Bulk Enquiry
             </Link>
             <a href="https://wa.me/911234567890" target="_blank" rel="noreferrer" className="bg-emerald-500 hover:bg-emerald-600 text-white px-12 py-5 rounded-2xl font-black text-sm uppercase tracking-widest transition-all duration-500 shadow-xl shadow-emerald-900/10 flex items-center justify-center gap-3 active:scale-95">
-               <span className="text-xl">💬</span> WhatsApp Us
+               <FiMessageCircle size={20} /> WhatsApp Us
             </a>
           </div>
         </div>

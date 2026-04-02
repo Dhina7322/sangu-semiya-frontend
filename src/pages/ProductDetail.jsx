@@ -15,8 +15,8 @@ const ProductDetail = () => {
     const fetchData = async () => {
       try {
         const [productRes, allProductsRes] = await Promise.all([
-          axios.get(`http://127.0.0.1:5001/api/products/${id}`),
-          axios.get(`http://127.0.0.1:5001/api/products`)
+          axios.get(`http://localhost:5001/api/products/${id}`),
+          axios.get(`http://localhost:5001/api/products`)
         ]);
         setProduct(productRes.data);
         if (productRes.data) {
@@ -66,10 +66,10 @@ const ProductDetail = () => {
   const meta = product.metadata || {};
 
   const features = meta.features?.length > 0 ? meta.features : [
-    { icon: '🌾', label: '100% Hard Wheat Semolina' },
-    { icon: '✨', label: 'No Maida, No Bleach, No Additives' },
-    { icon: '⏱️', label: 'Cooks in Just 5–7 Minutes' },
-    { icon: '🛡️', label: 'Triple-Layer Fresh-Lock Packaging' },
+    { icon: <FiBriefcase className="text-primary" />, label: '100% Hard Wheat Semolina' },
+    { icon: <FiCheckCircle className="text-primary" />, label: 'No Maida, No Bleach, No Additives' },
+    { icon: <FiClock className="text-primary" />, label: 'Cooks in Just 5–7 Minutes' },
+    { icon: <FiShield className="text-primary" />, label: 'Triple-Layer Fresh-Lock Packaging' },
   ];
 
   const nutritionRows = meta.nutrition?.length > 0 ? meta.nutrition.map(n => [n.label, n.value]) : [
@@ -194,9 +194,7 @@ const ProductDetail = () => {
                 to={`/bulk-order?product=${encodeURIComponent(product.name)}&size=${encodeURIComponent(selectedSize)}`}
                 className="flex items-center justify-center gap-3 bg-slate-900 text-white py-4 text-[11px] font-black uppercase tracking-[0.25em] hover:bg-primary transition-colors duration-300"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
-                </svg>
+                <FiBox className="w-5 h-5" />
                 Bulk Enquiry
               </Link>
               {product.amazonLink && (

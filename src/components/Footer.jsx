@@ -1,41 +1,166 @@
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import logo from '../assets/Sangu-Brand-Semiya-Logo.png';
+import { FiMapPin, FiPhone, FiMail, FiMessageCircle } from 'react-icons/fi';
 
 const Footer = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await axios.get('http://localhost:5001/api/products');
+        setProducts(res.data);
+      } catch (err) {
+        console.error('Error fetching products for footer', err);
+      }
+    };
+    fetchProducts();
+  }, []);
+
   return (
-    <footer className="bg-gray-50 border-t border-gray-200 pt-12 pb-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-          
-          <div>
-            <h3 className="text-xl font-bold text-primary mb-4">Sangu Brand Semiya</h3>
-            <p className="text-gray-600 mb-4 max-w-sm mx-auto md:mx-0">
-              Delivering healthy, delicious, and easy-to-cook vermicelli products to your family&apos;s table since 2005.
-            </p>
+    <footer
+      className="relative overflow-hidden text-white"
+      style={{ backgroundColor: '#C8342A' }}
+    >
+      {/* Decorative floral SVG background pattern */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none select-none" aria-hidden="true">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="floral" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
+              {/* Petal group */}
+              <circle cx="60" cy="60" r="22" fill="none" stroke="white" strokeWidth="1.5"/>
+              <ellipse cx="60" cy="38" rx="8" ry="16" fill="white" opacity="0.5" transform="rotate(0 60 60)"/>
+              <ellipse cx="60" cy="38" rx="8" ry="16" fill="white" opacity="0.5" transform="rotate(45 60 60)"/>
+              <ellipse cx="60" cy="38" rx="8" ry="16" fill="white" opacity="0.5" transform="rotate(90 60 60)"/>
+              <ellipse cx="60" cy="38" rx="8" ry="16" fill="white" opacity="0.5" transform="rotate(135 60 60)"/>
+              <ellipse cx="60" cy="38" rx="8" ry="16" fill="white" opacity="0.5" transform="rotate(180 60 60)"/>
+              <ellipse cx="60" cy="38" rx="8" ry="16" fill="white" opacity="0.5" transform="rotate(225 60 60)"/>
+              <ellipse cx="60" cy="38" rx="8" ry="16" fill="white" opacity="0.5" transform="rotate(270 60 60)"/>
+              <ellipse cx="60" cy="38" rx="8" ry="16" fill="white" opacity="0.5" transform="rotate(315 60 60)"/>
+              <circle cx="60" cy="60" r="6" fill="white" opacity="0.4"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#floral)"/>
+        </svg>
+      </div>
+
+      {/* Main Footer Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-12 pb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+          {/* Column 1 — Brand */}
+          <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+            <div className="mb-4">
+              <img
+                src={logo}
+                alt="Sangu Brand Logo"
+                className="h-28 w-28 object-contain rounded-full border-4 border-white shadow-lg"
+              />
+            </div>
+            <h2 className="text-lg font-bold tracking-wide mb-1">Sangu Brand Semiya™</h2>
+            <p className="text-sm text-red-100 font-medium">GSTIN : 33ABKPC7067J1ZK</p>
           </div>
 
+          {/* Column 2 — Products */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Quick Links</h3>
+            <h3 className="text-base font-bold mb-4 border-b border-red-400 pb-2">Products</h3>
             <ul className="space-y-2">
-              <li><Link to="/products" className="text-gray-600 hover:text-primary transition">Our Products</Link></li>
-              <li><Link to="/bulk-order" className="text-gray-600 hover:text-primary transition">Dealer Enquiry</Link></li>
+              {products.length > 0 ? (
+                products.map((product) => (
+                  <li key={product._id || product.id}>
+                    <Link
+                      to={`/product/${product.name}`}
+                      className="text-sm text-red-100 hover:text-white transition-colors duration-200"
+                    >
+                      {product.name}
+                    </Link>
+                  </li>
+                ))
+              ) : (
+                <li className="text-sm text-red-300 italic">Exploring flavors...</li>
+              )}
             </ul>
           </div>
 
+          {/* Column 3 — Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Contact Us</h3>
-            <ul className="space-y-2 text-gray-600">
-              <li>Email: info@sangusemiya.com</li>
-              <li>Phone: +91 98765 43210</li>
-              <li>Address: Sangu Global Foods, Food Park Area.</li>
+            <h3 className="text-base font-bold mb-4 border-b border-red-400 pb-2">Quick Links</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/about" className="text-sm text-red-100 hover:text-white transition-colors duration-200">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/bulk-order" className="text-sm text-red-100 hover:text-white transition-colors duration-200">
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy-policy" className="text-sm text-red-100 hover:text-white transition-colors duration-200">
+                  Privacy Policy
+                </Link>
+              </li>
             </ul>
           </div>
 
+          {/* Column 4 — Get In Touch */}
+          <div>
+            <h3 className="text-base font-bold mb-4 border-b border-red-400 pb-2">Get In Touch</h3>
+            <ul className="space-y-3">
+              <li className="flex items-start gap-2 text-sm text-red-100">
+                <FiMapPin size={16} className="mt-0.5 shrink-0 text-white" />
+                <span>344 / 3, Periyannan Nagar, Thadagam Road, Tvs Nagar, Coimbatore-641 025</span>
+              </li>
+              <li className="flex items-center gap-2 text-sm text-red-100">
+                <FiPhone size={15} className="shrink-0 text-white" />
+                <a href="tel:04222395630" className="hover:text-white transition-colors">0422 239 5630</a>
+              </li>
+              <li className="flex items-center gap-2 text-sm text-red-100">
+                <FiPhone size={15} className="shrink-0 text-white" />
+                <a href="tel:+919677707416" className="hover:text-white transition-colors">96777 07416</a>
+              </li>
+              <li className="flex items-center gap-2 text-sm text-red-100">
+                <FiPhone size={15} className="shrink-0 text-white" />
+                <a href="tel:+919443655877" className="hover:text-white transition-colors">94436 55877</a>
+              </li>
+              <li className="flex items-center gap-2 text-sm text-red-100">
+                <FiMail size={15} className="shrink-0 text-white" />
+                <a href="mailto:info@sangubrandsemiya.com" className="hover:text-white transition-colors break-all">
+                  info@sangubrandsemiya.com
+                </a>
+              </li>
+              <li className="flex items-center gap-2 text-sm text-red-100">
+                <FiMail size={15} className="shrink-0 text-white" />
+                <a href="mailto:info.sangubrandsemiya@gmail.com" className="hover:text-white transition-colors break-all">
+                  info.sangubrandsemiya@gmail.com
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-        
-        <div className="mt-12 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm">
-          <p>&copy; {new Date().getFullYear()} Sangu Brand Semiya. All rights reserved.</p>
+
+        {/* Bottom Bar */}
+        <div className="relative mt-10 pt-5 border-t border-red-500 flex flex-col sm:flex-row items-center justify-center text-center">
+          <p className="text-sm text-red-100">
+            2025 © All Rights Reserved By Sangu Brand Semiya
+          </p>
         </div>
       </div>
+
+      {/* WhatsApp Floating Button */}
+      <a
+        href="https://wa.me/919677707416"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full shadow-2xl hover:scale-110 transition-transform duration-200 text-white"
+        style={{ backgroundColor: '#25D366' }}
+        aria-label="Chat on WhatsApp"
+      >
+        <FiMessageCircle size={32} />
+      </a>
     </footer>
   );
 };

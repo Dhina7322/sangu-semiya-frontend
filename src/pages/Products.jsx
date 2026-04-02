@@ -10,7 +10,7 @@ const Products = () => {
     window.scrollTo(0, 0);
     const fetchProducts = async () => {
       try {
-        const res = await axios.get('http://127.0.0.1:5001/api/products');
+        const res = await axios.get('http://localhost:5001/api/products');
         setProducts(res.data);
         setLoading(false);
       } catch (err) {
@@ -94,11 +94,11 @@ const Products = () => {
                 {/* Secondary Actions (Hidden until hover) */}
                 <div className="absolute bottom-16 right-2 flex flex-col gap-2 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                   <Link to={`/product/${product.name}`} className="w-10 h-10 bg-white rounded-full border border-slate-100 flex items-center justify-center text-slate-600 hover:bg-primary hover:text-white transition shadow-lg">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    <FiEye size={16} />
                   </Link>
                   {product.amazonLink && (
                     <a href={product.amazonLink} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white rounded-full border border-slate-100 flex items-center justify-center text-[#FF9900] hover:bg-[#FF9900] hover:text-white transition shadow-lg">
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" /><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" /></svg>
+                      <FiExternalLink size={16} />
                     </a>
                   )}
                 </div>

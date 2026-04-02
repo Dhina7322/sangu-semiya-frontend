@@ -7,8 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#DA291C", // Vibrant Sangu Red
-        secondary: "#FDB913", // Warm Wheat Yellow
+        primary: "#FDB913", // Sangu Brand Yellow
+        secondary: "#DA291C", // Sangu Brand Red
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out',

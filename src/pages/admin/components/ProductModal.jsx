@@ -1,6 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import axios from 'axios';
+import { FiInfo, FiEdit3, FiImage, FiPlus, FiTrash2, FiChevronDown, FiWind, FiCheckCircle, FiClock, FiShield, FiTarget, FiZap, FiActivity, FiBriefcase, FiTrendingUp, FiBox, FiPackage } from 'react-icons/fi';
+
+const ICON_OPTIONS = [
+  { icon: <FiWind />, name: 'Wind' },
+  { icon: <FiCheckCircle />, name: 'Check' },
+  { icon: <FiClock />, name: 'Clock' },
+  { icon: <FiShield />, name: 'Shield' },
+  { icon: <FiTarget />, name: 'Target' },
+  { icon: <FiZap />, name: 'Zap' },
+  { icon: <FiActivity />, name: 'Activity' },
+  { icon: <FiBriefcase />, name: 'Briefcase' },
+  { icon: <FiTrendingUp />, name: 'Chart' },
+  { icon: <FiBox />, name: 'Box' },
+  { icon: <FiPackage />, name: 'Package' },
+];
 
 const DEFAULT_FEATURES = [
   { icon: '🌾', label: '100% Hard Wheat Semolina' },
@@ -71,7 +86,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
     setFetchingPrice(true);
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await axios.post('http://127.0.0.1:5001/api/products/fetch-amazon-price',
+      const res = await axios.post('http://localhost:5001/api/products/fetch-amazon-price',
         { url: formData.amazonLink },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -94,8 +109,8 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
     try {
       const config = { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' } };
       const url = product
-        ? `http://127.0.0.1:5001/api/products/${product.id || product._id}`
-        : 'http://127.0.0.1:5001/api/products';
+        ? `http://localhost:5001/api/products/${product.id || product._id}`
+        : 'http://localhost:5001/api/products';
       if (product) {
         await axios.put(url, data, config);
         onSuccess('Product Updated Successfully');
@@ -157,8 +172,8 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
         <div className="flex border-b border-slate-100 shrink-0">
           {['basic', 'content'].map(tab => (
             <button key={tab} onClick={() => setActiveTab(tab)}
-              className={`flex-1 py-3 text-[11px] font-bold uppercase tracking-widest transition-colors ${activeTab === tab ? 'text-primary border-b-2 border-primary' : 'text-slate-400 hover:text-slate-600'}`}>
-              {tab === 'basic' ? '📦 Basic Info' : '✏️ Page Content'}
+              className={`flex-1 py-3 text-[11px] font-bold uppercase tracking-widest transition-colors flex items-center justify-center gap-2 ${activeTab === tab ? 'text-primary border-b-2 border-primary' : 'text-slate-400 hover:text-slate-600'}`}>
+              {tab === 'basic' ? <><FiInfo size={14} /> Basic Info</> : <><FiEdit3 size={14} /> Page Content</>}
             </button>
           ))}
         </div>
@@ -253,35 +268,59 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
           {/* ── TAB 2: PAGE CONTENT ── */}
           {activeTab === 'content' && (
             <>
-              {/* Banner Headline */}
-              <div className="space-y-1">
-                <label className={labelCls}>🖼️ Lifestyle Banner Headline</label>
-                <p className="text-[10px] text-slate-400">This appears as the large text over the full-width banner image on the product page. Use line breaks for effect.</p>
-                <textarea
-                  rows="4"
-                  value={metadata.bannerHeadline}
-                  onChange={e => setMetadata(m => ({ ...m, bannerHeadline: e.target.value }))}
-                  className={inputCls + ' resize-none font-medium'}
-                  placeholder={'Pure Wheat.\nPerfect Texture.\nEvery Time.'}
-                />
+              {/* Banner Headline & Image */}
+              <div className="space-y-4">
+                <div className="flex justify-between items-end">
+                   <div className="flex-1 space-y-1">
+                      <label className={labelCls}>🖼️ Lifestyle Banner Headline</label>
+                      <p className="text-[10px] text-slate-400">Large text over the banner image. Use line breaks.</p>
+                      <textarea
+                        rows="3"
+                        value={metadata.bannerHeadline}
+                        onChange={e => setMetadata(m => ({ ...m, bannerHeadline: e.target.value }))}
+                        className={inputCls + ' resize-none font-medium'}
+                        placeholder={'Pure Wheat.\nPerfect Texture.\nEvery Time.'}
+                      />
+                   </div>
+                   <div className="ml-4 w-32 shrink-0">
+                      <label className={labelCls}>Banner Image</label>
+                      <div className="mt-1 border-2 border-dashed border-slate-200 rounded-xl aspect-[16/9] flex flex-col items-center justify-center bg-slate-50 overflow-hidden relative group">
+                        {metadata.bannerImage ? (
+                          <img src={typeof metadata.bannerImage === 'string' ? metadata.bannerImage : URL.createObjectURL(metadata.bannerImage)} className="w-full h-full object-cover" alt="Banner" />
+                        ) : <FiImage className="text-slate-300" size={20} />}
+                        <input type="file" onChange={e => setMetadata(m => ({ ...m, bannerImage: e.target.files[0] }))} className="absolute inset-0 opacity-0 cursor-pointer" />
+                      </div>
+                   </div>
+                </div>
               </div>
 
               {/* Product Features */}
-              <div className="space-y-2 pt-2">
+              <div className="space-y-3 pt-2">
                 <div className="flex justify-between items-center">
                   <label className={labelCls}>⭐ Product Features (Mini List)</label>
-                  <button type="button" onClick={addFeature} className="text-[10px] font-bold text-primary hover:underline">+ Add Row</button>
+                  <button type="button" onClick={addFeature} className="text-[10px] font-bold text-primary hover:underline flex items-center gap-1"><FiPlus /> Add Row</button>
                 </div>
-                <p className="text-[10px] text-slate-400">Shown below the CTA buttons on the product detail page.</p>
-                <div className="space-y-2">
+                <div className="grid grid-cols-1 gap-3">
                   {metadata.features.map((f, i) => (
-                    <div key={i} className="flex gap-2 items-center">
-                      <input type="text" value={f.icon} onChange={e => updateFeature(i, 'icon', e.target.value)}
-                        className="w-12 text-center text-sm border border-slate-200 rounded-lg px-2 py-2 outline-none" placeholder="🌾" />
+                    <div key={i} className="flex gap-2 items-center group">
+                      <div className="relative">
+                        <select 
+                          value={f.icon} 
+                          onChange={e => updateFeature(i, 'icon', e.target.value)}
+                          className="w-12 h-10 border border-slate-200 rounded-xl bg-white text-center text-lg appearance-none cursor-pointer hover:border-primary transition"
+                        >
+                          {ICON_OPTIONS.map(opt => (
+                            <option key={opt.name} value={opt.name}>{opt.name}</option>
+                          ))}
+                        </select>
+                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none text-slate-600">
+                          {ICON_OPTIONS.find(o => o.name === f.icon)?.icon || <FiPackage />}
+                        </div>
+                      </div>
                       <input type="text" value={f.label} onChange={e => updateFeature(i, 'label', e.target.value)}
-                        className="flex-1 text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none placeholder:text-slate-300" placeholder="Feature description..." />
-                      <button type="button" onClick={() => removeFeature(i)} className="text-slate-300 hover:text-red-400 transition p-1">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                        className="flex-1 text-sm border border-slate-200 rounded-xl px-4 py-2.5 outline-none focus:border-primary placeholder:text-slate-300" placeholder="Feature description..." />
+                      <button type="button" onClick={() => removeFeature(i)} className="text-slate-300 hover:text-red-400 transition p-2">
+                        <FiTrash2 size={16} />
                       </button>
                     </div>
                   ))}
@@ -289,21 +328,20 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
               </div>
 
               {/* Nutrition Facts */}
-              <div className="space-y-2 pt-2">
+              <div className="space-y-2 pt-2 pb-4">
                 <div className="flex justify-between items-center">
-                  <label className={labelCls}>📊 Nutrition Facts</label>
-                  <button type="button" onClick={addNutrition} className="text-[10px] font-bold text-primary hover:underline">+ Add Row</button>
+                  <label className={labelCls}>📊 Nutrition Facts (per 100g)</label>
+                  <button type="button" onClick={addNutrition} className="text-[10px] font-bold text-primary hover:underline flex items-center gap-1"><FiPlus /> Add Row</button>
                 </div>
-                <p className="text-[10px] text-slate-400">Shown in the nutrition panel on the product detail page (per 100g).</p>
-                <div className="space-y-2">
+                <div className="grid grid-cols-1 gap-2">
                   {metadata.nutrition.map((n, i) => (
                     <div key={i} className="flex gap-2 items-center">
                       <input type="text" value={n.label} onChange={e => updateNutrition(i, 'label', e.target.value)}
-                        className="flex-1 text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none placeholder:text-slate-300" placeholder="e.g. Energy" />
+                        className="flex-1 text-sm border border-slate-200 rounded-xl px-4 py-2 outline-none focus:border-primary" placeholder="e.g. Protein" />
                       <input type="text" value={n.value} onChange={e => updateNutrition(i, 'value', e.target.value)}
-                        className="w-28 text-sm border border-slate-200 rounded-lg px-3 py-2 outline-none font-bold placeholder:text-slate-300" placeholder="360 kcal" />
-                      <button type="button" onClick={() => removeNutrition(i)} className="text-slate-300 hover:text-red-400 transition p-1">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                        className="w-32 text-sm border border-slate-200 rounded-xl px-4 py-2 outline-none font-bold" placeholder="360 kcal" />
+                      <button type="button" onClick={() => removeNutrition(i)} className="text-slate-300 hover:text-red-400 transition p-2">
+                        <FiTrash2 size={16} />
                       </button>
                     </div>
                   ))}

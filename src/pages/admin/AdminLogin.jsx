@@ -14,7 +14,7 @@ const AdminLogin = () => {
     setError('');
     setLoading(true);
     try {
-      const res = await axios.post('http://127.0.0.1:5001/api/auth/login', { email, password });
+      const res = await axios.post('http://localhost:5001/api/auth/login', { email, password });
       localStorage.setItem('adminToken', res.data.token);
       localStorage.setItem('adminRole', res.data.role);
       navigate('/admin/dashboard');
@@ -28,11 +28,14 @@ const AdminLogin = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          Admin Login
+        <div className="w-16 h-16 bg-primary rounded-2xl mx-auto flex items-center justify-center text-white shadow-xl mb-6">
+          <FiLock size={30} />
+        </div>
+        <h2 className="text-center text-3xl font-extrabold text-gray-900 tracking-tight">
+          Portal Gateway
         </h2>
-        <p className="mt-2 text-center text-sm text-gray-600">
-          Sangu Semiya Management Portal
+        <p className="mt-2 text-center text-sm text-gray-400 font-medium tracking-wide">
+          Sangu Brand Semiya Management
         </p>
       </div>
 

@@ -59,7 +59,7 @@ const Home = () => {
   useEffect(() => {
     const fetchHomeData = async () => {
       try {
-        const res = await axios.get('http://127.0.0.1:5001/api/homepage');
+        const res = await axios.get('http://localhost:5001/api/homepage');
         if(res.data) {
           setData(prev => ({ ...prev, ...res.data }));
           if (res.data.recipes?.length > 0) setRecipes(res.data.recipes);
@@ -69,7 +69,7 @@ const Home = () => {
 
     const fetchFeaturedProducts = async () => {
       try {
-        const res = await axios.get('http://127.0.0.1:5001/api/products');
+        const res = await axios.get('http://localhost:5001/api/products');
         if(res.data?.length > 0) {
           const featured = res.data.filter(p => p.featured);
           setFeaturedProducts(featured.length > 0 ? featured.slice(0, 4) : res.data.slice(0, 4));

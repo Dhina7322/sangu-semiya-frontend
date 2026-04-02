@@ -1,4 +1,5 @@
 import React from 'react';
+import { FiLayers, FiFilter, FiSettings, FiCheckCircle } from 'react-icons/fi';
 
 const ProductionProcess = ({ steps }) => (
   <section className="py-32 bg-slate-900 overflow-hidden relative">
@@ -17,8 +18,11 @@ const ProductionProcess = ({ steps }) => (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
           {steps.map((step, i) => (
             <div key={i} className="space-y-6 text-center lg:text-left group">
-              <div className="w-28 h-28 bg-white/10 backdrop-blur-xl rounded-[2.5rem] border border-white/10 flex items-center justify-center text-4xl shadow-2xl mx-auto lg:mx-0 transform group-hover:bg-primary group-hover:-translate-y-4 transition-all duration-700">
-                {step.icon}
+              <div className="w-28 h-28 bg-white/10 backdrop-blur-xl rounded-[2.5rem] border border-white/10 flex items-center justify-center text-4xl shadow-2xl mx-auto lg:mx-0 transform group-hover:bg-primary group-hover:-translate-y-4 transition-all duration-700 text-white">
+                {i === 0 && <FiLayers />}
+                {i === 1 && <FiFilter />}
+                {i === 2 && <FiSettings />}
+                {i === 3 && <FiCheckCircle />}
               </div>
               <div className="space-y-3">
                 <div className="flex items-center gap-3 justify-center lg:justify-start">
