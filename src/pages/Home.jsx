@@ -183,7 +183,7 @@ const Home = () => {
 
       <MilestoneSection />
 
-      <section className="pb-14 lg:pb-20">
+      <section className="">
         <BulkOrderCTA />
       </section>
 

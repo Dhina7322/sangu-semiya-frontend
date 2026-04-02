@@ -61,6 +61,12 @@ const CMSManager = () => {
 
   // Helper to compress images before converting to base64
   const compressAndSet = (file, section, index, field) => {
+    // Pre-check file size (warn if over 5MB raw)
+    if (file.size > 5 * 1024 * 1024) {
+      setStatus({ isOpen: true, message: 'File is very large. Please use a smaller image (under 5MB).', type: 'error' });
+      return;
+    }
+
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (event) => {
@@ -68,7 +74,7 @@ const CMSManager = () => {
       img.src = event.target.result;
       img.onload = () => {
         const canvas = document.createElement('canvas');
-        const MAX_WIDTH = 800; // Limit size for JSON storage
+        const MAX_WIDTH = 400; // Reduced for JSON storage efficiency
         let width = img.width;
         let height = img.height;
 
@@ -82,8 +88,8 @@ const CMSManager = () => {
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, width, height);
         
-        // Use JPEG for better compression, 0.6 quality
-        const dataUrl = canvas.toDataURL('image/jpeg', 0.6);
+        // Use JPEG with aggressive compression
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.4);
         
         if (section === 'recipes') {
           handleRecipeChange(index, field, dataUrl);
