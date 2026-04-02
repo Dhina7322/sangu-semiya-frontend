@@ -246,5 +246,5 @@ const CMSManager = () => {
     </div>
   );
 };
-
+}
 export default CMSManager;
