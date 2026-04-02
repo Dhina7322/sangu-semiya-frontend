@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import StatusPopup from './StatusPopup';
-
 
 const CMSManager = () => {
   const [formData, setFormData] = useState({
@@ -15,11 +14,14 @@ const CMSManager = () => {
       { title: '', icon: '', description: '' }
     ],
     aboutText: '',
-    recipes: []
+    recipes: [
+      { name: '', time: '', img: '' },
+      { name: '', time: '', img: '' },
+      { name: '', time: '', img: '' }
+    ]
   });
   const [loading, setLoading] = useState(true);
   const [status, setStatus] = useState({ isOpen: false, message: '', type: 'success' });
-
 
   const getAuthHeader = () => ({
     headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` }
@@ -28,7 +30,15 @@ const CMSManager = () => {
   const loadCMS = async () => {
     try {
       const res = await axios.get('http://localhost:5001/api/homepage');
-      if (res.data) setFormData(res.data);
+      if (res.data) {
+        const data = res.data;
+        if (!data.recipes) data.recipes = [
+          { name: '', time: '', img: '' },
+          { name: '', time: '', img: '' },
+          { name: '', time: '', img: '' }
+        ];
+        setFormData(data);
+      }
       setLoading(false);
     } catch (err) {
       console.error(err);
@@ -49,27 +59,78 @@ const CMSManager = () => {
     }
   };
 
+  // Helper to compress images before converting to base64
+  const compressAndSet = (file, section, index, field) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = (event) => {
+      const img = new Image();
+      img.src = event.target.result;
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const MAX_WIDTH = 800; // Limit size for JSON storage
+        let width = img.width;
+        let height = img.height;
+
+        if (width > MAX_WIDTH) {
+          height *= MAX_WIDTH / width;
+          width = MAX_WIDTH;
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        
+        // Use JPEG for better compression, 0.6 quality
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.6);
+        
+        if (section === 'recipes') {
+          handleRecipeChange(index, field, dataUrl);
+        } else if (section === 'whyChooseUs') {
+          handleCardChange(index, field, dataUrl);
+        }
+      };
+    };
+  };
+
+  const handleFileUpload = (e, section, index, field) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    compressAndSet(file, section, index, field);
+  };
+
   const handleSave = async (e) => {
     e.preventDefault();
     try {
+      // Check total size to warn if it's potentially over 1MB
+      const sizeStr = JSON.stringify(formData).length;
+      if (sizeStr > 1000000) {
+        console.warn('Large payload detected:', (sizeStr / 1024 / 1024).toFixed(2), 'MB');
+      }
+
       await axios.put('http://localhost:5001/api/homepage', formData, getAuthHeader());
       setStatus({ isOpen: true, message: 'Content updated successfully!', type: 'success' });
     } catch (err) {
       console.error('Failed to update CMS', err);
-      setStatus({ isOpen: true, message: 'Failed to update CMS', type: 'error' });
+      const isLarge = err.response?.status === 413;
+      setStatus({ 
+        isOpen: true, 
+        message: isLarge ? 'Images are too large. Please use smaller files.' : 'Failed to update CMS', 
+        type: 'error' 
+      });
     }
   };
 
-
   const handleRecipeChange = (index, field, value) => {
     const updatedRecipes = [...(formData.recipes || [])];
+    while(updatedRecipes.length < 3) updatedRecipes.push({ name: '', time: '', img: '' });
     updatedRecipes[index] = { ...updatedRecipes[index], [field]: value };
     setFormData({ ...formData, recipes: updatedRecipes });
   };
 
   const handleCardChange = (index, field, value) => {
     const updatedCards = [...(formData.whyChooseUs || [])];
-    // Ensure we have 5 slots
     while(updatedCards.length < 5) updatedCards.push({ title: '', icon: '', description: '' });
     updatedCards[index] = { ...updatedCards[index], [field]: value };
     setFormData({ ...formData, whyChooseUs: updatedCards });
@@ -155,18 +216,30 @@ const CMSManager = () => {
                   />
                   <input 
                     type="text" 
-                    placeholder="Cooking Time (e.g. 15 Mins)"
+                    placeholder="Cooking Time"
                     value={formData.recipes?.[idx]?.time || ''} 
                     onChange={(e) => handleRecipeChange(idx, 'time', e.target.value)}
                     className="w-full text-[10px] border-b border-slate-50 pb-2 outline-none italic"
                   />
-                  <input 
-                    type="text" 
-                    placeholder="image choose us"
-                    value={formData.recipes?.[idx]?.img || ''} 
-                    onChange={(e) => handleRecipeChange(idx, 'img', e.target.value)}
-                    className="w-full text-[9px] font-mono text-slate-400 bg-slate-50 p-2 rounded truncate"
-                  />
+                  
+                  <div className="space-y-2">
+                    <label className="text-[8px] text-slate-400 uppercase font-black block">Recipe Image</label>
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 bg-slate-50 rounded-lg overflow-hidden border border-slate-100 flex items-center justify-center">
+                         {formData.recipes?.[idx]?.img ? (
+                           <img src={formData.recipes[idx].img} className="w-full h-full object-cover" alt="" />
+                         ) : (
+                           <span className="text-[8px] text-slate-300">No Image</span>
+                         )}
+                      </div>
+                      <label className="flex-1 cursor-pointer">
+                        <div className="bg-slate-50 border-2 border-dashed border-slate-200 rounded-lg py-2 text-center hover:border-primary transition-colors">
+                          <span className="text-[9px] font-bold text-slate-400 uppercase">image choose us</span>
+                        </div>
+                        <input type="file" className="hidden" accept="image/*" onChange={(e) => handleFileUpload(e, 'recipes', idx, 'img')} />
+                      </label>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
@@ -179,7 +252,7 @@ const CMSManager = () => {
             <h3 className="text-xs font-black text-slate-800 uppercase flex items-center">
               <span className="w-1.5 h-4 bg-secondary rounded-full mr-3"></span> Why Families Trust Us (Cards)
             </h3>
-            <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest italic">3D Icon URLs supported</p>
+            <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest italic">Local Icon uploads optimized</p>
           </header>
           
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -187,16 +260,18 @@ const CMSManager = () => {
               <div key={idx} className="bg-white border border-slate-100 rounded-2xl p-5 shadow-sm hover:border-primary/20 transition-all space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-black text-slate-900 px-2 py-1 bg-slate-50 rounded-lg">Card {idx+1}</span>
-                  {formData.whyChooseUs?.[idx]?.icon && <img src={formData.whyChooseUs[idx].icon} className="w-6 h-6 object-contain" alt="" />}
+                  <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center border border-slate-100 overflow-hidden">
+                    {formData.whyChooseUs?.[idx]?.icon && <img src={formData.whyChooseUs[idx].icon} className="w-full h-full object-contain" alt="" />}
+                  </div>
                 </div>
                 <div className="space-y-3">
-                  <input 
-                    type="text" 
-                    placeholder="image choose us"
-                    value={formData.whyChooseUs?.[idx]?.icon || ''} 
-                    onChange={(e) => handleCardChange(idx, 'icon', e.target.value)}
-                    className="w-full text-[9px] font-mono border border-slate-100 p-2 rounded-lg bg-slate-50 focus:bg-white"
-                  />
+                  <label className="block w-full cursor-pointer">
+                    <div className="bg-slate-50 border border-slate-100 rounded-lg py-2 text-center hover:border-secondary transition-colors">
+                      <span className="text-[8px] font-bold text-slate-400 uppercase">image choose us</span>
+                    </div>
+                    <input type="file" className="hidden" accept="image/*" onChange={(e) => handleFileUpload(e, 'whyChooseUs', idx, 'icon')} />
+                  </label>
+                  
                   <input 
                     type="text" 
                     placeholder="Title"

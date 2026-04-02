@@ -100,8 +100,7 @@ const Navbar = () => {
                 <img
                   src={logo}
                   alt="Sangu Brand Semiya"
-                  className="h-20 w-20 object-contain drop-shadow-lg"
-                  style={{ marginTop: '10px' }}
+                  className="h-16 w-16 object-contain drop-shadow-lg"
                 />
               </Link>
             </div>

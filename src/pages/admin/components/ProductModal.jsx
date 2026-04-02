@@ -47,6 +47,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [fetchingPrice, setFetchingPrice] = useState(false);
+  const [openIconPicker, setOpenIconPicker] = useState(null);
 
   useEffect(() => {
     if (product) {
