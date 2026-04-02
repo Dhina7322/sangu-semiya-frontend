@@ -27,6 +27,20 @@ const CookingInspiration = ({ recipes = [] }) => {
                   alt={recipe.name} 
                   className="w-full h-full object-cover transform duration-700 group-hover:scale-105"
                 />
+                
+                {recipe.youtubeLink && (
+                  <a 
+                    href={recipe.youtubeLink} 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto"
+                  >
+                    <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white shadow-xl hover:scale-110 transition-transform">
+                      <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                  </a>
+                )}
+
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-slate-100 shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-300">
                   <span className="text-[8px] font-bold text-slate-900 tracking-widest uppercase">
                     {recipe.time || "10 MINS"}

@@ -9,6 +9,7 @@ import OurCompany from './pages/OurCompany';
 import ContactUs from './pages/ContactUs';
 import MediaAwards from './pages/MediaAwards';
 import BlogRecipe from './pages/BlogRecipe';
+import BlogPostDetail from './pages/BlogPostDetail';
 import AdminLogin from './pages/admin/AdminLogin';
 import Dashboard from './pages/admin/Dashboard';
 
@@ -30,6 +31,7 @@ const AppContent = () => {
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/media" element={<MediaAwards />} />
           <Route path="/blog" element={<BlogRecipe />} />
+          <Route path="/blog/:slug" element={<BlogPostDetail />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<Dashboard />} />
         </Routes>

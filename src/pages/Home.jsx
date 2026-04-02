@@ -94,11 +94,10 @@ const Home = () => {
                 Established 1982
               </div>
               <h1 className="text-3xl lg:text-5xl font-semibold text-slate-900 tracking-tight leading-tight">
-                Authentic & <br/>
-                <span className="text-secondary italic">Nutritious Food</span>
+                {data.heroBanner?.message || "Authentic & Nutritious Food"}
               </h1>
               <p className="text-base text-slate-500 max-w-sm mx-auto lg:mx-0 font-normal leading-relaxed">
-                Offering delectable and authentic traditional foods for over three decades — trusted by families since 1982.
+                {data.heroBanner?.subMessage || "Offering delectable and authentic traditional foods for over three decades — trusted by families since 1982."}
               </p>
               
               <div className="flex flex-wrap gap-2.5 justify-center lg:justify-start pt-2">
@@ -115,7 +114,7 @@ const Home = () => {
             <div className="relative mx-auto w-full max-w-md lg:max-w-none">
               <div className="relative p-2 rounded-2xl group border border-slate-100 bg-white/50 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
                    <img 
-                    src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&q=80&w=800" 
+                    src={data.heroBanner?.heroImage || "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&q=80&w=800"} 
                     alt="Sangu Brand Semiya" 
                     className="rounded-xl w-full object-cover h-[400px] lg:h-[500px]" 
                    />
