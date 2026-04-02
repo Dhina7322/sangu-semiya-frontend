@@ -151,7 +151,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="relative mt-10 pt-5 border-t border-red-500 flex flex-col sm:flex-row items-center justify-center text-center">
           <p className="text-sm text-red-100">
-            2025 © All Rights Reserved By Sangu Brand Semiya
+            2026 © All Rights Reserved By Sangu Brand Semiya
           </p>
         </div>
       </div>
