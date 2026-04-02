@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import StatusPopup from './StatusPopup';
 
 const CMSManager = () => {
   const [formData, setFormData] = useState({
-    heroBanner: { message: '', subMessage: '' },
+    heroBanner: { message: '', subMessage: '', heroImage: '' },
     contactDetails: { phone: '', email: '', address: '' },
     whyChooseUs: [
       { title: '', icon: '', description: '' },
@@ -13,12 +13,7 @@ const CMSManager = () => {
       { title: '', icon: '', description: '' },
       { title: '', icon: '', description: '' }
     ],
-    aboutText: '',
-    recipes: [
-      { name: '', time: '', img: '' },
-      { name: '', time: '', img: '' },
-      { name: '', time: '', img: '' }
-    ]
+    aboutText: ''
   });
   const [loading, setLoading] = useState(true);
   const [status, setStatus] = useState({ isOpen: false, message: '', type: 'success' });
@@ -31,13 +26,7 @@ const CMSManager = () => {
     try {
       const res = await axios.get('http://localhost:5001/api/homepage');
       if (res.data) {
-        const data = res.data;
-        if (!data.recipes) data.recipes = [
-          { name: '', time: '', img: '' },
-          { name: '', time: '', img: '' },
-          { name: '', time: '', img: '' }
-        ];
-        setFormData(data);
+        setFormData(res.data);
       }
       setLoading(false);
     } catch (err) {
@@ -59,7 +48,6 @@ const CMSManager = () => {
     }
   };
 
-  // Helper to compress images before converting to base64
   const compressAndSet = (file, section, index, field) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -68,7 +56,7 @@ const CMSManager = () => {
       img.src = event.target.result;
       img.onload = () => {
         const canvas = document.createElement('canvas');
-        const MAX_WIDTH = 800; // Limit size for JSON storage
+        const MAX_WIDTH = 800;
         let width = img.width;
         let height = img.height;
 
@@ -81,14 +69,11 @@ const CMSManager = () => {
         canvas.height = height;
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, width, height);
-        
-        // Use JPEG for better compression, 0.6 quality
         const dataUrl = canvas.toDataURL('image/jpeg', 0.6);
-        
-        if (section === 'recipes') {
-          handleRecipeChange(index, field, dataUrl);
-        } else if (section === 'whyChooseUs') {
+        if (section === 'whyChooseUs') {
           handleCardChange(index, field, dataUrl);
+        } else {
+          handleChange(section, field, dataUrl);
         }
       };
     };
@@ -101,14 +86,8 @@ const CMSManager = () => {
   };
 
   const handleSave = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     try {
-      // Check total size to warn if it's potentially over 1MB
-      const sizeStr = JSON.stringify(formData).length;
-      if (sizeStr > 1000000) {
-        console.warn('Large payload detected:', (sizeStr / 1024 / 1024).toFixed(2), 'MB');
-      }
-
       await axios.put('http://localhost:5001/api/homepage', formData, getAuthHeader());
       setStatus({ isOpen: true, message: 'Content updated successfully!', type: 'success' });
     } catch (err) {
@@ -122,13 +101,6 @@ const CMSManager = () => {
     }
   };
 
-  const handleRecipeChange = (index, field, value) => {
-    const updatedRecipes = [...(formData.recipes || [])];
-    while(updatedRecipes.length < 3) updatedRecipes.push({ name: '', time: '', img: '' });
-    updatedRecipes[index] = { ...updatedRecipes[index], [field]: value };
-    setFormData({ ...formData, recipes: updatedRecipes });
-  };
-
   const handleCardChange = (index, field, value) => {
     const updatedCards = [...(formData.whyChooseUs || [])];
     while(updatedCards.length < 5) updatedCards.push({ title: '', icon: '', description: '' });
@@ -136,7 +108,7 @@ const CMSManager = () => {
     setFormData({ ...formData, whyChooseUs: updatedCards });
   };
 
-  if (loading) return <div className="text-xs font-bold text-slate-400 animate-pulse">Warming up CMS...</div>;
+  if (loading) return <div className="text-xs font-bold text-slate-400 animate-pulse text-center py-20">Warming up CMS...</div>;
 
   return (
     <div className="bg-white rounded-[2rem] border border-slate-100 shadow-sm p-8 space-y-10">
@@ -145,30 +117,40 @@ const CMSManager = () => {
           <h2 className="text-lg font-bold text-slate-800 tracking-tight">Appearance Tuning</h2>
           <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-widest mt-1">Manage global brand presence</p>
         </div>
-        <button onClick={handleSave} className="bg-primary text-white text-[10px] font-black uppercase px-8 py-3 rounded-xl hover:scale-105 transition-all shadow-lg shadow-red-50">Deploy Changes</button>
+        <button onClick={handleSave} className="bg-primary text-white text-[10px] font-black uppercase px-8 py-3 rounded-xl hover:scale-105 transition-all shadow-lg">Deploy Changes</button>
       </header>
       
       <form onSubmit={handleSave} className="space-y-10">
-        
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {/* Banner Section */}
           <section className="space-y-4">
             <h3 className="text-xs font-black text-slate-800 uppercase flex items-center">
               <span className="w-1.5 h-4 bg-secondary rounded-full mr-3"></span> Hero Banner
             </h3>
             <div className="space-y-4 bg-slate-50/50 p-6 rounded-2xl border border-slate-50">
                <div className="space-y-1.5">
-                 <label className="text-[10px] text-slate-400 uppercase font-black pl-1">Headline Content</label>
-                 <input type="text" value={formData.heroBanner?.message || ''} onChange={(e) => handleChange('heroBanner', 'message', e.target.value)} className="w-full text-xs font-medium border border-slate-200 rounded-xl p-3 outline-none focus:border-primary bg-white shadow-sm" />
+                  <label className="text-[10px] text-slate-400 uppercase font-black pl-1">Headline Content</label>
+                  <input type="text" value={formData.heroBanner?.message || ''} onChange={(e) => handleChange('heroBanner', 'message', e.target.value)} className="w-full text-xs font-medium border border-slate-200 rounded-xl p-3 outline-none focus:border-primary bg-white shadow-sm" />
                </div>
                <div className="space-y-1.5">
-                 <label className="text-[10px] text-slate-400 uppercase font-black pl-1">Supporting Subtext</label>
-                 <textarea rows="3" value={formData.heroBanner?.subMessage || ''} onChange={(e) => handleChange('heroBanner', 'subMessage', e.target.value)} className="w-full text-xs font-medium border border-slate-200 rounded-xl p-3 outline-none focus:border-primary bg-white shadow-sm resize-none" />
+                  <label className="text-[10px] text-slate-400 uppercase font-black pl-1">Supporting Subtext</label>
+                  <textarea rows="3" value={formData.heroBanner?.subMessage || ''} onChange={(e) => handleChange('heroBanner', 'subMessage', e.target.value)} className="w-full text-xs font-medium border border-slate-200 rounded-xl p-3 outline-none focus:border-primary bg-white shadow-sm resize-none" />
+               </div>
+               <div className="space-y-3">
+                 <label className="text-[10px] text-slate-400 uppercase font-bold pl-1 block mb-2">Display Image</label>
+                 <div className="relative group h-40 rounded-2xl border-2 border-dashed border-slate-200 bg-white shadow-sm flex items-center justify-center cursor-pointer hover:border-primary transition-all overflow-hidden">
+                    {formData.heroBanner?.heroImage ? (
+                       <img src={formData.heroBanner.heroImage} className="w-full h-full object-cover" alt="" />
+                    ) : (
+                       <div className="text-center">
+                          <div className="text-[10px] font-bold text-slate-400 uppercase">Banner Image</div>
+                       </div>
+                    )}
+                    <input type="file" className="absolute inset-0 opacity-0 cursor-pointer" accept="image/*" onChange={(e) => handleFileUpload(e, 'heroBanner', -1, 'heroImage')} />
+                 </div>
                </div>
             </div>
           </section>
 
-          {/* Contact Details */}
           <section className="space-y-4">
             <h3 className="text-xs font-black text-slate-800 uppercase flex items-center">
               <span className="w-1.5 h-4 bg-secondary rounded-full mr-3"></span> Public Touchpoints
@@ -190,63 +172,6 @@ const CMSManager = () => {
           </section>
         </div>
 
-        {/* Cooking Inspiration / Recipes */}
-        <section className="space-y-6">
-          <header className="flex justify-between items-center bg-slate-50 p-4 px-6 rounded-2xl">
-            <h3 className="text-xs font-black text-slate-800 uppercase flex items-center">
-              <span className="w-1.5 h-4 bg-primary rounded-full mr-3"></span> Cooking Inspiration (Recipes)
-            </h3>
-            <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest italic">Live Preview sync enabled</p>
-          </header>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[0, 1, 2].map((idx) => (
-              <div key={idx} className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
-                <p className="text-[10px] font-black text-primary mb-4 uppercase tracking-widest flex items-center justify-between">
-                  Recipe Card #{idx+1}
-                  <span className="text-slate-200">● ● ●</span>
-                </p>
-                <div className="space-y-3">
-                  <input 
-                    type="text" 
-                    placeholder="Recipe Title"
-                    value={formData.recipes?.[idx]?.name || ''} 
-                    onChange={(e) => handleRecipeChange(idx, 'name', e.target.value)}
-                    className="w-full text-xs font-bold border-b border-slate-100 pb-2 outline-none focus:border-secondary"
-                  />
-                  <input 
-                    type="text" 
-                    placeholder="Cooking Time"
-                    value={formData.recipes?.[idx]?.time || ''} 
-                    onChange={(e) => handleRecipeChange(idx, 'time', e.target.value)}
-                    className="w-full text-[10px] border-b border-slate-50 pb-2 outline-none italic"
-                  />
-                  
-                  <div className="space-y-2">
-                    <label className="text-[8px] text-slate-400 uppercase font-black block">Recipe Image</label>
-                    <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 bg-slate-50 rounded-lg overflow-hidden border border-slate-100 flex items-center justify-center">
-                         {formData.recipes?.[idx]?.img ? (
-                           <img src={formData.recipes[idx].img} className="w-full h-full object-cover" alt="" />
-                         ) : (
-                           <span className="text-[8px] text-slate-300">No Image</span>
-                         )}
-                      </div>
-                      <label className="flex-1 cursor-pointer">
-                        <div className="bg-slate-50 border-2 border-dashed border-slate-200 rounded-lg py-2 text-center hover:border-primary transition-colors">
-                          <span className="text-[9px] font-bold text-slate-400 uppercase">image choose us</span>
-                        </div>
-                        <input type="file" className="hidden" accept="image/*" onChange={(e) => handleFileUpload(e, 'recipes', idx, 'img')} />
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-        
-        {/* Why Choose Us Section */}
         <section className="space-y-6">
           <header className="flex justify-between items-center bg-slate-50 p-4 px-6 rounded-2xl">
             <h3 className="text-xs font-black text-slate-800 uppercase flex items-center">
@@ -292,14 +217,12 @@ const CMSManager = () => {
           </div>
         </section>
 
-        {/* Brand Story */}
         <section className="space-y-4">
           <h3 className="text-xs font-black text-slate-800 uppercase flex items-center">
             <span className="w-1.5 h-4 bg-secondary rounded-full mr-3"></span> Brand Heritage Narrative
           </h3>
           <textarea rows="5" value={formData.aboutText || ''} onChange={(e) => handleChange('root', 'aboutText', e.target.value)} className="w-full text-xs font-medium border border-slate-200 rounded-2xl p-6 outline-none focus:border-primary shadow-inner bg-slate-50/50 leading-relaxed" placeholder="Tell your brand story..." />
         </section>
-
       </form>
       <StatusPopup 
         isOpen={status.isOpen}

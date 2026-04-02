@@ -56,23 +56,23 @@ const Navbar = () => {
       </div>
 
       {/* Main Nav Bar */}
-      <div className="bg-secondary shadow-lg">
+      <div className="bg-primary shadow-lg relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 relative">
+          <div className="flex items-center justify-between h-20 relative">
 
             {/* Left Nav Links */}
             <div className="hidden md:flex items-center gap-7">
-              <Link to="/" className={navLinkClass('/')}>Home</Link>
-              <Link to="/about" className={navLinkClass('/about')}>Our Company</Link>
+              <Link to="/" className="font-semibold text-gray-900 hover:text-secondary transition-colors duration-200">Home</Link>
+              <Link to="/about" className="font-semibold text-gray-900 hover:text-secondary transition-colors duration-200">Our Company</Link>
               {/* Products Dropdown */}
               <div
                 className="relative"
                 onMouseEnter={() => setProductsOpen(true)}
                 onMouseLeave={() => setProductsOpen(false)}
               >
-                <button className="flex items-center gap-1 font-medium text-white hover:text-primary transition-colors duration-200">
+                <Link to="/products" className="flex items-center gap-1 font-semibold text-gray-900 hover:text-secondary transition-colors duration-200">
                   Products <FiChevronDown size={14} className={`transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
-                </button>
+                </Link>
                 {productsOpen && (
                   <div className="absolute top-full left-0 mt-1 w-52 bg-white rounded-md shadow-xl py-1 border border-gray-100 animate-fade-in-down">
                     {products.length > 0 ? (
@@ -80,7 +80,7 @@ const Navbar = () => {
                         <Link
                           key={product._id || product.id}
                           to={`/product/${product.name}`}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-red-50 hover:text-secondary transition-colors"
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50 hover:text-secondary transition-colors"
                           onClick={() => setProductsOpen(false)}
                         >
                           {product.name}
@@ -94,27 +94,28 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Center Logo */}
-            <div className="absolute left-1/2 -translate-x-1/2 flex-shrink-0">
-              <Link to="/">
-                <img
-                  src={logo}
-                  alt="Sangu Brand Semiya"
-                  className="h-16 w-16 object-contain drop-shadow-lg"
-                />
+            {/* Center Logo - CIRCULAR OVERLAPPING */}
+            <div className="absolute left-1/2 -translate-x-1/2 top-2 md:top-4 z-50">
+              <Link to="/" className="block">
+                <div className="bg-white p-1 rounded-full shadow-2xl border-2 border-primary hover:scale-105 transition-transform duration-300">
+                  <img
+                    src={logo}
+                    alt="Sangu Brand Semiya"
+                    className="h-24 w-24 md:h-28 md:w-28 object-contain"
+                  />
+                </div>
               </Link>
             </div>
 
             {/* Right Nav Links */}
             <div className="hidden md:flex items-center gap-7">
-              
-              <Link to="/blog" className={navLinkClass('/blog')}>Blog &amp; Recipe</Link>
-              <Link to="/contact-us" className={navLinkClass('/contact-us')}>Contact Us</Link>
+              <Link to="/blog" className="font-semibold text-gray-900 hover:text-secondary transition-colors duration-200">Blog &amp; Recipe</Link>
+              <Link to="/contact-us" className="font-semibold text-gray-900 hover:text-secondary transition-colors duration-200">Contact Us</Link>
             </div>
 
             {/* Mobile Hamburger */}
             <div className="md:hidden flex items-center ml-auto">
-              <button onClick={toggleMenu} className="text-white hover:text-primary focus:outline-none">
+              <button onClick={toggleMenu} className="text-gray-900 hover:text-secondary focus:outline-none">
                 {isOpen ? <FiX size={26} /> : <FiMenu size={26} />}
               </button>
             </div>
@@ -123,14 +124,14 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden bg-secondary border-t border-red-700 animate-fade-in-down">
-            <div className="px-4 py-4 space-y-1 text-center">
-              <Link to="/" onClick={toggleMenu} className="block py-2.5 text-white hover:text-primary font-medium transition">Home</Link>
-              <Link to="/about" onClick={toggleMenu} className="block py-2.5 text-white hover:text-primary font-medium transition">Our Company</Link>
+          <div className="md:hidden bg-primary border-t border-yellow-400 animate-fade-in-down pb-6 pt-12">
+            <div className="px-4 space-y-1 text-center">
+              <Link to="/" onClick={toggleMenu} className="block py-3 text-gray-900 hover:text-secondary font-bold transition">Home</Link>
+              <Link to="/about" onClick={toggleMenu} className="block py-3 text-gray-900 hover:text-secondary font-bold transition">Our Company</Link>
               
               {/* Mobile Products Dropdown */}
-              <div className="py-2.5">
-                <p className="text-primary text-[10px] uppercase font-bold tracking-widest mb-2 px-4 shadow-sm">Product Range</p>
+              <div className="py-2">
+                <Link to="/products" onClick={toggleMenu} className="block text-secondary/60 text-[13px] uppercase font-black tracking-widest mb-2 px-4 hover:text-secondary transition-colors text-center">Our Products</Link>
                 <div className="space-y-1">
                   {products.length > 0 ? (
                     products.map((product) => (
@@ -138,7 +139,7 @@ const Navbar = () => {
                         key={product._id || product.id}
                         to={`/product/${product.name}`}
                         onClick={toggleMenu}
-                        className="block py-2 text-gray-300 hover:text-white transition text-sm"
+                        className="block py-2 text-gray-800 hover:text-secondary transition text-sm font-medium"
                       >
                         {product.name}
                       </Link>
@@ -149,9 +150,8 @@ const Navbar = () => {
                 </div>
               </div>
 
-              <Link to="/media" onClick={toggleMenu} className="block py-2.5 text-white hover:text-primary font-medium transition">Media & Awards</Link>
-              <Link to="/blog" onClick={toggleMenu} className="block py-2.5 text-white hover:text-primary font-medium transition">Blog &amp; Recipe</Link>
-              <Link to="/contact-us" onClick={toggleMenu} className="block py-2.5 text-white hover:text-primary font-medium transition">Contact Us</Link>
+              <Link to="/blog" onClick={toggleMenu} className="block py-3 text-gray-900 hover:text-secondary font-bold transition">Blog &amp; Recipe</Link>
+              <Link to="/contact-us" onClick={toggleMenu} className="block py-3 text-gray-900 hover:text-secondary font-bold transition">Contact Us</Link>
             </div>
           </div>
         )}
