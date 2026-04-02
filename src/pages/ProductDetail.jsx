@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import { FiBox, FiClock, FiShield, FiBriefcase, FiCheckCircle, FiWind, FiTarget, FiZap, FiActivity, FiTrendingUp, FiPackage } from 'react-icons/fi';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -65,11 +66,31 @@ const ProductDetail = () => {
 
   const meta = product.metadata || {};
 
-  const features = meta.features?.length > 0 ? meta.features : [
-    { icon: <FiBriefcase className="text-primary" />, label: '100% Hard Wheat Semolina' },
-    { icon: <FiCheckCircle className="text-primary" />, label: 'No Maida, No Bleach, No Additives' },
-    { icon: <FiClock className="text-primary" />, label: 'Cooks in Just 5–7 Minutes' },
-    { icon: <FiShield className="text-primary" />, label: 'Triple-Layer Fresh-Lock Packaging' },
+  const getIcon = (iconName) => {
+    const iconMap = {
+      'Wind': <FiWind />,
+      'Check': <FiCheckCircle />,
+      'Clock': <FiClock />,
+      'Shield': <FiShield />,
+      'Target': <FiTarget />,
+      'Zap': <FiZap />,
+      'Activity': <FiActivity />,
+      'Briefcase': <FiBriefcase />,
+      'Chart': <FiTrendingUp />,
+      'Box': <FiBox />,
+      'Package': <FiPackage />,
+    };
+    return iconMap[iconName] || <FiPackage />;
+  };
+
+  const features = meta.features?.length > 0 ? meta.features.map(f => ({
+    icon: typeof f.icon === 'string' ? getIcon(f.icon) : f.icon,
+    label: f.label
+  })) : [
+    { icon: <FiBriefcase />, label: '100% Hard Wheat Semolina' },
+    { icon: <FiCheckCircle />, label: 'No Maida, No Bleach, No Additives' },
+    { icon: <FiClock />, label: 'Cooks in Just 5–7 Minutes' },
+    { icon: <FiShield />, label: 'Triple-Layer Fresh-Lock Packaging' },
   ];
 
   const nutritionRows = meta.nutrition?.length > 0 ? meta.nutrition.map(n => [n.label, n.value]) : [
@@ -82,6 +103,7 @@ const ProductDetail = () => {
   ];
 
   const bannerHeadline = meta.bannerHeadline || 'Pure Wheat.\nPerfect Texture.\nEvery Time.';
+  const bannerImage = meta.bannerImage || images[0];
 
   return (
     <div className="bg-white min-h-screen font-sans">

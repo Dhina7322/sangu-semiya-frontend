@@ -104,7 +104,15 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
     const token = localStorage.getItem('adminToken');
     const data = new FormData();
     Object.keys(formData).forEach(key => data.append(key, formData[key]));
-    data.append('metadata', JSON.stringify(metadata));
+    
+    // Create a copy of metadata to avoid modifying the UI state during processing
+    const cleanMetadata = { ...metadata };
+    if (metadata.bannerImage instanceof File) {
+      data.append('banner_image', metadata.bannerImage);
+      delete cleanMetadata.bannerImage; // Remove file from JSON metadata
+    }
+    data.append('metadata', JSON.stringify(cleanMetadata));
+    
     if (selectedFile) data.append('images', selectedFile);
     try {
       const config = { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' } };
