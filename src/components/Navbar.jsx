@@ -64,24 +64,39 @@ const Navbar = () => {
                 onMouseEnter={() => setProductsOpen(true)}
                 onMouseLeave={() => setProductsOpen(false)}
               >
-                <Link to="/products" className="flex items-center gap-1 font-semibold text-gray-900 hover:text-secondary transition-colors duration-200">
+                <div className="flex items-center gap-1 cursor-pointer font-semibold text-gray-900 hover:text-secondary transition-colors duration-200">
                   Products <FiChevronDown size={14} className={`transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
-                </Link>
+                </div>
                 {productsOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-52 bg-white rounded-md shadow-xl py-1 border border-gray-100 animate-fade-in-down transform-gpu">
+                  <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-xl py-2 border border-gray-100 animate-fade-in-down transform-gpu">
+                    <Link
+                      to="/our-product-range"
+                      className="block px-4 py-2 text-sm font-bold text-primary hover:bg-yellow-50 transition-colors border-b border-gray-50 mb-1"
+                      onClick={() => setProductsOpen(false)}
+                    >
+                      Our Product Range (Showcase)
+                    </Link>
+                    <Link
+                      to="/products"
+                      className="block px-4 py-2 text-sm font-bold text-gray-700 hover:bg-yellow-50 hover:text-secondary transition-colors border-b border-gray-50 mb-1"
+                      onClick={() => setProductsOpen(false)}
+                    >
+                      Shop All Products (Grid View)
+                    </Link>
+                    <div className="px-4 py-1 text-[8px] font-bold text-slate-300 uppercase tracking-[0.2em] mt-1">Individual Varieties</div>
                     {products.length > 0 ? (
                       products.map((product) => (
                         <Link
                           key={product._id || product.id}
                           to={`/product/${product.name}`}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-yellow-50 hover:text-secondary transition-colors"
+                          className="block px-4 py-2 text-[11px] font-medium text-gray-600 hover:bg-yellow-50 hover:text-secondary transition-colors"
                           onClick={() => setProductsOpen(false)}
                         >
                           {product.name}
                         </Link>
                       ))
                     ) : (
-                      <div className="px-4 py-2 text-sm text-gray-400 italic">No products found</div>
+                      <div className="px-4 py-2 text-xs text-gray-400 italic">No products found</div>
                     )}
                   </div>
                 )}
@@ -125,21 +140,36 @@ const Navbar = () => {
               <Link to="/" onClick={toggleMenu} className="block py-3 text-gray-900 hover:text-secondary transition">Home</Link>
               <Link to="/about" onClick={toggleMenu} className="block py-3 text-gray-900 hover:text-secondary transition">Our Company</Link>
               <div className="py-2">
-                <Link to="/products" onClick={toggleMenu} className="block text-secondary/60 text-[13px] uppercase font-black tracking-widest mb-2 px-4 hover:text-secondary transition-colors text-center">Our Products</Link>
+                <div className="block text-secondary/60 text-[13px] uppercase font-black tracking-widest mb-2 px-4 text-center">Products</div>
                 <div className="space-y-1">
+                  <Link
+                    to="/our-product-range"
+                    onClick={toggleMenu}
+                    className="block py-3 text-primary text-sm font-black border-b border-yellow-400/30"
+                  >
+                    Our Product Range (Showcase)
+                  </Link>
+                  <Link
+                    to="/products"
+                    onClick={toggleMenu}
+                    className="block py-3 text-gray-900 text-sm font-black border-b border-yellow-400/30 mb-4"
+                  >
+                    Shop All Products (Grid View)
+                  </Link>
+                  <div className="text-[10px] uppercase tracking-widest text-gray-500 mb-2 mt-4 font-bold">Individual Varieties</div>
                   {products.length > 0 ? (
                     products.map((product) => (
                       <Link
                         key={product._id || product.id}
                         to={`/product/${product.name}`}
                         onClick={toggleMenu}
-                        className="block py-2 text-gray-800 hover:text-secondary transition text-sm font-medium"
+                        className="block py-2 text-gray-800 hover:text-secondary transition text-xs font-medium"
                       >
                         {product.name}
                       </Link>
                     ))
                   ) : (
-                    <p className="text-gray-500 text-xs italic px-4">Loading products...</p>
+                    <p className="text-gray-500 text-[10px] italic px-4">Loading varieties...</p>
                   )}
                 </div>
               </div>

@@ -13,6 +13,7 @@ const ContactUs = lazy(() => import('./pages/ContactUs'));
 const MediaAwards = lazy(() => import('./pages/MediaAwards'));
 const BlogRecipe = lazy(() => import('./pages/BlogRecipe'));
 const BlogPostDetail = lazy(() => import('./pages/BlogPostDetail'));
+const ProductShowcase = lazy(() => import('./pages/ProductShowcase'));
 const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
 const Dashboard = lazy(() => import('./pages/admin/Dashboard'));
 
@@ -35,6 +36,7 @@ const AppContent = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/our-product-range" element={<ProductShowcase />} />
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/bulk-order" element={<BulkOrder />} />
             <Route path="/about" element={<OurCompany />} />
