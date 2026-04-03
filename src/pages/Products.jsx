@@ -2,24 +2,32 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FiEye, FiExternalLink } from 'react-icons/fi';
+import CookingInspiration from '../components/home/CookingInspiration';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const fetchProducts = async () => {
+    const fetchData = async () => {
       try {
-        const res = await axios.get('http://localhost:5001/api/products');
-        setProducts(res.data);
+        const [productsRes, homeRes] = await Promise.all([
+          axios.get('http://localhost:5001/api/products'),
+          axios.get('http://localhost:5001/api/homepage')
+        ]);
+        setProducts(productsRes.data);
+        if (homeRes.data?.recipes) {
+          setRecipes(homeRes.data.recipes);
+        }
         setLoading(false);
       } catch (err) {
         console.error('Error fetching products', err);
         setLoading(false);
       }
     };
-    fetchProducts();
+    fetchData();
   }, []);
 
   if (loading) return (
@@ -76,6 +84,9 @@ const Products = () => {
           </div>
         )}
       </div>
+
+      {/* ── Cooking Inspiration ── */}
+      <CookingInspiration recipes={recipes} />
     </div>
   );
 };

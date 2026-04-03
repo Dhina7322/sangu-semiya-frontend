@@ -95,13 +95,13 @@ const Navbar = () => {
             </div>
 
             {/* Center Logo - CIRCULAR OVERLAPPING */}
-            <div className="absolute left-1/2 -translate-x-1/2 top-2 md:top-4 z-50">
+            <div className="absolute left-1/2 -translate-x-1/2 top-2 md:top-2 z-50">
               <Link to="/" className="block">
                 <div className="bg-white p-1 rounded-full shadow-2xl border-2 border-primary hover:scale-105 transition-transform duration-300">
                   <img
                     src={logo}
                     alt="Sangu Brand Semiya"
-                    className="h-24 w-24 md:h-28 md:w-28 object-contain"
+                    className="h-22 w-24 md:h-28 md:w-28 object-contain"
                   />
                 </div>
               </Link>
