@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { FiBox, FiClock, FiShield, FiBriefcase, FiCheckCircle, FiWind, FiTarget, FiZap, FiActivity, FiTrendingUp, FiPackage } from 'react-icons/fi';
+import CookingInspiration from '../components/home/CookingInspiration';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeImage, setActiveImage] = useState(0);
   const [selectedSize, setSelectedSize] = useState('');
@@ -15,11 +17,15 @@ const ProductDetail = () => {
     window.scrollTo(0, 0);
     const fetchData = async () => {
       try {
-        const [productRes, allProductsRes] = await Promise.all([
+        const [productRes, allProductsRes, homeRes] = await Promise.all([
           axios.get(`http://localhost:5001/api/products/${id}`),
-          axios.get(`http://localhost:5001/api/products`)
+          axios.get(`http://localhost:5001/api/products`),
+          axios.get(`http://localhost:5001/api/homepage`)
         ]);
         setProduct(productRes.data);
+        if (homeRes.data?.recipes) {
+          setRecipes(homeRes.data.recipes);
+        }
         if (productRes.data) {
           document.title = `${productRes.data.name} | Sangu Brand Semiya`;
           if (productRes.data.packSize) {
@@ -312,7 +318,8 @@ const ProductDetail = () => {
           </div>
         </div>
       )}
-
+      {/* ── Cooking Inspiration ── */}
+      <CookingInspiration recipes={recipes} />
     </div>
   );
 };
