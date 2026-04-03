@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo, Suspense, lazy } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { FiBox, FiClock, FiShield, FiBriefcase, FiCheckCircle, FiWind, FiTarget, FiZap, FiActivity, FiTrendingUp, FiPackage } from 'react-icons/fi';
-import CookingInspiration from '../components/home/CookingInspiration';
+
+const CookingInspiration = memo(lazy(() => import('../components/home/CookingInspiration')));
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -111,7 +112,7 @@ const ProductDetail = () => {
   const bannerHeadline = meta.bannerHeadline || 'Pure Wheat.\nPerfect Texture.\nEvery Time.';
 
   return (
-    <div className="bg-white min-h-screen font-sans selection:bg-primary selection:text-white">
+    <div className="bg-white min-h-screen font-sans selection:bg-primary selection:text-white pb-32">
 
       {/* ── Breadcrumb ── */}
       <div className="border-b border-slate-50 py-3 px-6 lg:px-16">
@@ -138,17 +139,20 @@ const ProductDetail = () => {
                   activeImage === idx ? 'border-slate-900 shadow-md' : 'border-slate-100 opacity-60 hover:opacity-100 hover:border-slate-300'
                 }`}
               >
-                <img src={img} alt="" className="w-full h-full object-contain" />
+                <img src={img} alt="" width="64" height="64" className="w-full h-full object-contain" />
               </button>
             ))}
           </div>
 
-          {/* Center: Main Image */}
-          <div className="order-1 lg:order-2 bg-slate-50/50 rounded-3xl flex items-center justify-center aspect-square lg:aspect-auto lg:h-[540px] relative overflow-hidden group border border-slate-100">
+          {/* Center: Main Image with aspect-ratio to prevent CLS */}
+          <div className="order-1 lg:order-2 bg-slate-50/50 rounded-3xl flex items-center justify-center aspect-square lg:h-[540px] relative overflow-hidden group border border-slate-100 transform-gpu will-change-transform">
             <img
               src={images[activeImage]}
               alt={product.name}
+              width="800"
+              height="800"
               className="w-full h-full object-contain p-8 lg:p-14 transition-transform duration-500 group-hover:scale-105"
+              fetchpriority="high"
             />
             <div className="absolute top-4 left-4 bg-white/80 backdrop-blur-sm shadow-sm text-slate-900 text-[8px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full border border-slate-200">
               Sangu Quality
@@ -196,7 +200,7 @@ const ProductDetail = () => {
             <div className="flex flex-col gap-3 mb-8">
               <Link
                 to={`/bulk-order?product=${encodeURIComponent(product.name)}&size=${encodeURIComponent(selectedSize)}`}
-                className="flex items-center justify-center gap-2 bg-primary text-white py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-red-700 transition-all shadow-lg active:scale-95"
+                className="flex items-center justify-center gap-2 bg-primary text-white py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-secondary transition-all shadow-lg active:scale-95 transform-gpu will-change-transform"
               >
                 <FiBox className="w-4 h-4" />
                 Bulk Enquiry
@@ -219,7 +223,7 @@ const ProductDetail = () => {
 
             <ul className="grid grid-cols-2 gap-4 border-t border-slate-100 pt-8">
               {features.slice(0, 4).map((f, i) => (
-                <li key={i} className="flex flex-col items-center text-center gap-2 p-3 bg-slate-50 rounded-2xl border border-slate-100">
+                <li key={i} className="flex flex-col items-center text-center gap-2 p-3 bg-slate-50 rounded-2xl border border-slate-100 transform-gpu will-change-transform">
                   <span className="text-lg text-primary">{f.icon}</span>
                   <span className="text-[9px] font-bold text-slate-600 uppercase tracking-normal leading-tight">{f.label}</span>
                 </li>
@@ -230,11 +234,14 @@ const ProductDetail = () => {
       </div>
 
       {/* ── Simplified Lifestyle Banner ── */}
-      <div className="w-full h-[400px] bg-slate-900 relative overflow-hidden flex items-center justify-center">
+      <div className="w-full h-[400px] bg-slate-900 relative overflow-hidden flex items-center justify-center transform-gpu will-change-transform">
         <div className="absolute inset-0 bg-slate-900/60 z-10"></div>
         <img
           src={images[0]}
           alt={product.name}
+          width="1920"
+          height="1080"
+          loading="lazy"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="relative z-20 max-w-screen-xl mx-auto px-6 lg:px-16 w-full text-center">
@@ -261,7 +268,7 @@ const ProductDetail = () => {
                 { label: 'Non-Sticky Guarantee', desc: 'Perfectly separated strands every single time you cook.' },
                 { label: 'Family Trusted', desc: 'Serving traditional South Indian households since 1982.' },
               ].map((item, i) => (
-                <div key={i} className="p-5 bg-white border border-slate-100 rounded-2xl shadow-sm">
+                <div key={i} className="p-5 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md transition-all">
                   <h3 className="text-xs font-bold text-slate-900 mb-1 uppercase tracking-tight">{item.label}</h3>
                   <p className="text-xs text-slate-400 font-normal leading-relaxed">{item.desc}</p>
                 </div>
@@ -287,7 +294,7 @@ const ProductDetail = () => {
 
       {/* ── Related Products ── */}
       {relatedProducts.length > 0 && (
-        <div className="bg-slate-50/50 border-t border-slate-100 py-20">
+        <div className="bg-slate-50/50 border-t border-slate-100 py-20 pb-32">
           <div className="max-w-screen-xl mx-auto px-6 lg:px-16">
             <div className="flex items-end justify-between mb-12">
               <div className="space-y-2">
@@ -300,11 +307,14 @@ const ProductDetail = () => {
             </div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
               {relatedProducts.map(p => (
-                <div key={p._id || p.id} className="group flex flex-col items-center text-center">
-                  <Link to={`/product/${p.name}`} className="block aspect-square bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden mb-4 p-6 w-full">
+                <div key={p._id || p.id} className="group flex flex-col items-center text-center transform-gpu will-change-transform">
+                  <Link to={`/product/${p.name}`} className="block aspect-square bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden mb-4 p-6 w-full group-hover:shadow-lg transition-all duration-500">
                     <img
                       src={p.images?.[0] || 'https://via.placeholder.com/400?text=Sangu'}
                       alt={p.name}
+                      width="400"
+                      height="400"
+                      loading="lazy"
                       className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                     />
                   </Link>
@@ -319,9 +329,11 @@ const ProductDetail = () => {
         </div>
       )}
       {/* ── Cooking Inspiration ── */}
-      <CookingInspiration recipes={recipes} />
+      <Suspense fallback={<div className="h-96" />}>
+        <CookingInspiration recipes={recipes} />
+      </Suspense>
     </div>
   );
 };
 
-export default ProductDetail;
+export default memo(ProductDetail);

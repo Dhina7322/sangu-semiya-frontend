@@ -49,8 +49,8 @@ const CMSManager = () => {
   };
 
   const compressAndSet = (file, section, index, field) => {
-    if (file.size > 5 * 1024 * 1024) {
-      setStatus({ isOpen: true, message: 'File is very large. Please use a smaller image (under 5MB).', type: 'error' });
+    if (file.size > 10 * 1024 * 1024) {
+      setStatus({ isOpen: true, message: 'File is very large. Please use a smaller image (under 10MB).', type: 'error' });
       return;
     }
 
@@ -61,7 +61,7 @@ const CMSManager = () => {
       img.src = event.target.result;
       img.onload = () => {
         const canvas = document.createElement('canvas');
-        const MAX_WIDTH = 1200; // Increased quality for banners
+        const MAX_WIDTH = 1440; // Increased quality for banners
         let width = img.width;
         let height = img.height;
 
@@ -74,10 +74,10 @@ const CMSManager = () => {
         canvas.height = height;
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, width, height);
-        
+
         // Use JPEG with 0.7 compression for better quality
         const dataUrl = canvas.toDataURL('image/jpeg', 0.7);
-        
+
         if (section === 'whyChooseUs') {
           handleCardChange(index, field, dataUrl);
         } else {
@@ -141,20 +141,7 @@ const CMSManager = () => {
               </div>
               <div className="space-y-1.5">
                 <label className="text-[10px] text-slate-400 uppercase font-black pl-1">Supporting Subtext</label>
-                <textarea rows="3" value={formData.heroBanner?.subMessage || ''} onChange={(e) => handleChange('heroBanner', 'subMessage', e.target.value)} className="w-full text-xs font-medium border border-slate-200 rounded-xl p-3 outline-none focus:border-primary bg-white shadow-sm resize-none" />
-              </div>
-              <div className="space-y-3">
-                <label className="text-[10px] text-slate-400 uppercase font-bold pl-1 block mb-2">Display Image</label>
-                <div className="relative group h-40 rounded-2xl border-2 border-dashed border-slate-200 bg-white shadow-sm flex items-center justify-center cursor-pointer hover:border-primary transition-all overflow-hidden">
-                  {formData.heroBanner?.heroImage ? (
-                    <img src={formData.heroBanner.heroImage} className="w-full h-full object-cover" alt="" />
-                  ) : (
-                    <div className="text-center">
-                      <div className="text-[10px] font-bold text-slate-400 uppercase">Banner Image</div>
-                    </div>
-                  )}
-                  <input type="file" className="absolute inset-0 opacity-0 cursor-pointer" accept="image/*" onChange={(e) => handleFileUpload(e, 'heroBanner', -1, 'heroImage')} />
-                </div>
+                <textarea rows="2" value={formData.heroBanner?.subMessage || ''} onChange={(e) => handleChange('heroBanner', 'subMessage', e.target.value)} className="w-full text-xs font-medium border border-slate-200 rounded-xl p-3 outline-none focus:border-primary bg-white shadow-sm resize-none" />
               </div>
             </div>
           </section>

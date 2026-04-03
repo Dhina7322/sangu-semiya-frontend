@@ -1,17 +1,27 @@
+import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import Products from './pages/Products';
-import ProductDetail from './pages/ProductDetail';
-import BulkOrder from './pages/BulkOrder';
-import OurCompany from './pages/OurCompany';
-import ContactUs from './pages/ContactUs';
-import MediaAwards from './pages/MediaAwards';
-import BlogRecipe from './pages/BlogRecipe';
-import BlogPostDetail from './pages/BlogPostDetail';
-import AdminLogin from './pages/admin/AdminLogin';
-import Dashboard from './pages/admin/Dashboard';
+
+// Lazy load pages for better performance and smaller initial bundle size
+const Home = lazy(() => import('./pages/Home'));
+const Products = lazy(() => import('./pages/Products'));
+const ProductDetail = lazy(() => import('./pages/ProductDetail'));
+const BulkOrder = lazy(() => import('./pages/BulkOrder'));
+const OurCompany = lazy(() => import('./pages/OurCompany'));
+const ContactUs = lazy(() => import('./pages/ContactUs'));
+const MediaAwards = lazy(() => import('./pages/MediaAwards'));
+const BlogRecipe = lazy(() => import('./pages/BlogRecipe'));
+const BlogPostDetail = lazy(() => import('./pages/BlogPostDetail'));
+const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
+const Dashboard = lazy(() => import('./pages/admin/Dashboard'));
+
+// Global Loading Component for Suspense fallback
+const GlobalLoader = () => (
+  <div className="fixed inset-0 z-[99] flex items-center justify-center bg-white">
+    <div className="w-12 h-12 border-4 border-slate-100 border-t-primary rounded-full animate-spin"></div>
+  </div>
+);
 
 const AppContent = () => {
   const location = useLocation();
@@ -21,20 +31,22 @@ const AppContent = () => {
     <div className="flex flex-col min-h-screen">
       {!isAdminRoute && <Navbar />}
       <main className={`flex-grow ${!isAdminRoute ? 'pt-28' : ''}`}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/bulk-order" element={<BulkOrder />} />
-          <Route path="/about" element={<OurCompany />} />
-          <Route path="/our-story" element={<OurCompany />} />
-          <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/media" element={<MediaAwards />} />
-          <Route path="/blog" element={<BlogRecipe />} />
-          <Route path="/blog/:slug" element={<BlogPostDetail />} />
-          <Route path="/admin/login" element={<AdminLogin />} />
-          <Route path="/admin/dashboard" element={<Dashboard />} />
-        </Routes>
+        <Suspense fallback={<GlobalLoader />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/bulk-order" element={<BulkOrder />} />
+            <Route path="/about" element={<OurCompany />} />
+            <Route path="/our-story" element={<OurCompany />} />
+            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/media" element={<MediaAwards />} />
+            <Route path="/blog" element={<BlogRecipe />} />
+            <Route path="/blog/:slug" element={<BlogPostDetail />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<Dashboard />} />
+          </Routes>
+        </Suspense>
       </main>
       {!isAdminRoute && <Footer />}
     </div>

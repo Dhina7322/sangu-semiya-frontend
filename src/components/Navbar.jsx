@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import axios from 'axios';
 import { FiMenu, FiX, FiChevronDown, FiMail, FiPhone } from 'react-icons/fi';
 import logo from '../assets/Sangu-Brand-Semiya-Logo.png';
@@ -25,13 +25,8 @@ const Navbar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
   const isActive = (path) => location.pathname === path;
 
-  const navLinkClass = (path) =>
-    `font-medium transition-colors duration-200 whitespace-nowrap ${
-      isActive(path) ? 'text-primary' : 'text-white hover:text-primary'
-    }`;
-
   return (
-    <nav className="fixed w-full z-50 top-0">
+    <nav className="fixed w-full z-50 top-0 transform-gpu translate-z-0">
       {/* Top Info Bar */}
       <div className="bg-gray-800 text-gray-300 text-sm py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
@@ -56,15 +51,14 @@ const Navbar = () => {
       </div>
 
       {/* Main Nav Bar */}
-      <div className="bg-primary shadow-lg relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20 relative">
+      <div className="bg-primary shadow-lg relative h-20 md:h-22">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+          <div className="flex items-center justify-between h-full relative">
 
             {/* Left Nav Links */}
             <div className="hidden md:flex items-center gap-7">
               <Link to="/" className="font-semibold text-gray-900 hover:text-secondary transition-colors duration-200">Home</Link>
               <Link to="/about" className="font-semibold text-gray-900 hover:text-secondary transition-colors duration-200">Our Company</Link>
-              {/* Products Dropdown */}
               <div
                 className="relative"
                 onMouseEnter={() => setProductsOpen(true)}
@@ -74,7 +68,7 @@ const Navbar = () => {
                   Products <FiChevronDown size={14} className={`transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
                 </Link>
                 {productsOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-52 bg-white rounded-md shadow-xl py-1 border border-gray-100 animate-fade-in-down">
+                  <div className="absolute top-full left-0 mt-1 w-52 bg-white rounded-md shadow-xl py-1 border border-gray-100 animate-fade-in-down transform-gpu">
                     {products.length > 0 ? (
                       products.map((product) => (
                         <Link
@@ -94,14 +88,16 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Center Logo - CIRCULAR OVERLAPPING */}
+            {/* Center Logo - CIRCULAR OVERLAPPING - Optimized dimensions */}
             <div className="absolute left-1/2 -translate-x-1/2 top-2 md:top-2 z-50">
               <Link to="/" className="block">
                 <div className="bg-white p-1 rounded-full shadow-2xl border-2 border-primary hover:scale-105 transition-transform duration-300">
                   <img
                     src={logo}
                     alt="Sangu Brand Semiya"
-                    className="h-22 w-24 md:h-28 md:w-28 object-contain"
+                    width="112"
+                    height="112"
+                    className="h-20 w-22 md:h-28 md:w-28 object-contain"
                   />
                 </div>
               </Link>
@@ -115,7 +111,7 @@ const Navbar = () => {
 
             {/* Mobile Hamburger */}
             <div className="md:hidden flex items-center ml-auto">
-              <button onClick={toggleMenu} className="text-gray-900 hover:text-secondary focus:outline-none">
+              <button onClick={toggleMenu} aria-label="Toggle Menu" className="text-gray-900 hover:text-secondary focus:outline-none">
                 {isOpen ? <FiX size={26} /> : <FiMenu size={26} />}
               </button>
             </div>
@@ -124,12 +120,10 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden bg-primary border-t border-yellow-400 animate-fade-in-down pb-6 pt-12">
-            <div className="px-4 space-y-1 text-center">
-              <Link to="/" onClick={toggleMenu} className="block py-3 text-gray-900 hover:text-secondary font-bold transition">Home</Link>
-              <Link to="/about" onClick={toggleMenu} className="block py-3 text-gray-900 hover:text-secondary font-bold transition">Our Company</Link>
-              
-              {/* Mobile Products Dropdown */}
+          <div className="md:hidden bg-primary border-t border-yellow-400 animate-fade-in-down pb-6 pt-12 transform-gpu">
+            <div className="px-4 space-y-1 text-center font-bold">
+              <Link to="/" onClick={toggleMenu} className="block py-3 text-gray-900 hover:text-secondary transition">Home</Link>
+              <Link to="/about" onClick={toggleMenu} className="block py-3 text-gray-900 hover:text-secondary transition">Our Company</Link>
               <div className="py-2">
                 <Link to="/products" onClick={toggleMenu} className="block text-secondary/60 text-[13px] uppercase font-black tracking-widest mb-2 px-4 hover:text-secondary transition-colors text-center">Our Products</Link>
                 <div className="space-y-1">
@@ -149,9 +143,8 @@ const Navbar = () => {
                   )}
                 </div>
               </div>
-
-              <Link to="/blog" onClick={toggleMenu} className="block py-3 text-gray-900 hover:text-secondary font-bold transition">Blog &amp; Recipe</Link>
-              <Link to="/contact-us" onClick={toggleMenu} className="block py-3 text-gray-900 hover:text-secondary font-bold transition">Contact Us</Link>
+              <Link to="/blog" onClick={toggleMenu} className="block py-3 text-gray-900 hover:text-secondary transition">Blog &amp; Recipe</Link>
+              <Link to="/contact-us" onClick={toggleMenu} className="block py-3 text-gray-900 hover:text-secondary transition">Contact Us</Link>
             </div>
           </div>
         )}
@@ -160,4 +153,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

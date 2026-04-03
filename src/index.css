@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
 @layer utilities {
   .animation-delay-2000 {
     animation-delay: 2s;
@@ -9,12 +17,28 @@
   .animation-delay-4000 {
     animation-delay: 4s;
   }
+  
+  /* GPU acceleration triggers for smoother animations */
+  .gpu {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    will-change: transform, opacity;
+  }
+
+  /* Prevent CLS for common sections */
+  .section-loading {
+    min-height: 400px;
+    content-visibility: auto;
+    contain-intrinsic-size: 0 400px;
+  }
 }
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background-color: #F9FAFB;
   color: #111827;
+  overflow-x: hidden;
 }
 
 .glass-panel {
