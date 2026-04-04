@@ -30,10 +30,10 @@ const Home = () => {
   const [isProductsLoading, setIsProductsLoading] = useState(true);
 
   const steps = [
-    { title: "Raw Selection", icon: "🚜", desc: "Sourcing the finest hard wheat grains." },
-    { title: "Cleaning", icon: "✨", desc: "Multi-stage automated purification." },
-    { title: "Production", icon: "⚙️", desc: "Untouched-by-hand extrusion." },
-    { title: "Quality Check", icon: "🔬", desc: "ISO-standard nutritional testing." }
+    { title: "Raw Selection", icon: "🚜", image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6ad999?q=80&w=400&auto=format&fit=crop", desc: "Sourcing the finest hard wheat grains." },
+    { title: "Cleaning", icon: "✨", image: "https://images.unsplash.com/photo-1589135398305-5674312ce007?q=80&w=400&auto=format&fit=crop", desc: "Multi-stage automated purification." },
+    { title: "Production", icon: "⚙️", image: "https://plus.unsplash.com/premium_photo-1661914275139-4470df049830?q=80&w=400&auto=format&fit=crop", desc: "Untouched-by-hand extrusion." },
+    { title: "Quality Check", icon: "🔬", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400&auto=format&fit=crop", desc: "ISO-standard nutritional testing." }
   ];
 
   const benefits = [
@@ -140,15 +140,18 @@ const Home = () => {
         </Suspense>
       </section>
 
-      <div className="min-h-[500px]">
-        <Suspense fallback={<div className="animate-pulse bg-slate-50 h-[500px]" />}>
-          <CookingInspiration recipes={data.recipes} />
-        </Suspense>
-      </div>
 
       <section className="py-14 lg:py-20 bg-slate-50/30 min-h-[400px]">
-        <Suspense fallback={<div className="max-w-7xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-6"><ProductSkeleton /><ProductSkeleton /><ProductSkeleton /><ProductSkeleton /></div>}>
-          <WhyChooseUs data={data.whyChooseUs} />
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-12 space-y-2">
+          <span className="inline-block py-1 px-3 rounded-full bg-red-50 border border-red-100 text-primary font-medium text-[8px] tracking-widest uppercase mb-1">
+            The Sangu Edge
+          </span>
+          <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight text-center lg:text-left">
+            Why Families Trust Us
+          </h2>
+        </div>
+        <Suspense fallback={<div className="h-96" />}>
+          <ProductBenefits benefits={benefits} />
         </Suspense>
       </section>
 
@@ -158,11 +161,6 @@ const Home = () => {
         </Suspense>
       </div>
 
-      <section className="py-14 lg:py-20 min-h-[400px]">
-        <Suspense fallback={<div className="h-96" />}>
-          <ProductBenefits benefits={benefits} />
-        </Suspense>
-      </section>
 
       {/* Featured Gallery with Skeleton loaders */}
       <section className="py-14 lg:py-20 bg-white min-h-[600px]">
@@ -222,6 +220,11 @@ const Home = () => {
           <EnquirySection trustCards={trustCards} />
         </Suspense>
       </section>
+      <div className="min-h-[500px]">
+        <Suspense fallback={<div className="animate-pulse bg-slate-50 h-[500px]" />}>
+          <CookingInspiration recipes={data.recipes} />
+        </Suspense>
+      </div>
 
     </div>
   );

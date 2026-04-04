@@ -58,7 +58,7 @@ const RecipeModal = ({ isOpen, onClose, recipe, onSave, loading }) => {
         img.src = previewUrl;
         img.onload = () => {
             const canvas = document.createElement('canvas');
-            const MAX_WIDTH = 600;
+            const MAX_WIDTH = 480;
             let width = img.width;
             let height = img.height;
             if (width > MAX_WIDTH) {
@@ -69,7 +69,7 @@ const RecipeModal = ({ isOpen, onClose, recipe, onSave, loading }) => {
             canvas.height = height;
             const ctx = canvas.getContext('2d');
             ctx.drawImage(img, 0, 0, width, height);
-            const compressedBase64 = canvas.toDataURL('image/jpeg', 0.6);
+            const compressedBase64 = canvas.toDataURL('image/jpeg', 0.5);
             onSave({ ...formData, img: compressedBase64 });
         };
     } else {

@@ -18,11 +18,24 @@ const ProductionProcess = ({ steps }) => (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
           {steps.map((step, i) => (
             <div key={i} className="space-y-6 text-center lg:text-left group">
-              <div className="w-20 h-20 bg-white/10 backdrop-blur-xl rounded-2xl border border-white/10 flex items-center justify-center text-2xl shadow-xl mx-auto lg:mx-0 transform group-hover:bg-primary group-hover:-translate-y-2 transition-all duration-500 text-white">
-                {i === 0 && <FiLayers />}
-                {i === 1 && <FiFilter />}
-                {i === 2 && <FiSettings />}
-                {i === 3 && <FiCheckCircle />}
+              <div className="w-20 h-20 bg-white/10 backdrop-blur-xl rounded-2xl border border-white/10 flex items-center justify-center text-2xl shadow-xl mx-auto lg:mx-0 transform group-hover:bg-primary group-hover:-translate-y-2 transition-all duration-500 text-white overflow-hidden relative">
+                {step.image ? (
+                  <img 
+                    src={step.image} 
+                    alt={step.title} 
+                    className="w-full h-full object-cover brightness-90 group-hover:brightness-100 transition-all duration-500" 
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'block';
+                    }}
+                  />
+                ) : null}
+                <div className={step.image ? "hidden" : "block"}>
+                  {i === 0 && <FiLayers />}
+                  {i === 1 && <FiFilter />}
+                  {i === 2 && <FiSettings />}
+                  {i === 3 && <FiCheckCircle />}
+                </div>
               </div>
               <div className="space-y-2">
                 <div className="flex items-center gap-2 justify-center lg:justify-start opacity-60">

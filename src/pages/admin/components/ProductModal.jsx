@@ -44,7 +44,8 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
     features: DEFAULT_FEATURES,
     nutrition: DEFAULT_NUTRITION,
   });
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [existingImages, setExistingImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [fetchingPrice, setFetchingPrice] = useState(false);
   const [openIconPicker, setOpenIconPicker] = useState(null);
@@ -69,11 +70,13 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
         features: m.features?.length > 0 ? m.features : DEFAULT_FEATURES,
         nutrition: m.nutrition?.length > 0 ? m.nutrition : DEFAULT_NUTRITION,
       });
+      setExistingImages(product.images || []);
     } else {
       setFormData({ name: '', sku: '', description: '', packSize: '', amazonLink: '', price: '', status: 'Active', category: 'General', variants: '', featured: false });
       setMetadata({ bannerHeadline: 'Pure Wheat.\nPerfect Texture.\nEvery Time.', features: DEFAULT_FEATURES, nutrition: DEFAULT_NUTRITION });
+      setExistingImages([]);
     }
-    setSelectedFile(null);
+    setSelectedFiles([]);
     setActiveTab('basic');
   }, [product, isOpen]);
 
@@ -112,8 +115,9 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
       delete cleanMetadata.bannerImage;
     }
     data.append('metadata', JSON.stringify(cleanMetadata));
+    data.append('existing_images', JSON.stringify(existingImages));
     
-    if (selectedFile) data.append('images', selectedFile);
+    selectedFiles.forEach(file => data.append('images', file));
     try {
       const config = { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' } };
       const url = product
@@ -151,6 +155,14 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
   };
   const addNutrition = () => setMetadata(m => ({ ...m, nutrition: [...m.nutrition, { label: '', value: '' }] }));
   const removeNutrition = (i) => setMetadata(m => ({ ...m, nutrition: m.nutrition.filter((_, idx) => idx !== i) }));
+
+  const handleFiles = (e) => {
+    const files = Array.from(e.target.files);
+    setSelectedFiles(prev => [...prev, ...files].slice(0, 10)); // Max 10 images
+  };
+
+  const removeSelectedFile = (i) => setSelectedFiles(prev => prev.filter((_, idx) => idx !== i));
+  const removeExistingImage = (i) => setExistingImages(prev => prev.filter((_, idx) => idx !== i));
 
   if (!isOpen) return null;
 
@@ -248,18 +260,35 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
                 </div>
               </div>
 
-              <div className="border border-dashed border-slate-200 rounded-xl p-4 flex items-center gap-4 bg-slate-50/50">
-                <div className="shrink-0 w-10 h-10 bg-white rounded-lg shadow-sm border border-slate-100 flex items-center justify-center text-slate-300">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
+              <div className="space-y-3">
+                <label className={labelCls}>Product Gallery (Max 10 Images)</label>
+                <div className="grid grid-cols-4 gap-3">
+                  {existingImages.map((img, i) => (
+                    <div key={`existing-${i}`} className="relative aspect-square rounded-xl overflow-hidden border border-slate-100 group">
+                      <img src={img} className="w-full h-full object-cover" alt="" />
+                      <button type="button" onClick={() => removeExistingImage(i)} className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition shadow-sm">
+                        <FiTrash2 size={10} />
+                      </button>
+                      <div className="absolute inset-0 bg-black/5 pointer-events-none" />
+                    </div>
+                  ))}
+                  {selectedFiles.map((file, i) => (
+                    <div key={`new-${i}`} className="relative aspect-square rounded-xl overflow-hidden border border-slate-200 group">
+                      <img src={URL.createObjectURL(file)} className="w-full h-full object-cover" alt="" />
+                      <button type="button" onClick={() => removeSelectedFile(i)} className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition shadow-sm">
+                        <FiTrash2 size={10} />
+                      </button>
+                    </div>
+                  ))}
+                  {(existingImages.length + selectedFiles.length) < 10 && (
+                    <label className="cursor-pointer aspect-square rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 flex flex-col items-center justify-center hover:border-primary hover:bg-white transition text-slate-400 group">
+                      <input type="file" multiple accept="image/*" onChange={handleFiles} className="hidden" />
+                      <FiPlus size={18} className="group-hover:text-primary transition-colors" />
+                      <span className="text-[8px] font-bold uppercase mt-1">Add Image</span>
+                    </label>
+                  )}
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium text-slate-500 truncate">{selectedFile ? selectedFile.name : 'No image selected'}</p>
-                  <p className="text-[9px] text-slate-300 uppercase tracking-wide mt-0.5">Local image upload</p>
-                </div>
-                <input type="file" onChange={e => setSelectedFile(e.target.files[0])} className="hidden" id="file-upload" />
-                <label htmlFor="file-upload" className="cursor-pointer px-4 py-2 bg-slate-800 text-white text-[9px] font-bold uppercase rounded-lg hover:bg-slate-700 transition tracking-widest shrink-0">Browse</label>
+                <p className="text-[9px] text-slate-400 font-medium italic">Supports multiple JPG/PNG up to 2MB each. Drag & drop coming soon.</p>
               </div>
             </>
           )}
