@@ -25,12 +25,12 @@ const ProductionProcess = ({ steps }) => (
                 />
               </div>
               <div className="space-y-2">
-                <div className="flex items-center gap-2 justify-center lg:justify-start opacity-60">
-                  <span className="w-8 h-[1px] bg-primary"></span>
-                  <h3 className="text-sm font-bold text-white uppercase tracking-widest">Phase 0{i + 1}</h3>
+                <div className="flex items-center gap-2 justify-center lg:justify-start opacity-60 transition-opacity group-hover:opacity-100">
+                  <span className="w-8 h-[1px] bg-primary group-hover:bg-secondary transition-colors duration-300"></span>
+                  <h3 className="text-sm font-bold text-white uppercase tracking-widest group-hover:text-secondary transition-colors duration-300">Phase 0{i + 1}</h3>
                 </div>
-                <p className="text-white font-bold text-base">{step.title}</p>
-                <p className="text-slate-400 font-normal text-[13px] leading-relaxed max-w-[200px] mx-auto lg:mx-0">{step.desc}</p>
+                <p className="text-white font-bold text-base group-hover:text-secondary transition-colors duration-300">{step.title}</p>
+                <p className="text-slate-400 font-normal text-[13px] leading-relaxed max-w-[200px] mx-auto lg:mx-0 transition-colors duration-300 group-hover:text-slate-200">{step.desc}</p>
               </div>
             </div>
           ))}

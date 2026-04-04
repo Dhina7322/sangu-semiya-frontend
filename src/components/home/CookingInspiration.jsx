@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CookingInspiration = ({ recipes = [] }) => {
   if (!recipes || recipes.length === 0) return null;
@@ -20,7 +21,11 @@ const CookingInspiration = ({ recipes = [] }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
           {recipes.map((recipe, i) => (
-            <div key={i} className="group flex flex-col space-y-4">
+            <Link 
+              key={i} 
+              to={`/blog/${recipe.slug || recipe.name}`}
+              className="group flex flex-col space-y-4"
+            >
               <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-slate-50 border border-slate-100 shadow-sm transition-all duration-500 group-hover:shadow-xl group-hover:-translate-y-1">
                 <img 
                   src={recipe.img || 'https://via.placeholder.com/600x450?text=Sangu+Recipe'} 
@@ -28,21 +33,8 @@ const CookingInspiration = ({ recipes = [] }) => {
                   className="w-full h-full object-cover transform duration-700 group-hover:scale-105"
                 />
                 
-                {recipe.youtubeLink && (
-                  <a 
-                    href={recipe.youtubeLink} 
-                    target="_blank" 
-                    rel="noreferrer"
-                    className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto"
-                  >
-                    <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center text-white shadow-xl hover:scale-110 transition-transform">
-                      <svg className="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                  </a>
-                )}
-
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-slate-100 shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <span className="text-[8px] font-bold text-slate-900 tracking-widest uppercase">
+                  <span className="text-[8px] font-bold text-slate-900 tracking-widest uppercase text-center">
                     {recipe.time || "10 MINS"}
                   </span>
                 </div>
@@ -53,13 +45,13 @@ const CookingInspiration = ({ recipes = [] }) => {
                   {recipe.name || `Delicious Recipe #${i+1}`}
                 </h3>
                 <div className="flex items-center gap-2">
-                  <span className="w-4 h-px bg-slate-100"></span>
-                  <p className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">
+                  <span className="w-4 h-px bg-slate-100 group-hover:bg-primary transition-colors"></span>
+                  <p className="text-[10px] text-slate-400 font-medium uppercase tracking-widest group-hover:text-primary transition-colors">
                     Quick & Healthy
                   </p>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

@@ -44,7 +44,7 @@ const EnquirySection = ({ trustCards }) => {
                     {i === 2 && <FiTarget size={20} />}
                   </div>
                   <div className="space-y-1">
-                     <h3 className="text-sm font-semibold text-slate-900 leading-tight uppercase tracking-tight">{card.title}</h3>
+                     <h3 className="text-sm font-semibold text-slate-900 leading-tight uppercase tracking-tight transition-colors duration-300 group-hover:text-secondary">{card.title}</h3>
                      <p className="text-slate-400 font-normal text-xs leading-relaxed opacity-80">{card.desc}</p>
                   </div>
                 </div>
