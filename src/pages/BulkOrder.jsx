@@ -20,7 +20,7 @@ const BulkOrder = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get('http://localhost:5001/api/products');
+        const res = await axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/products');
         setProducts(res.data);
         setLoading(false);
       } catch (err) {
@@ -53,7 +53,7 @@ const BulkOrder = () => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      await axios.post('http://localhost:5001/api/enquiry', formData);
+      await axios.post('https://sangu-semiya-backend-bq1f.onrender.com/api/enquiry', formData);
       alert('Enquiry submitted successfully! Our team will contact you soon.');
       setFormData({ name: '', phone: '', email: '', product: '', quantity: '', message: '' });
     } catch (err) {

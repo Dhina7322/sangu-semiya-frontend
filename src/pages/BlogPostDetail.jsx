@@ -11,7 +11,7 @@ const BlogPostDetail = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const res = await axios.get(`http://localhost:5001/api/blogs/${slug}`);
+        const res = await axios.get(`https://sangu-semiya-backend-bq1f.onrender.com/api/blogs/${slug}`);
         setBlog(res.data);
         setLoading(false);
       } catch (err) {

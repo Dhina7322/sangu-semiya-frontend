@@ -77,7 +77,7 @@ const ProductShowcase = () => {
     window.scrollTo(0, 0);
     const fetchProducts = async () => {
       try {
-        const res = await axios.get('http://localhost:5001/api/products');
+        const res = await axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/products');
         // Map API data if available, otherwise use static showcase
         if (res.data && res.data.length > 0) {
           const mapped = showcaseProducts.map(sp => {

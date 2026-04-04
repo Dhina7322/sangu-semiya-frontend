@@ -9,7 +9,7 @@ const ContactUs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5001/api/enquiry', form);
+      await axios.post('https://sangu-semiya-backend-bq1f.onrender.com/api/enquiry', form);
       setSubmitted(true);
       setForm({ name: '', email: '', phone: '', product: '', quantity: '', message: '' });
       setTimeout(() => setSubmitted(false), 5000);

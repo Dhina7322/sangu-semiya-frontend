@@ -51,7 +51,7 @@ const Home = () => {
   useEffect(() => {
     const fetchHomeData = async () => {
       try {
-        const res = await axios.get('http://localhost:5001/api/homepage');
+        const res = await axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/homepage');
         if (res.data) {
           setData(prev => ({ ...prev, ...res.data }));
         }
@@ -60,7 +60,7 @@ const Home = () => {
 
     const fetchFeaturedProducts = async () => {
       try {
-        const res = await axios.get('http://localhost:5001/api/products');
+        const res = await axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/products');
         if (res.data?.length > 0) {
           const featured = res.data.filter(p => p.featured);
           setFeaturedProducts(featured.length > 0 ? featured.slice(0, 4) : res.data.slice(0, 4));

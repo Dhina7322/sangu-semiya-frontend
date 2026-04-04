@@ -19,9 +19,9 @@ const ProductDetail = () => {
     const fetchData = async () => {
       try {
         const [productRes, allProductsRes, homeRes] = await Promise.all([
-          axios.get(`http://localhost:5001/api/products/${id}`),
-          axios.get(`http://localhost:5001/api/products`),
-          axios.get(`http://localhost:5001/api/homepage`)
+          axios.get(`https://sangu-semiya-backend-bq1f.onrender.com/api/products/${id}`),
+          axios.get(`https://sangu-semiya-backend-bq1f.onrender.com/api/products`),
+          axios.get(`https://sangu-semiya-backend-bq1f.onrender.com/api/homepage`)
         ]);
         setProduct(productRes.data);
         if (homeRes.data?.recipes) {

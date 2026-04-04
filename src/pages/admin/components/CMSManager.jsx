@@ -24,7 +24,7 @@ const CMSManager = () => {
 
   const loadCMS = async () => {
     try {
-      const res = await axios.get('http://localhost:5001/api/homepage');
+      const res = await axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/homepage');
       if (res.data) {
         setFormData(res.data);
       }
@@ -96,7 +96,7 @@ const CMSManager = () => {
   const handleSave = async (e) => {
     if (e) e.preventDefault();
     try {
-      await axios.put('http://localhost:5001/api/homepage', formData, getAuthHeader());
+      await axios.put('https://sangu-semiya-backend-bq1f.onrender.com/api/homepage', formData, getAuthHeader());
       setStatus({ isOpen: true, message: 'Content updated successfully!', type: 'success' });
     } catch (err) {
       console.error('Failed to update CMS', err);

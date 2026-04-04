@@ -28,7 +28,7 @@ const ProductManager = () => {
   const loadProducts = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5001/api/products');
+      const res = await axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/products');
       setProducts(res.data);
       setFilteredProducts(res.data);
       setLoading(false);
@@ -62,7 +62,7 @@ const ProductManager = () => {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5001/api/products/${confirm.productId}`, {
+      await axios.delete(`https://sangu-semiya-backend-bq1f.onrender.com/api/products/${confirm.productId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` }
       });
       showStatus('Inventory removed successfully');

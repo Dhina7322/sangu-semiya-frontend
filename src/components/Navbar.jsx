@@ -13,7 +13,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get('http://localhost:5001/api/products');
+        const res = await axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/products');
         setProducts(res.data);
       } catch (err) {
         console.error('Error fetching products for navbar', err);

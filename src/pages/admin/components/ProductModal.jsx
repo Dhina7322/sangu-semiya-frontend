@@ -90,7 +90,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
     setFetchingPrice(true);
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await axios.post('http://localhost:5001/api/products/fetch-amazon-price',
+      const res = await axios.post('https://sangu-semiya-backend-bq1f.onrender.com/api/products/fetch-amazon-price',
         { url: formData.amazonLink },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -121,8 +121,8 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
     try {
       const config = { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' } };
       const url = product
-        ? `http://localhost:5001/api/products/${product.id || product._id}`
-        : 'http://localhost:5001/api/products';
+        ? `https://sangu-semiya-backend-bq1f.onrender.com/api/products/${product.id || product._id}`
+        : 'https://sangu-semiya-backend-bq1f.onrender.com/api/products';
       if (product) {
         await axios.put(url, data, config);
         onSuccess('Product Updated Successfully');

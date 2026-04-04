@@ -28,8 +28,8 @@ const Dashboard = () => {
 
     const fetchMetrics = async () => {
       try {
-        const prod = await axios.get('http://localhost:5001/api/products');
-        const enq = await axios.get('http://localhost:5001/api/enquiry', { headers: { Authorization: `Bearer ${token}` } });
+        const prod = await axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/products');
+        const enq = await axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/enquiry', { headers: { Authorization: `Bearer ${token}` } });
         setMetrics({
           products: prod.data.length,
           enquiries: enq.data.length,

@@ -27,7 +27,7 @@ const RecipeManager = () => {
   const loadRecipes = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5001/api/homepage');
+      const res = await axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/homepage');
       if (res.data) {
         setHomepageData(res.data);
         setRecipes(res.data.recipes || []);
@@ -44,7 +44,7 @@ const RecipeManager = () => {
   const handleSave = async (updatedRecipes) => {
     try {
       const payload = { ...homepageData, recipes: updatedRecipes };
-      await axios.put('http://localhost:5001/api/homepage', payload, getAuthHeader());
+      await axios.put('https://sangu-semiya-backend-bq1f.onrender.com/api/homepage', payload, getAuthHeader());
       setStatus({ isOpen: true, message: 'Cooking Recipes synchronized successfully!', type: 'success' });
       setRecipes(updatedRecipes);
       setHomepageData(payload);
@@ -71,7 +71,7 @@ const RecipeManager = () => {
       try {
         const uploadFormData = new FormData();
         uploadFormData.append('image', recipeData.file);
-        const uploadRes = await axios.post('http://localhost:5001/api/homepage/media-upload', uploadFormData, getAuthHeader());
+        const uploadRes = await axios.post('https://sangu-semiya-backend-bq1f.onrender.com/api/homepage/media-upload', uploadFormData, getAuthHeader());
         finalRecipe.img = uploadRes.data.url;
         delete finalRecipe.file;
       } catch (err) {

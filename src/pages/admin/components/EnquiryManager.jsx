@@ -21,7 +21,7 @@ const EnquiryManager = () => {
     setLoading(true);
     try {
       // Standardized to localhost as established in global sync
-      const res = await axios.get('http://localhost:5001/api/enquiry', getAuthHeader());
+      const res = await axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/enquiry', getAuthHeader());
       const data = res.data.map(e => ({ ...e, _id: e._id || e.id }));
       setEnquiries(data);
       setLoading(false);
@@ -35,7 +35,7 @@ const EnquiryManager = () => {
 
   const handleStatusChange = async (id, newStatus) => {
     try {
-      await axios.put(`http://localhost:5001/api/enquiry/${id}/status`, { status: newStatus }, getAuthHeader());
+      await axios.put(`https://sangu-semiya-backend-bq1f.onrender.com/api/enquiry/${id}/status`, { status: newStatus }, getAuthHeader());
       setEnquiries(enquiries.map(e => e._id === id ? { ...e, status: newStatus } : e));
       setStatus({ isOpen: true, message: `Status updated to ${newStatus}`, type: 'success' });
     } catch (err) {
@@ -45,7 +45,7 @@ const EnquiryManager = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5001/api/enquiry/${confirm.id}`, getAuthHeader());
+      await axios.delete(`https://sangu-semiya-backend-bq1f.onrender.com/api/enquiry/${confirm.id}`, getAuthHeader());
       setEnquiries(enquiries.filter(e => e._id !== confirm.id));
       setStatus({ isOpen: true, message: 'Enquiry deleted successfully', type: 'success' });
       setConfirm({ isOpen: false, id: null });

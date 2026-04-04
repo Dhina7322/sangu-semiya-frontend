@@ -44,7 +44,7 @@ const AdminManager = () => {
 
   const fetchAdmins = useCallback(async () => {
     try {
-      const res = await axios.get('http://localhost:5001/api/users', config);
+      const res = await axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/users', config);
       setAdmins(res.data);
       setLoading(false);
     } catch (err) {
@@ -76,7 +76,7 @@ const AdminManager = () => {
         password: profileData.newPassword
       };
       
-      await axios.put('http://localhost:5001/api/users/profile', payload, config);
+      await axios.put('https://sangu-semiya-backend-bq1f.onrender.com/api/users/profile', payload, config);
       showStatus('Security Credentials Updated Successfully. Please log in again.');
       setTimeout(() => {
         localStorage.removeItem('adminToken');
@@ -95,7 +95,7 @@ const AdminManager = () => {
     e.preventDefault();
     setCreateLoading(true);
     try {
-      await axios.post('http://localhost:5001/api/users/subadmin', newSubAdmin, config);
+      await axios.post('https://sangu-semiya-backend-bq1f.onrender.com/api/users/subadmin', newSubAdmin, config);
       alert('Sub-Admin created successfully');
       setNewSubAdmin({ email: '', password: '' });
       fetchAdmins();
@@ -112,7 +112,7 @@ const AdminManager = () => {
 
   const confirmDeleteAdmin = async () => {
     try {
-      await axios.delete(`http://localhost:5001/api/users/${confirm.adminId}`, config);
+      await axios.delete(`https://sangu-semiya-backend-bq1f.onrender.com/api/users/${confirm.adminId}`, config);
       showStatus('Admin account eradicated');
       setConfirm({ isOpen: false, adminId: null });
       fetchAdmins();

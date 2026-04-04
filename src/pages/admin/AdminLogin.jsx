@@ -15,7 +15,7 @@ const AdminLogin = () => {
     setError('');
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5001/api/auth/login', { email, password });
+      const res = await axios.post('https://sangu-semiya-backend-bq1f.onrender.com/api/auth/login', { email, password });
       localStorage.setItem('adminToken', res.data.token);
       localStorage.setItem('adminRole', res.data.role);
       navigate('/admin/dashboard');

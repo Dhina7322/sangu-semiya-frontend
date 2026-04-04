@@ -16,7 +16,7 @@ const EnquirySection = ({ trustCards }) => {
         product: 'General Enquiry',
         message: 'Sent from Instant Enquiry form'
       };
-      await axios.post('http://localhost:5001/api/enquiry', enquiryData);
+      await axios.post('https://sangu-semiya-backend-bq1f.onrender.com/api/enquiry', enquiryData);
       alert("Thank you! Enquiry received.");
       setForm({ name: '', phone: '', quantity: '' });
     } catch (err) {
