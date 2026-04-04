@@ -7,7 +7,8 @@ const RecipeModal = ({ isOpen, onClose, recipe, onSave, loading }) => {
     name: '',
     time: '',
     youtubeLink: '',
-    img: ''
+    img: '',
+    description: ''
   });
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState('');
@@ -18,11 +19,12 @@ const RecipeModal = ({ isOpen, onClose, recipe, onSave, loading }) => {
         name: recipe.name || '',
         time: recipe.time || '',
         youtubeLink: recipe.youtubeLink || '',
-        img: recipe.img || ''
+        img: recipe.img || '',
+        description: recipe.description || ''
       });
       setPreviewUrl(recipe.img || '');
     } else {
-      setFormData({ name: '', time: '', youtubeLink: '', img: '' });
+      setFormData({ name: '', time: '', youtubeLink: '', img: '', description: '' });
       setPreviewUrl('');
     }
     setSelectedFile(null);
@@ -128,6 +130,18 @@ const RecipeModal = ({ isOpen, onClose, recipe, onSave, loading }) => {
                     placeholder="https://..." 
                   />
                 </div>
+              </div>
+            </div>
+
+            <div>
+              <label className={labelCls}>Preparation Method / Description</label>
+              <div className="relative group">
+                <textarea 
+                  value={formData.description} 
+                  onChange={e => setFormData({ ...formData, description: e.target.value })} 
+                  className={inputCls + ' min-h-[100px] resize-y leading-relaxed'} 
+                  placeholder="E.g., Boil water, add Sangu Semiya, stir constantly..." 
+                />
               </div>
             </div>
 

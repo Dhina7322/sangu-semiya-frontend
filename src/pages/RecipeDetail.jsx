@@ -117,14 +117,12 @@ const RecipeDetail = () => {
                              </div>
                         </div>
 
-                        {/* Description Placeholder */}
+                        {/* Description / Preparation Method */}
                         <div className="space-y-6 pt-6 border-t border-slate-50">
-                           <h2 className="text-2xl font-black text-slate-900 tracking-tight uppercase">Culinary Note</h2>
-                           <p className="text-slate-500 text-lg leading-relaxed font-medium">
-                               This traditional recipe features Sangu Brand's premium vermicelli, known for its non-sticky texture and authentic taste. 
-                               Perfect for balanced breakfasts or as a sophisticated base for global culinary experiments. 
-                               Follow the video guide above to achieve the perfect consistency and flavor profile.
-                           </p>
+                           <h2 className="text-2xl font-black text-slate-900 tracking-tight uppercase">Preparation Method</h2>
+                           <div className="text-slate-600 text-[17px] leading-[1.8] font-medium whitespace-pre-wrap max-w-none">
+                               {recipe.description || "1. Boil 3 cups of water in a large pan.\n2. Add Sangu Brand Semiya slowly to avoid clumping.\n3. Stir constantly for 3-5 minutes until the vermicelli is soft and fully cooked.\n4. Drain excess water and season with your favorite spices.\n5. Serve hot for a healthy breakfast or evening snack!"}
+                           </div>
                         </div>
 
                         {/* Branding Sidebar style footer */}

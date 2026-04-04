@@ -1,23 +1,31 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FiClock, FiBookOpen, FiArrowRight, FiCalendar } from 'react-icons/fi';
+import api from '../utils/api';
+import CookingInspiration from '../components/home/CookingInspiration';
 
 const BlogRecipe = () => {
   const [blogs, setBlogs] = useState([]);
+  const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchBlogs = async () => {
+    const fetchData = async () => {
       try {
-        const res = await axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/blogs');
-        setBlogs(res.data);
+        const [blogRes, homeRes] = await Promise.all([
+          api.get('/blogs').catch(() => ({ data: [] })),
+          api.get('/homepage').catch(() => ({ data: { recipes: [] } }))
+        ]);
+        setBlogs(blogRes.data || []);
+        if (homeRes.data?.recipes) {
+          setRecipes(homeRes.data.recipes);
+        }
         setLoading(false);
       } catch (err) {
         setLoading(false);
       }
     };
-    fetchBlogs();
+    fetchData();
   }, []);
 
   if (loading) return <div className="min-h-screen flex items-center justify-center font-bold text-slate-300 animate-pulse uppercase tracking-[0.3em]">Loading Collection...</div>;
@@ -37,8 +45,21 @@ const BlogRecipe = () => {
       </section>
 
       {/* Balanced compact Grid */}
-      <section className="py-20">
+      <section className="pt-20 pb-12">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          
+          <div className="text-center mb-16 space-y-2">
+            <span className="text-secondary font-medium text-[8px] tracking-widest uppercase block">
+              Read & Learn
+            </span>
+            <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight">
+              Our Blog
+            </h2>
+            <p className="text-xs text-slate-400 font-normal max-w-md mx-auto">
+               Discover in-depth articles about health benefits, behind-the-scenes processes, and culinary traditions.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
             {blogs.length > 0 ? (
                blogs.map((recipe, i) => (
@@ -87,8 +108,11 @@ const BlogRecipe = () => {
         </div>
       </section>
 
+      {/* Cooking Inspiration Component */}
+      <CookingInspiration recipes={recipes} />
+
       {/* Compact CTA */}
-      <section className="pb-32 px-6">
+      <section className="pb-32 px-6 pt-12">
          <div className="max-w-4xl mx-auto p-12 lg:p-16 rounded-[2.5rem] bg-slate-900 text-center space-y-8 relative overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter relative z-10">Have a Culinary Story?</h2>
