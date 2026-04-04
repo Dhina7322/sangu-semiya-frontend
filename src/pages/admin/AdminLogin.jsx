@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import api from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
 import { FiLock } from 'react-icons/fi';
 
@@ -15,7 +15,7 @@ const AdminLogin = () => {
     setError('');
     setLoading(true);
     try {
-      const res = await axios.post('https://sangu-semiya-backend-bq1f.onrender.com/api/auth/login', { email, password });
+      const res = await api.post('/auth/login', { email, password });
       localStorage.setItem('adminToken', res.data.token);
       localStorage.setItem('adminRole', res.data.role);
       navigate('/admin/dashboard');

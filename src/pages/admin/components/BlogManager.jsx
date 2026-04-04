@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../../../utils/api';
 import BlogModal from './BlogModal';
 import StatusPopup from './StatusPopup';
 import ConfirmPopup from './ConfirmPopup';
@@ -17,7 +17,7 @@ const BlogManager = () => {
   const loadBlogs = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/blogs');
+      const res = await api.get('/blogs');
       setBlogs(res.data);
       setLoading(false);
     } catch (err) {
@@ -31,10 +31,10 @@ const BlogManager = () => {
   const handleSave = async (blogData) => {
     try {
       if (editingBlog) {
-        await axios.put(`https://sangu-semiya-backend-bq1f.onrender.com/api/blogs/${editingBlog.id || editingBlog._id}`, blogData);
+        await api.put(`/blogs/${editingBlog.id || editingBlog._id}`, blogData);
         setStatus({ isOpen: true, message: 'Story updated successfully!', type: 'success' });
       } else {
-        await axios.post('https://sangu-semiya-backend-bq1f.onrender.com/api/blogs', blogData);
+        await api.post('/blogs', blogData);
         setStatus({ isOpen: true, message: 'New story published!', type: 'success' });
       }
       loadBlogs();
@@ -50,7 +50,7 @@ const BlogManager = () => {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`https://sangu-semiya-backend-bq1f.onrender.com/api/blogs/${confirm.blogId}`);
+      await api.delete(`/blogs/${confirm.blogId}`);
       setStatus({ isOpen: true, message: 'Story deleted successfully.', type: 'success' });
       setConfirm({ isOpen: false, blogId: null });
       loadBlogs();

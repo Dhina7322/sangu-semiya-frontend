@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import axios from 'axios';
+import api from '../../../utils/api';
 import { FiInfo, FiEdit3, FiImage, FiPlus, FiTrash2, FiChevronDown, FiWind, FiCheckCircle, FiClock, FiShield, FiTarget, FiZap, FiActivity, FiBriefcase, FiTrendingUp, FiBox, FiPackage } from 'react-icons/fi';
 
 const ICON_OPTIONS = [
@@ -89,11 +89,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
     if (!formData.amazonLink) return alert('Please enter an Amazon URL first');
     setFetchingPrice(true);
     try {
-      const token = localStorage.getItem('adminToken');
-      const res = await axios.post('https://sangu-semiya-backend-bq1f.onrender.com/api/products/fetch-amazon-price',
-        { url: formData.amazonLink },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const res = await api.post('/products/fetch-amazon-price', { url: formData.amazonLink });
       if (res.data.price) setFormData(prev => ({ ...prev, price: res.data.price }));
     } catch (err) {
       alert(err.response?.data?.message || 'Failed to fetch price from Amazon.');
@@ -119,15 +115,14 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
     
     selectedFiles.forEach(file => data.append('images', file));
     try {
-      const config = { headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' } };
       const url = product
-        ? `https://sangu-semiya-backend-bq1f.onrender.com/api/products/${product.id || product._id}`
-        : 'https://sangu-semiya-backend-bq1f.onrender.com/api/products';
+        ? `/products/${product.id || product._id}`
+        : '/products';
       if (product) {
-        await axios.put(url, data, config);
+        await api.put(url, data);
         onSuccess('Product Updated Successfully');
       } else {
-        await axios.post(url, data, config);
+        await api.post(url, data);
         onSuccess('New Product Created');
       }
       refreshProducts();

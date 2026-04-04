@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../../../utils/api';
 import StatusPopup from './StatusPopup';
 
 const CMSManager = () => {
@@ -17,14 +17,9 @@ const CMSManager = () => {
   });
   const [loading, setLoading] = useState(true);
   const [status, setStatus] = useState({ isOpen: false, message: '', type: 'success' });
-
-  const getAuthHeader = () => ({
-    headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` }
-  });
-
   const loadCMS = async () => {
     try {
-      const res = await axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/homepage');
+      const res = await api.get('/homepage');
       if (res.data) {
         setFormData(res.data);
       }
@@ -96,7 +91,7 @@ const CMSManager = () => {
   const handleSave = async (e) => {
     if (e) e.preventDefault();
     try {
-      await axios.put('https://sangu-semiya-backend-bq1f.onrender.com/api/homepage', formData, getAuthHeader());
+      await api.put('/homepage', formData);
       setStatus({ isOpen: true, message: 'Content updated successfully!', type: 'success' });
     } catch (err) {
       console.error('Failed to update CMS', err);

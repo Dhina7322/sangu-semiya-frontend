@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../../../utils/api';
 import ProductModal from './ProductModal';
 import { ImportModal, ExportModal } from './ImportExportModals';
 import StatusPopup from './StatusPopup';
@@ -28,7 +28,7 @@ const ProductManager = () => {
   const loadProducts = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/products');
+      const res = await api.get('/products');
       setProducts(res.data);
       setFilteredProducts(res.data);
       setLoading(false);
@@ -62,9 +62,7 @@ const ProductManager = () => {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`https://sangu-semiya-backend-bq1f.onrender.com/api/products/${confirm.productId}`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` }
-      });
+      await api.delete(`/products/${confirm.productId}`);
       showStatus('Inventory removed successfully');
       setConfirm({ isOpen: false, productId: null });
       loadProducts();
