@@ -17,7 +17,6 @@ const EnquirySection = memo(lazy(() => import('../components/home/EnquirySection
 
 
 const Home = () => {
-  useReveal();
   const [data, setData] = useState({
     heroBanner: {
       message: "Sangu Brand Semiya",
@@ -31,23 +30,25 @@ const Home = () => {
   const [featuredProducts, setFeaturedProducts] = useState([null, null, null, null]);
   const [isProductsLoading, setIsProductsLoading] = useState(true);
 
+  useReveal([isProductsLoading]);
+
   const steps = [
-    { title: "Raw Selection", icon: "🚜", image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6ad999?q=80&w=400&auto=format&fit=crop", desc: "Sourcing the finest hard wheat grains." },
-    { title: "Cleaning", icon: "✨", image: "https://images.unsplash.com/photo-1589135398305-5674312ce007?q=80&w=400&auto=format&fit=crop", desc: "Multi-stage automated purification." },
-    { title: "Production", icon: "⚙️", image: "https://plus.unsplash.com/premium_photo-1661914275139-4470df049830?q=80&w=400&auto=format&fit=crop", desc: "Untouched-by-hand extrusion." },
-    { title: "Quality Check", icon: "🔬", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400&auto=format&fit=crop", desc: "ISO-standard nutritional testing." }
+    { title: "Raw Selection", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Wheat_ears.jpg/400px-Wheat_ears.jpg", desc: "Sourcing the finest hard wheat grains." },
+    { title: "Cleaning", image: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=400&auto=format&fit=crop", desc: "Multi-stage automated purification." },
+    { title: "Production", image: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?q=80&w=400&auto=format&fit=crop", desc: "Untouched-by-hand extrusion." },
+    { title: "Quality Check", image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=400&auto=format&fit=crop", desc: "ISO-standard nutritional testing." }
   ];
 
   const benefits = [
-    { title: "Ingredients", icon: "🌾", desc: "100% Hard Wheat Semolina / Durum Wheat.", items: ["No Maida", "No Bleach", "No Additives"] },
-    { title: "Health Benefits", icon: "💪", desc: "Rich in complex carbohydrates and gluten-friendly.", items: ["Zero Cholesterol", "Low GI", "Fiber Rich"] },
-    { title: "Usage Ideas", icon: "🍳", desc: "Versatile base for global and local recipes.", items: ["Breakfast Upma", "Classic Payasam", "Vermicelli Pasta"] }
+    { title: "Ingredients", image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=300&auto=format&fit=crop", desc: "100% Hard Wheat Semolina / Durum Wheat.", items: ["No Maida", "No Bleach", "No Additives"] },
+    { title: "Health Benefits", image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=300&auto=format&fit=crop", desc: "Rich in complex carbohydrates and gluten-friendly.", items: ["Zero Cholesterol", "Low GI", "Fiber Rich"] },
+    { title: "Usage Ideas", image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=300&auto=format&fit=crop", desc: "Versatile base for global and local recipes.", items: ["Breakfast Upma", "Classic Payasam", "Vermicelli Pasta"] }
   ];
 
   const trustCards = [
-    { title: "Easy Management", icon: "📊", desc: "Simplified stocking and fast-moving inventory for retail partners." },
-    { title: "User Friendly", icon: "😊", desc: "Consistent texture ensures perfect results for every home chef." },
-    { title: "Business Growth", icon: "📈", desc: "Proven market demand and strong customer loyalty drive your profits." }
+    { title: "Easy Management", image: "https://images.unsplash.com/photo-1454165833767-1314bd4b3211?q=80&w=200&auto=format&fit=crop", desc: "Simplified stocking and fast-moving inventory for retail partners." },
+    { title: "User Friendly", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=200&auto=format&fit=crop", desc: "Consistent texture ensures perfect results for every home chef." },
+    { title: "Business Growth", image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=200&auto=format&fit=crop", desc: "Proven market demand and strong customer loyalty drive your profits." }
   ];
 
   useEffect(() => {

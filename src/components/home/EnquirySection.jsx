@@ -37,11 +37,9 @@ const EnquirySection = ({ trustCards }) => {
             
             <div className="space-y-6">
               {trustCards.map((card, i) => (
-                <div key={i} className="flex gap-6 group">
-                  <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:bg-primary group-hover:text-white transition-all duration-300 shrink-0 border border-slate-100">
-                    {i === 0 && <FiTrendingUp size={20} />}
-                    {i === 1 && <FiSmile size={20} />}
-                    {i === 2 && <FiTarget size={20} />}
+                <div key={i} className={`flex gap-6 group reveal reveal-left delay-${(i + 1) * 100}`}>
+                  <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-xl shadow-sm group-hover:bg-primary transition-all duration-300 shrink-0 border border-slate-100 overflow-hidden">
+                    <img src={card.image} alt={card.title} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
                   </div>
                   <div className="space-y-1">
                      <h3 className="text-sm font-semibold text-slate-900 leading-tight uppercase tracking-tight">{card.title}</h3>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { FiLayers, FiFilter, FiSettings, FiCheckCircle } from 'react-icons/fi';
 
 const ProductionProcess = ({ steps }) => (
   <section className="py-14 lg:py-20 bg-slate-900 overflow-hidden relative">
@@ -19,23 +18,11 @@ const ProductionProcess = ({ steps }) => (
           {steps.map((step, i) => (
             <div key={i} className={`space-y-6 text-center lg:text-left group reveal reveal-up delay-${(i + 1) * 100}`}>
               <div className="w-20 h-20 bg-white/10 backdrop-blur-xl rounded-2xl border border-white/10 flex items-center justify-center text-2xl shadow-xl mx-auto lg:mx-0 transform-gpu group-hover:bg-primary group-hover:-translate-y-2 transition-all duration-500 text-white overflow-hidden relative">
-                {step.image ? (
-                  <img
-                    src={step.image}
-                    alt={step.title}
-                    className="w-full h-full object-cover brightness-90 group-hover:brightness-100 transition-all duration-500"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      e.target.nextSibling.style.display = 'block';
-                    }}
-                  />
-                ) : null}
-                <div className={step.image ? "hidden" : "block"}>
-                  {i === 0 && <FiLayers />}
-                  {i === 1 && <FiFilter />}
-                  {i === 2 && <FiSettings />}
-                  {i === 3 && <FiCheckCircle />}
-                </div>
+                <img
+                  src={step.image}
+                  alt={step.title}
+                  className="w-full h-full object-cover brightness-90 group-hover:brightness-100 transition-all duration-500"
+                />
               </div>
               <div className="space-y-2">
                 <div className="flex items-center gap-2 justify-center lg:justify-start opacity-60">

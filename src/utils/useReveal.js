@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 
-export const useReveal = () => {
+export const useReveal = (dependency = []) => {
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.15,
+      threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
     };
 
@@ -11,17 +11,27 @@ export const useReveal = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          // Optionally unobserve after revealing
-          // observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    const revealElements = document.querySelectorAll('.reveal');
-    revealElements.forEach((el) => observer.observe(el));
+    const observeElements = () => {
+      const revealElements = document.querySelectorAll('.reveal:not(.active)');
+      revealElements.forEach((el) => observer.observe(el));
+    };
+
+    observeElements();
+
+    // Re-check for new elements periodically or on certain events
+    const mutationObserver = new MutationObserver(() => {
+      observeElements();
+    });
+
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
 
     return () => {
-      revealElements.forEach((el) => observer.unobserve(el));
+      observer.disconnect();
+      mutationObserver.disconnect();
     };
-  }, []);
+  }, dependency);
 };
