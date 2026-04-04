@@ -60,12 +60,32 @@ const RecipeManager = () => {
     }
   };
 
+  const [modalLoading, setModalLoading] = useState(false);
+
   const onModalSave = async (recipeData) => {
+    setModalLoading(true);
+    let finalRecipe = { ...recipeData };
+    
+    // If there's a new file, upload it first
+    if (recipeData.file) {
+      try {
+        const uploadFormData = new FormData();
+        uploadFormData.append('image', recipeData.file);
+        const uploadRes = await axios.post('http://localhost:5001/api/homepage/media-upload', uploadFormData, getAuthHeader());
+        finalRecipe.img = uploadRes.data.url;
+        delete finalRecipe.file;
+      } catch (err) {
+        setStatus({ isOpen: true, message: 'Image upload failed. Try a smaller file.', type: 'error' });
+        setModalLoading(false);
+        return;
+      }
+    }
+
     let updatedRecipes = [...recipes];
     if (editingIndex >= 0) {
-      updatedRecipes[editingIndex] = recipeData;
+      updatedRecipes[editingIndex] = finalRecipe;
     } else {
-      updatedRecipes.push(recipeData);
+      updatedRecipes.push(finalRecipe);
     }
     
     const success = await handleSave(updatedRecipes);
@@ -74,6 +94,7 @@ const RecipeManager = () => {
       setEditingRecipe(null);
       setEditingIndex(-1);
     }
+    setModalLoading(false);
   };
 
   const openDeleteConfirm = (index) => {
@@ -213,7 +234,7 @@ const RecipeManager = () => {
         onClose={() => setIsModalOpen(false)}
         recipe={editingRecipe}
         onSave={onModalSave}
-        loading={false}
+        loading={modalLoading}
       />
 
       <ConfirmPopup 

@@ -51,27 +51,8 @@ const RecipeModal = ({ isOpen, onClose, recipe, onSave, loading }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // In this specific implementation, we pass the raw data (including base64 if it's a new file)
-    // or we could compress it here. Let's compress it to be safe.
     if (selectedFile) {
-        const img = new Image();
-        img.src = previewUrl;
-        img.onload = () => {
-            const canvas = document.createElement('canvas');
-            const MAX_WIDTH = 480;
-            let width = img.width;
-            let height = img.height;
-            if (width > MAX_WIDTH) {
-                height *= MAX_WIDTH / width;
-                width = MAX_WIDTH;
-            }
-            canvas.width = width;
-            canvas.height = height;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0, width, height);
-            const compressedBase64 = canvas.toDataURL('image/jpeg', 0.5);
-            onSave({ ...formData, img: compressedBase64 });
-        };
+        onSave({ ...formData, file: selectedFile });
     } else {
         onSave(formData);
     }
