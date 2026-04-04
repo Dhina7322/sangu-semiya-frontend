@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FiMessageCircle } from 'react-icons/fi';
 
 const BulkOrderCTA = () => (
-  <section className="bg-white py-14 overflow-hidden">
+  <section className="bg-white py-20 overflow-hidden">
     <div className="max-w-7xl mx-auto px-6 lg:px-8">
       <div className="bg-slate-900 rounded-3xl p-10 lg:p-20 overflow-hidden relative shadow-2xl">
         <div className="absolute inset-0 opacity-5">
