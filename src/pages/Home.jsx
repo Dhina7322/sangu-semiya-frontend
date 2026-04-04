@@ -223,7 +223,7 @@ const Home = () => {
         </Suspense>
       </section>
 
-      <section className="py-14 lg:py-20 bg-slate-50/50 min-h-[600px]">
+      <section className="py-14 lg:py-20 bg-slate-50/50 min-h-[400px]">
         <Suspense fallback={<div className="h-96" />}>
           <EnquirySection trustCards={trustCards} />
         </Suspense>
