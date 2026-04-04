@@ -1,6 +1,6 @@
 import { useState, useEffect, memo, Suspense, lazy } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../utils/api';
 import { ProductSkeleton } from '../components/Skeleton';
 
 const CookingInspiration = memo(lazy(() => import('../components/home/CookingInspiration')));
@@ -15,8 +15,8 @@ const Products = () => {
     const fetchData = async () => {
       try {
         const [productsRes, homeRes] = await Promise.all([
-          axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/products'),
-          axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/homepage')
+          api.get('/products'),
+          api.get('/homepage')
         ]);
         setProducts(productsRes.data);
         if (homeRes.data?.recipes) {

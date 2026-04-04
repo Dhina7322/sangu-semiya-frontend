@@ -6,7 +6,7 @@ import CMSManager from './components/CMSManager';
 import AdminManager from './components/AdminManager';
 import RecipeManager from './components/RecipeManager';
 import BlogManager from './components/BlogManager';
-import axios from 'axios';
+import api from '../../utils/api';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -28,8 +28,8 @@ const Dashboard = () => {
 
     const fetchMetrics = async () => {
       try {
-        const prod = await axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/products');
-        const enq = await axios.get('https://sangu-semiya-backend-bq1f.onrender.com/api/enquiry', { headers: { Authorization: `Bearer ${token}` } });
+        const prod = await api.get('/products');
+        const enq = await api.get('/enquiry');
         setMetrics({
           products: prod.data.length,
           enquiries: enq.data.length,
