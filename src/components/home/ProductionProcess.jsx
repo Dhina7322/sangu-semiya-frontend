@@ -17,8 +17,8 @@ const ProductionProcess = ({ steps }) => (
         <div className="hidden lg:block absolute top-[44px] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent z-0"></div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
           {steps.map((step, i) => (
-            <div key={i} className="space-y-6 text-center lg:text-left group">
-              <div className="w-20 h-20 bg-white/10 backdrop-blur-xl rounded-2xl border border-white/10 flex items-center justify-center text-2xl shadow-xl mx-auto lg:mx-0 transform group-hover:bg-primary group-hover:-translate-y-2 transition-all duration-500 text-white overflow-hidden relative">
+            <div key={i} className={`space-y-6 text-center lg:text-left group reveal reveal-up delay-${(i + 1) * 100}`}>
+              <div className="w-20 h-20 bg-white/10 backdrop-blur-xl rounded-2xl border border-white/10 flex items-center justify-center text-2xl shadow-xl mx-auto lg:mx-0 transform-gpu group-hover:bg-primary group-hover:-translate-y-2 transition-all duration-500 text-white overflow-hidden relative">
                 {step.image ? (
                   <img
                     src={step.image}

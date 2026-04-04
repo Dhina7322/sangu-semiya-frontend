@@ -2,6 +2,7 @@ import { useState, useEffect, memo, Suspense, lazy } from 'react';
 import api from '../utils/api';
 import { Link } from 'react-router-dom';
 import { ProductSkeleton } from '../components/Skeleton';
+import { useReveal } from '../utils/useReveal';
 
 // Optimized Components (Memoize if needed for high frequency updates, though here they are mostly static)
 const AmazonStrip = memo(lazy(() => import('../components/home/AmazonStrip')));
@@ -16,6 +17,7 @@ const EnquirySection = memo(lazy(() => import('../components/home/EnquirySection
 
 
 const Home = () => {
+  useReveal();
   const [data, setData] = useState({
     heroBanner: {
       message: "Sangu Brand Semiya",
@@ -78,6 +80,11 @@ const Home = () => {
 
       {/* HERO SECTION - Optimized with min-height and explicit image sizes */}
       <section className="relative min-h-[600px] lg:min-h-[700px] flex items-center pt-20 overflow-hidden bg-white">
+        <div className="blob-container">
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[100px] animate-blob"></div>
+          <div className="absolute bottom-[20%] right-[-5%] w-[30%] h-[30%] bg-secondary/5 rounded-full blur-[80px] animate-blob animation-delay-2000"></div>
+          <div className="absolute top-[40%] left-[20%] w-[20%] h-[20%] bg-yellow-200/20 rounded-full blur-[60px] animate-blob animation-delay-4000"></div>
+        </div>
         <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full bg-slate-50/50 skew-x-[-12deg] translate-x-32 z-0 hidden lg:block border-l border-slate-100 transform-gpu will-change-transform"></div>
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 w-full py-12 lg:py-20">
@@ -142,7 +149,7 @@ const Home = () => {
 
 
       <section className="py-14 lg:py-20 bg-slate-50/30 min-h-[400px]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-12 space-y-2">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-12 space-y-2 reveal reveal-up">
           <span className="inline-block py-1 px-3 rounded-full bg-red-50 border border-red-100 text-primary font-medium text-[8px] tracking-widest uppercase mb-1">
             The Sangu Edge
           </span>
@@ -179,7 +186,7 @@ const Home = () => {
             {isProductsLoading
               ? [1, 2, 3, 4].map(n => <ProductSkeleton key={n} />)
               : featuredProducts.map((p, idx) => (
-                <div key={p?._id || idx} className="group relative flex flex-col transform-gpu will-change-transform">
+                <div key={p?._id || idx} className={`group relative flex flex-col transform-gpu will-change-transform reveal reveal-up delay-${(idx + 1) * 100} hover-lift`}>
                   <Link to={`/product/${p?.name}`} className="relative aspect-square overflow-hidden bg-slate-50 rounded-3xl mb-4 border border-slate-100 group-hover:shadow-xl transition-all duration-500">
                     <img
                       src={p?.images?.[0] || 'https://via.placeholder.com/500?text=Sangu+Semiya'}

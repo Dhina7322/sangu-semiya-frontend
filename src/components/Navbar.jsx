@@ -51,20 +51,20 @@ const Navbar = () => {
       </div>
 
       {/* Main Nav Bar */}
-      <div className="bg-primary shadow-lg relative h-24 md:h-22">
+      <div className="bg-primary shadow-lg relative h-24 md:h-22 animate-fade-in-down shadow-primary/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="flex items-center justify-between h-full relative">
 
             {/* Left Nav Links */}
             <div className="hidden md:flex items-center gap-7">
-              <Link to="/" className="font-semibold text-gray-900 hover:text-secondary transition-colors duration-200">Home</Link>
-              <Link to="/about" className="font-semibold text-gray-900 hover:text-secondary transition-colors duration-200">Our Company</Link>
+              <Link to="/" className="font-semibold text-gray-900 hover:text-secondary hover:scale-105 transition-all duration-200">Home</Link>
+              <Link to="/about" className="font-semibold text-gray-900 hover:text-secondary hover:scale-105 transition-all duration-200">Our Company</Link>
               <div
                 className="relative"
                 onMouseEnter={() => setProductsOpen(true)}
                 onMouseLeave={() => setProductsOpen(false)}
               >
-                <div className="flex items-center gap-1 cursor-pointer font-semibold text-gray-900 hover:text-secondary transition-colors duration-200">
+                <div className="flex items-center gap-1 cursor-pointer font-semibold text-gray-900 hover:text-secondary hover:scale-105 transition-all duration-200">
                   Products <FiChevronDown size={14} className={`transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
                 </div>
                 {productsOpen && (
@@ -106,7 +106,7 @@ const Navbar = () => {
             {/* Center Logo - CIRCULAR OVERLAPPING - Optimized dimensions */}
             <div className="absolute left-1/2 -translate-x-1/2 top-2 md:top-2 z-50">
               <Link to="/" className="block">
-                <div className="bg-white p-1 rounded-full shadow-2xl border-2 border-primary hover:scale-105 transition-transform duration-300">
+                <div className="bg-white p-1 rounded-full shadow-2xl border-2 border-primary hover-lift transition-all duration-500 hover:rotate-3">
                   <img
                     src={logo}
                     alt="Sangu Brand Semiya"
