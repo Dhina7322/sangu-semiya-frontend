@@ -57,28 +57,38 @@ const Navbar = () => {
 
             {/* Left Nav Links */}
             <div className="hidden md:flex items-center gap-7">
-              <Link to="/" className="font-semibold text-gray-900 hover:text-secondary hover:scale-105 transition-all duration-200">Home</Link>
-              <Link to="/about" className="font-semibold text-gray-900 hover:text-secondary hover:scale-105 transition-all duration-200">Our Company</Link>
+              <Link 
+                to="/" 
+                className={`font-semibold transition-all duration-200 hover:text-secondary hover:scale-105 ${isActive('/') ? 'text-secondary' : 'text-gray-900'}`}
+              >
+                Home
+              </Link>
+              <Link 
+                to="/about" 
+                className={`font-semibold transition-all duration-200 hover:text-secondary hover:scale-105 ${isActive('/about') ? 'text-secondary' : 'text-gray-900'}`}
+              >
+                Our Company
+              </Link>
               <div
                 className="relative"
                 onMouseEnter={() => setProductsOpen(true)}
                 onMouseLeave={() => setProductsOpen(false)}
               >
-                <div className="flex items-center gap-1 cursor-pointer font-semibold text-gray-900 hover:text-secondary hover:scale-105 transition-all duration-200">
+                <div className={`flex items-center gap-1 cursor-pointer font-semibold transition-all duration-200 hover:text-secondary hover:scale-105 ${location.pathname.startsWith('/product') ? 'text-secondary' : 'text-gray-900'}`}>
                   Products <FiChevronDown size={14} className={`transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
                 </div>
                 {productsOpen && (
                   <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-md shadow-xl py-2 border border-gray-100 animate-fade-in-down transform-gpu">
                     <Link
                       to="/our-product-range"
-                      className="block px-4 py-2 text-sm font-bold text-primary hover:bg-yellow-50 transition-colors border-b border-gray-50 mb-1"
+                      className={`block px-4 py-2 text-sm font-bold hover:bg-yellow-50 transition-colors border-b border-gray-50 mb-1 ${isActive('/our-product-range') ? 'text-secondary' : 'text-primary'}`}
                       onClick={() => setProductsOpen(false)}
                     >
                       Our Product Range (Showcase)
                     </Link>
                     <Link
                       to="/products"
-                      className="block px-4 py-2 text-sm font-bold text-gray-700 hover:bg-yellow-50 hover:text-secondary transition-colors border-b border-gray-50 mb-1"
+                      className={`block px-4 py-2 text-sm font-bold hover:bg-yellow-50 transition-colors border-b border-gray-50 mb-1 ${isActive('/products') ? 'text-secondary' : 'text-gray-700'}`}
                       onClick={() => setProductsOpen(false)}
                     >
                       Shop All Products (Grid View)
@@ -89,7 +99,7 @@ const Navbar = () => {
                         <Link
                           key={product._id || product.id}
                           to={`/product/${product.name}`}
-                          className="block px-4 py-2 text-[11px] font-medium text-gray-600 hover:bg-yellow-50 hover:text-secondary transition-colors"
+                          className={`block px-4 py-2 text-[11px] font-medium hover:bg-yellow-50 hover:text-secondary transition-colors ${isActive(`/product/${product.name}`) ? 'text-secondary' : 'text-gray-600'}`}
                           onClick={() => setProductsOpen(false)}
                         >
                           {product.name}
@@ -120,8 +130,18 @@ const Navbar = () => {
 
             {/* Right Nav Links */}
             <div className="hidden md:flex items-center gap-7">
-              <Link to="/blog" className="font-semibold text-gray-900 hover:text-secondary transition-colors duration-200">Blog &amp; Recipe</Link>
-              <Link to="/contact-us" className="font-semibold text-gray-900 hover:text-secondary transition-colors duration-200">Contact Us</Link>
+              <Link 
+                to="/blog" 
+                className={`font-semibold transition-all duration-200 hover:text-secondary hover:scale-105 ${isActive('/blog') ? 'text-secondary' : 'text-gray-900'}`}
+              >
+                Blog & Recipe
+              </Link>
+              <Link 
+                to="/contact-us" 
+                className={`font-semibold transition-all duration-200 hover:text-secondary hover:scale-105 ${isActive('/contact-us') ? 'text-secondary' : 'text-gray-900'}`}
+              >
+                Contact Us
+              </Link>
             </div>
 
             {/* Mobile Hamburger */}
@@ -137,8 +157,20 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden bg-primary border-t border-yellow-400 animate-fade-in-down pb-6 pt-12 transform-gpu">
             <div className="px-4 space-y-1 text-center font-bold">
-              <Link to="/" onClick={toggleMenu} className="block py-3 text-gray-900 hover:text-secondary transition">Home</Link>
-              <Link to="/about" onClick={toggleMenu} className="block py-3 text-gray-900 hover:text-secondary transition">Our Company</Link>
+              <Link 
+                to="/" 
+                onClick={toggleMenu} 
+                className={`block py-3 hover:text-secondary transition ${isActive('/') ? 'text-secondary underline decoration-2 underline-offset-8' : 'text-gray-900'}`}
+              >
+                Home
+              </Link>
+              <Link 
+                to="/about" 
+                onClick={toggleMenu} 
+                className={`block py-3 hover:text-secondary transition ${isActive('/about') ? 'text-secondary underline decoration-2 underline-offset-8' : 'text-gray-900'}`}
+              >
+                Our Company
+              </Link>
               <div className="py-2">
                 <div className="block text-secondary/60 text-[13px] uppercase font-black tracking-widest mb-2 px-4 text-center">Products</div>
                 <div className="space-y-1">
@@ -173,8 +205,20 @@ const Navbar = () => {
                   )}
                 </div>
               </div>
-              <Link to="/blog" onClick={toggleMenu} className="block py-3 text-gray-900 hover:text-secondary transition">Blog &amp; Recipe</Link>
-              <Link to="/contact-us" onClick={toggleMenu} className="block py-3 text-gray-900 hover:text-secondary transition">Contact Us</Link>
+              <Link 
+                to="/blog" 
+                onClick={toggleMenu} 
+                className={`block py-3 hover:text-secondary transition ${isActive('/blog') ? 'text-secondary underline decoration-2 underline-offset-8' : 'text-gray-900'}`}
+              >
+                Blog & Recipe
+              </Link>
+              <Link 
+                to="/contact-us" 
+                onClick={toggleMenu} 
+                className={`block py-3 hover:text-secondary transition ${isActive('/contact-us') ? 'text-secondary underline decoration-2 underline-offset-8' : 'text-gray-900'}`}
+              >
+                Contact Us
+              </Link>
             </div>
           </div>
         )}
