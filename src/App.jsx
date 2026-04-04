@@ -13,6 +13,7 @@ const ContactUs = lazy(() => import('./pages/ContactUs'));
 const MediaAwards = lazy(() => import('./pages/MediaAwards'));
 const BlogRecipe = lazy(() => import('./pages/BlogRecipe'));
 const BlogPostDetail = lazy(() => import('./pages/BlogPostDetail'));
+const RecipeDetail = lazy(() => import('./pages/RecipeDetail'));
 const ProductShowcase = lazy(() => import('./pages/ProductShowcase'));
 const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
 const Dashboard = lazy(() => import('./pages/admin/Dashboard'));
@@ -45,7 +46,8 @@ const AppContent = () => {
             <Route path="/media" element={<MediaAwards />} />
             <Route path="/blog" element={<BlogRecipe />} />
             <Route path="/blog/:slug" element={<BlogPostDetail />} />
-            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/recipe/:name" element={<RecipeDetail />} />
+            <Route path="/admin" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<Dashboard />} />
           </Routes>
         </Suspense>

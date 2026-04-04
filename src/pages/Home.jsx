@@ -28,7 +28,6 @@ const Home = () => {
   });
 
   const [featuredProducts, setFeaturedProducts] = useState([null, null, null, null]);
-  const [blogs, setBlogs] = useState([]);
   const [isProductsLoading, setIsProductsLoading] = useState(true);
 
   useReveal([isProductsLoading]);
@@ -73,16 +72,8 @@ const Home = () => {
       finally { setIsProductsLoading(false); }
     };
 
-    const fetchBlogs = async () => {
-      try {
-        const res = await api.get('/blogs');
-        if (res.data) setBlogs(res.data.slice(0, 3));
-      } catch (err) { console.log('Recipe inventory fetch failed'); }
-    }
-
     fetchHomeData();
     fetchFeaturedProducts();
-    fetchBlogs();
   }, []);
 
   return (
@@ -239,7 +230,7 @@ const Home = () => {
       </section>
       <div className="min-h-[500px]">
         <Suspense fallback={<div className="animate-pulse bg-slate-50 h-[500px]" />}>
-          <CookingInspiration recipes={blogs} />
+          <CookingInspiration recipes={data.recipes} />
         </Suspense>
       </div>
 
