@@ -65,7 +65,6 @@ const Footer = () => {
 
           {/* Column 2 — Categories */}
           <div>
-            <h3 className="text-base font-bold mb-4 border-b border-red-400 pb-2">Categories</h3>
             <h3 className="text-base font-medium mb-4 border-b border-red-400 pb-2">Products</h3>
             <ul className="space-y-2">
               {products.length > 0 ? (

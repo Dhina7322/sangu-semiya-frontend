@@ -120,13 +120,8 @@ const ProductManager = () => {
           <table className="w-full text-left">
             <thead className="bg-slate-50/50 border-b border-slate-100 text-[14px] uppercase text-slate-400 font-medium tracking-[0.15em]">
               <tr>
-                <th className="px-8 py-6">Product</th>
-                <th className="px-6 py-6 font-bold">Category</th>
-                <th className="px-6 py-6 font-bold">SKU</th>
-                <th className="px-6 py-6 font-bold">Amazon Link</th>
-                <th className="px-6 py-6 font-bold">Pack Size</th>
-                <th className="px-6 py-6 font-bold text-center">Status</th>
-                <th className="px-8 py-6 font-bold text-right">Actions</th>
+                <th className="px-8 py-6 font-medium">Product</th>
+                <th className="px-6 py-6 font-medium">Category</th>
                 <th className="px-6 py-6 font-medium">SKU</th>
                 <th className="px-6 py-6 font-medium">Amazon Link</th>
                 <th className="px-6 py-6 font-medium">Pack Size</th>

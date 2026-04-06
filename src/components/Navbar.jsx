@@ -74,8 +74,6 @@ const Navbar = () => {
                 onMouseEnter={() => setProductsOpen(true)}
                 onMouseLeave={() => setProductsOpen(false)}
               >
-                <div className={`flex items-center gap-1 cursor-pointer font-semibold transition-all duration-200 hover:text-secondary hover:scale-105 ${location.pathname.startsWith('/product') ? 'text-secondary' : 'text-gray-900'}`}>
-                  Categories <FiChevronDown size={14} className={`transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
                 <div className={`flex items-center gap-1 cursor-pointer font-medium transition-all duration-200 hover:text-secondary hover:scale-105 ${location.pathname.startsWith('/product') ? 'text-secondary' : 'text-gray-900'}`}>
                   Products <FiChevronDown size={14} className={`transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
                 </div>
@@ -174,7 +172,6 @@ const Navbar = () => {
                 Our Company
               </Link>
               <div className="py-2">
-                <div className="block text-secondary/60 text-[13px] uppercase font-black tracking-widest mb-2 px-4 text-center">Categories</div>
                 <div className="block text-secondary/60 text-[17px] uppercase font-medium tracking-widest mb-2 px-4 text-center">Products</div>
                 <div className="space-y-1">
                   <Link
