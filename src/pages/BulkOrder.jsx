@@ -74,7 +74,7 @@ const BulkOrder = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-extrabold text-gray-900 mb-4">Partner with Us</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Partner with Us</h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">Are you a distributor, wholesaler, or caterer? Fill out the form below for special bulk pricing and dealer benefits.</p>
         </div>
 
@@ -85,7 +85,7 @@ const BulkOrder = () => {
              <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-white opacity-10"></div>
              
              <div className="relative z-10">
-               <h3 className="text-3xl font-bold mb-6">Distributor Benefits</h3>
+               <h3 className="text-3xl font-medium mb-6">Distributor Benefits</h3>
                <ul className="space-y-4 mb-12">
                  <li className="flex items-center gap-3"><div className="w-6 h-6 bg-red-400/20 rounded-lg flex items-center justify-center"><FiShield className="text-white" size={14} /></div> High profit margins</li>
                  <li className="flex items-center gap-3"><div className="w-6 h-6 bg-red-400/20 rounded-lg flex items-center justify-center"><FiBox className="text-white" size={14} /></div> Marketing support & materials</li>
@@ -94,8 +94,8 @@ const BulkOrder = () => {
                </ul>
 
                <div className="space-y-3">
-                 <p className="font-semibold text-red-100">Or reach us instantly via WhatsApp:</p>
-                 <button onClick={openWhatsApp} className="w-full bg-[#25D366] hover:bg-[#1ebe5d] text-white py-4 rounded-xl font-bold flex align-center justify-center transition shadow-lg gap-2">
+                 <p className="font-medium text-red-100">Or reach us instantly via WhatsApp:</p>
+                 <button onClick={openWhatsApp} className="w-full bg-[#25D366] hover:bg-[#1ebe5d] text-white py-4 rounded-xl font-medium flex align-center justify-center transition shadow-lg gap-2">
                    <FiMessageCircle size={22} />
                    Message on WhatsApp
                  </button>
@@ -105,7 +105,7 @@ const BulkOrder = () => {
 
           {/* Form Side */}
           <div className="lg:w-3/5 p-12">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">Submit Enquiry</h3>
+            <h3 className="text-2xl font-medium text-gray-900 mb-8">Submit Enquiry</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -145,7 +145,7 @@ const BulkOrder = () => {
                 <textarea name="message" value={formData.message} onChange={handleChange} className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition" rows="4" placeholder="Tell us about your requirement..."></textarea>
               </div>
 
-              <button type="submit" disabled={isSubmitting} className={`w-full ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-900 hover:bg-black'} text-white py-4 rounded-xl font-bold text-lg shadow-lg transition transform hover:-translate-y-1`}>
+              <button type="submit" disabled={isSubmitting} className={`w-full ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-gray-900 hover:bg-black'} text-white py-4 rounded-xl font-medium text-lg shadow-lg transition transform hover:-translate-y-1`}>
                 {isSubmitting ? 'Sending Request...' : 'Send Enquiry'}
               </button>
             </form>

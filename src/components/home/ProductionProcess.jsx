@@ -4,10 +4,10 @@ const ProductionProcess = ({ steps }) => (
   <section className="py-14 lg:py-20 bg-slate-900 overflow-hidden relative">
     <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
       <div className="space-y-3">
-        <span className="inline-block py-1 px-3 rounded-full bg-white/10 text-secondary border border-white/10 font-bold text-[13px] tracking-widest uppercase mb-1">
+        <span className="inline-block py-1 px-3 rounded-full bg-white/10 text-secondary border border-white/10 font-medium text-[13px] tracking-widest uppercase mb-1">
           Production Excellence
         </span>
-        <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+        <h2 className="text-3xl md:text-4xl font-medium text-white tracking-tight">
           How We Make It
         </h2>
       </div>
@@ -27,9 +27,9 @@ const ProductionProcess = ({ steps }) => (
               <div className="space-y-2">
                 <div className="flex items-center gap-2 justify-center lg:justify-start opacity-60 transition-opacity group-hover:opacity-100">
                   <span className="w-8 h-[1px] bg-primary group-hover:bg-secondary transition-colors duration-300"></span>
-                  <h3 className="text-sm font-bold text-white uppercase tracking-widest group-hover:text-secondary transition-colors duration-300">Phase 0{i + 1}</h3>
+                  <h3 className="text-sm font-medium text-white uppercase tracking-widest group-hover:text-secondary transition-colors duration-300">Phase 0{i + 1}</h3>
                 </div>
-                <p className="text-white font-bold text-base group-hover:text-secondary transition-colors duration-300">{step.title}</p>
+                <p className="text-white font-medium text-base group-hover:text-secondary transition-colors duration-300">{step.title}</p>
                 <p className="text-slate-400 font-normal text-[17px] leading-relaxed max-w-[200px] mx-auto lg:mx-0 transition-colors duration-300 group-hover:text-slate-200">{step.desc}</p>
               </div>
             </div>

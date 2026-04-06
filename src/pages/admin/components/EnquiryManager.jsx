@@ -76,19 +76,19 @@ const EnquiryManager = () => {
       {/* Tab Header Component */}
       <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
         <div>
-          <h2 className="text-lg font-bold text-slate-800 tracking-tight">Record Keeper</h2>
+          <h2 className="text-lg font-medium text-slate-800 tracking-tight">Record Keeper</h2>
         </div>
         
         <div className="flex bg-slate-100 p-1 rounded-xl">
           <button 
             onClick={() => setActiveTab('Instant')}
-            className={`px-6 py-2.5 rounded-lg text-xs font-semibold tracking-wide transition-all ${activeTab === 'Instant' ? 'bg-white text-slate-900 shadow-sm border border-slate-200' : 'text-slate-500 hover:text-slate-700'}`}
+            className={`px-6 py-2.5 rounded-lg text-xs font-medium tracking-wide transition-all ${activeTab === 'Instant' ? 'bg-white text-slate-900 shadow-sm border border-slate-200' : 'text-slate-500 hover:text-slate-700'}`}
           >
             Instant Enquiries
           </button>
           <button 
             onClick={() => setActiveTab('Product')}
-            className={`px-6 py-2.5 rounded-lg text-xs font-semibold tracking-wide transition-all ${activeTab === 'Product' ? 'bg-white text-slate-900 shadow-sm border border-slate-200' : 'text-slate-500 hover:text-slate-700'}`}
+            className={`px-6 py-2.5 rounded-lg text-xs font-medium tracking-wide transition-all ${activeTab === 'Product' ? 'bg-white text-slate-900 shadow-sm border border-slate-200' : 'text-slate-500 hover:text-slate-700'}`}
           >
             Bulk Orders
           </button>
@@ -100,7 +100,7 @@ const EnquiryManager = () => {
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead className="bg-[#fcfdff] border-b border-slate-200">
-              <tr className="text-[15px] font-bold text-slate-500 uppercase tracking-widest">
+              <tr className="text-[15px] font-medium text-slate-500 uppercase tracking-widest">
                 <th className="px-6 py-5">Time Received</th>
                 <th className="px-6 py-5">Customer Profile</th>
                 <th className="px-6 py-5">Required Item</th>
@@ -116,11 +116,11 @@ const EnquiryManager = () => {
                     <p className="text-[14px] text-slate-400 font-mono mt-0.5">#{e._id?.slice(-6)}</p>
                   </td>
                   <td className="px-6 py-4">
-                    <p className="text-sm font-bold text-slate-800 leading-tight">{e.name}</p>
+                    <p className="text-sm font-medium text-slate-800 leading-tight">{e.name}</p>
                     <p className="text-xs text-slate-500 mt-0.5 font-medium">{e.phone}</p>
                   </td>
                   <td className="px-6 py-4">
-                    <p className="text-[15px] font-bold text-primary uppercase">{e.product || 'General'}</p>
+                    <p className="text-[15px] font-medium text-primary uppercase">{e.product || 'General'}</p>
                     <p className="text-xs text-slate-600 mt-1 font-medium">Qty: {e.quantity || 'TBD'}</p>
                   </td>
                   <td className="px-6 py-4">
@@ -128,7 +128,7 @@ const EnquiryManager = () => {
                        <select 
                         value={e.status || 'Pending'} 
                         onChange={(ev) => handleStatusChange(e._id, ev.target.value)}
-                        className={`text-[14px] font-bold px-3 py-1.5 rounded-lg border outline-none cursor-pointer tracking-wider ${getStatusColor(e.status || 'Pending')}`}
+                        className={`text-[14px] font-medium px-3 py-1.5 rounded-lg border outline-none cursor-pointer tracking-wider ${getStatusColor(e.status || 'Pending')}`}
                       >
                         <option value="Pending">PENDING</option>
                         <option value="In-Progress">IN-PROGRESS</option>
@@ -164,7 +164,7 @@ const EnquiryManager = () => {
               <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center text-slate-300 mb-4 border border-slate-200">
                 <FiMail size={32} />
               </div>
-              <p className="text-sm font-semibold text-slate-400 tracking-tight">No enquiries found in this category.</p>
+              <p className="text-sm font-medium text-slate-400 tracking-tight">No enquiries found in this category.</p>
             </div>
           )}
         </div>

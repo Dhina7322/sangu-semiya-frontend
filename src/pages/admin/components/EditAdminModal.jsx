@@ -26,7 +26,7 @@ const EditAdminModal = ({ admin, isOpen, onClose, onUpdate }) => {
       const payload = { email };
       if (password) payload.password = password;
 
-      await axios.put(`https://sangu-semiya-backend-bq1f.onrender.com/api/users/${admin._id}`, payload, config);
+      await axios.put(`https://sangu-semiya-backend-bq1f.onrender.com/api/users/${admin._id || admin.id}`, payload, config);
       onUpdate();
       onClose();
     } catch (err) {
@@ -49,8 +49,8 @@ const EditAdminModal = ({ admin, isOpen, onClose, onUpdate }) => {
         <div className="p-8">
            <header className="mb-8 flex justify-between items-start">
               <div>
-                <h2 className="text-xl font-semibold text-slate-800 tracking-tight">Modify Assistant</h2>
-                <p className="text-[14px] text-slate-400 font-semibold uppercase tracking-widest mt-1">Adjust sub-admin credentials</p>
+                <h2 className="text-xl font-medium text-slate-800 tracking-tight">Modify Assistant</h2>
+                <p className="text-[14px] text-slate-400 font-medium uppercase tracking-widest mt-1">Adjust sub-admin credentials</p>
               </div>
               <button 
                 onClick={onClose}
@@ -62,7 +62,7 @@ const EditAdminModal = ({ admin, isOpen, onClose, onUpdate }) => {
 
            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <label className="text-[14px] font-semibold text-slate-400 uppercase tracking-widest pl-1">Sign-in Email</label>
+                <label className="text-[14px] font-medium text-slate-400 uppercase tracking-widest pl-1">Sign-in Email</label>
                 <input 
                   required
                   type="email" 
@@ -74,7 +74,7 @@ const EditAdminModal = ({ admin, isOpen, onClose, onUpdate }) => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-[14px] font-semibold text-slate-400 uppercase tracking-widest pl-1">New Password (Secret)</label>
+                <label className="text-[14px] font-medium text-slate-400 uppercase tracking-widest pl-1">New Password (Secret)</label>
                 <input 
                   type="password" 
                   value={password}
@@ -89,14 +89,14 @@ const EditAdminModal = ({ admin, isOpen, onClose, onUpdate }) => {
                 <button 
                   type="button"
                   onClick={onClose}
-                  className="flex-1 py-4 border border-slate-200 text-slate-600 font-semibold uppercase text-[14px] tracking-widest rounded-2xl hover:bg-slate-50 transition-all"
+                  className="flex-1 py-4 border border-slate-200 text-slate-600 font-medium uppercase text-[14px] tracking-widest rounded-2xl hover:bg-slate-50 transition-all"
                 >
                   Cancel
                 </button>
                 <button 
                   type="submit" 
                   disabled={loading}
-                  className="flex-1 py-4 bg-slate-900 text-white font-semibold uppercase text-[14px] tracking-widest rounded-2xl shadow-lg hover:bg-slate-800 transition-all"
+                  className="flex-1 py-4 bg-slate-900 text-white font-medium uppercase text-[14px] tracking-widest rounded-2xl shadow-lg hover:bg-slate-800 transition-all"
                 >
                   {loading ? 'Processing...' : 'Save Adjustments'}
                 </button>

@@ -52,7 +52,7 @@ export const ImportModal = ({ isOpen, onClose, refreshProducts }) => {
 
         {/* Header */}
         <div className="px-6 py-4 border-b border-slate-100 flex justify-between items-center">
-          <h2 className="text-sm font-semibold text-slate-800">Bulk Import</h2>
+          <h2 className="text-sm font-medium text-slate-800">Bulk Import</h2>
           <button onClick={onClose} className="p-1.5 hover:bg-slate-100 rounded-full transition-colors">
             <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12"/>
@@ -106,7 +106,7 @@ export const ImportModal = ({ isOpen, onClose, refreshProducts }) => {
           <button
             onClick={handleImport}
             disabled={loading}
-            className="w-full py-3 bg-primary text-white font-semibold text-sm rounded-xl shadow-md shadow-red-100 hover:bg-primary-dark transition-all"
+            className="w-full py-3 bg-primary text-white font-medium text-sm rounded-xl shadow-md shadow-red-100 hover:bg-primary-dark transition-all"
           >
             {loading ? 'Uploading...' : 'Commit Sync'}
           </button>
@@ -159,7 +159,7 @@ export const ExportModal = ({ isOpen, onClose }) => {
 
           {/* Title */}
           <div>
-            <h2 className="text-sm font-semibold text-slate-800">Export Products</h2>
+            <h2 className="text-sm font-medium text-slate-800">Export Products</h2>
             <p className="text-xs text-slate-400 font-normal mt-1">Download all products as a CSV file</p>
           </div>
 
@@ -167,7 +167,7 @@ export const ExportModal = ({ isOpen, onClose }) => {
           <div className="space-y-2 pt-1">
             <button
               onClick={handleExport}
-              className="w-full py-3 bg-primary text-white font-semibold text-sm rounded-xl shadow-md shadow-red-100 hover:bg-primary-dark transition-all"
+              className="w-full py-3 bg-primary text-white font-medium text-sm rounded-xl shadow-md shadow-red-100 hover:bg-primary-dark transition-all"
             >
               Download CSV
             </button>

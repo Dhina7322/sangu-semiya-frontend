@@ -38,7 +38,7 @@ const MilestoneSection = () => (
         <span className="inline-block py-1 px-3 rounded-full bg-white/5 text-primary border border-white/5 font-medium text-[12px] tracking-widest uppercase mb-1">
           Our Journey
         </span>
-        <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">
+        <h2 className="text-2xl md:text-3xl font-medium text-white tracking-tight">
           Milestones
         </h2>
         <p className="text-slate-400 text-xs font-normal max-w-lg mx-auto opacity-70">
@@ -55,7 +55,7 @@ const MilestoneSection = () => (
             <div className={`w-12 h-12 mx-auto mb-6 rounded-2xl bg-gradient-to-br ${item.accent} flex items-center justify-center text-white shadow-lg transition-transform duration-300`}>
               {item.icon}
             </div>
-            <h3 className="text-lg font-bold text-white mb-2 leading-tight uppercase tracking-tight">
+            <h3 className="text-lg font-medium text-white mb-2 leading-tight uppercase tracking-tight">
               {item.title}
             </h3>
             <p className="text-slate-400 text-xs font-normal leading-relaxed opacity-60">

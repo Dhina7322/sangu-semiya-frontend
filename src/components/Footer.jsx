@@ -59,13 +59,13 @@ const Footer = () => {
                 className="h-28 w-28 object-contain rounded-full border-4 border-white shadow-lg"
               />
             </div>
-            <h2 className="text-lg font-bold tracking-wide mb-1">Sangu Brand Semiya™</h2>
+            <h2 className="text-lg font-medium tracking-wide mb-1">Sangu Brand Semiya™</h2>
             <p className="text-sm text-red-100 font-medium">GSTIN : 33ABKPC7067J1ZK</p>
           </div>
 
           {/* Column 2 — Products */}
           <div>
-            <h3 className="text-base font-bold mb-4 border-b border-red-400 pb-2">Products</h3>
+            <h3 className="text-base font-medium mb-4 border-b border-red-400 pb-2">Products</h3>
             <ul className="space-y-2">
               {products.length > 0 ? (
                 products.map((product) => (
@@ -86,7 +86,7 @@ const Footer = () => {
 
           {/* Column 3 — Quick Links */}
           <div>
-            <h3 className="text-base font-bold mb-4 border-b border-red-400 pb-2">Quick Links</h3>
+            <h3 className="text-base font-medium mb-4 border-b border-red-400 pb-2">Quick Links</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/about" className="text-sm text-red-100 hover:text-white transition-colors duration-200">
@@ -114,7 +114,7 @@ const Footer = () => {
 
           {/* Column 4 — Get In Touch */}
           <div>
-            <h3 className="text-base font-bold mb-4 border-b border-red-400 pb-2">Get In Touch</h3>
+            <h3 className="text-base font-medium mb-4 border-b border-red-400 pb-2">Get In Touch</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-sm text-red-100">
                 <FiMapPin size={16} className="mt-0.5 shrink-0 text-white" />

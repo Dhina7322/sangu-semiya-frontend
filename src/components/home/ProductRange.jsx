@@ -23,7 +23,7 @@ const ProductRange = ({ products = [] }) => {
             <span className="text-secondary font-medium text-[12px] tracking-widest uppercase mb-2 block">
               Complete Collection
             </span>
-            <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight">
+            <h2 className="text-2xl md:text-3xl font-medium text-slate-900 tracking-tight">
               Our Product Range
             </h2>
           </div>
@@ -62,7 +62,7 @@ const ProductRange = ({ products = [] }) => {
                   )}
                 </div>
                 
-                <h3 className="text-xs font-semibold text-slate-800 mb-2 leading-tight group-hover:text-secondary transition-colors duration-300 relative z-10 uppercase tracking-tight">
+                <h3 className="text-xs font-medium text-slate-800 mb-2 leading-tight group-hover:text-secondary transition-colors duration-300 relative z-10 uppercase tracking-tight">
                   {product.name}
                 </h3>
                 

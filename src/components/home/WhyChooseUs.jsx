@@ -9,7 +9,7 @@ const WhyChooseUs = ({ data }) => (
       <span className="inline-block py-1 px-3 rounded-full bg-red-50 border border-red-100 text-primary font-medium text-[12px] tracking-widest uppercase mb-1">
         The Sangu Edge
       </span>
-      <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight">
+      <h2 className="text-2xl md:text-3xl font-medium text-slate-900 tracking-tight">
         Why Families Trust Us
       </h2>
     </div>
@@ -23,7 +23,7 @@ const WhyChooseUs = ({ data }) => (
                fallbackIcons[i % fallbackIcons.length]
              )}
           </div>
-          <h3 className="text-xs font-semibold text-slate-900 mb-2 leading-tight uppercase tracking-tight">{card.title}</h3>
+          <h3 className="text-xs font-medium text-slate-900 mb-2 leading-tight uppercase tracking-tight">{card.title}</h3>
           <p className="text-slate-400 text-[15px] font-normal leading-relaxed opacity-80">{card.description}</p>
         </div>
       ))}

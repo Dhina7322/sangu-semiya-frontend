@@ -32,7 +32,7 @@ const EnquirySection = ({ trustCards }) => {
           <div className="space-y-10">
             <div className="space-y-2">
               <span className="inline-block py-1 px-3 rounded-full bg-red-50 border border-red-100 text-primary font-medium text-[12px] tracking-widest uppercase">Partnership Trust</span>
-              <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-none">Built for Business</h2>
+              <h2 className="text-2xl md:text-3xl font-medium text-slate-900 tracking-tight leading-none">Built for Business</h2>
             </div>
             
             <div className="space-y-6">
@@ -44,7 +44,7 @@ const EnquirySection = ({ trustCards }) => {
                     {i === 2 && <FiTarget size={20} />}
                   </div>
                   <div className="space-y-1">
-                     <h3 className="text-sm font-semibold text-slate-900 leading-tight uppercase tracking-tight transition-colors duration-300 group-hover:text-secondary">{card.title}</h3>
+                     <h3 className="text-sm font-medium text-slate-900 leading-tight uppercase tracking-tight transition-colors duration-300 group-hover:text-secondary">{card.title}</h3>
                      <p className="text-slate-400 font-normal text-xs leading-relaxed opacity-80">{card.desc}</p>
                   </div>
                 </div>
@@ -53,13 +53,13 @@ const EnquirySection = ({ trustCards }) => {
           </div>
 
           <div className="bg-slate-50/50 p-8 lg:p-12 rounded-3xl border border-slate-100 shadow-sm relative">
-            <div className="absolute -top-4 -right-4 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-base shadow-lg text-white font-bold animate-bounce"><FiZap /></div>
-            <h3 className="text-xl font-semibold text-slate-900 mb-1 tracking-tight leading-none italic">Instant Enquiry</h3>
+            <div className="absolute -top-4 -right-4 w-10 h-10 bg-primary rounded-full flex items-center justify-center text-base shadow-lg text-white font-medium animate-bounce"><FiZap /></div>
+            <h3 className="text-xl font-medium text-slate-900 mb-1 tracking-tight leading-none italic">Instant Enquiry</h3>
             <p className="text-slate-400 font-normal mb-8 text-xs opacity-70">Quick response guaranteed within 2 hours.</p>
             
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="space-y-1">
-                <label className="block text-[12px] uppercase font-bold tracking-widest text-slate-400 pl-1">Your Name</label>
+                <label className="block text-[12px] uppercase font-medium tracking-widest text-slate-400 pl-1">Your Name</label>
                 <input 
                   type="text" 
                   className="w-full bg-white border border-slate-200 focus:border-primary rounded-lg p-3 font-medium text-xs text-slate-900 shadow-sm transition-all outline-none" 
@@ -71,7 +71,7 @@ const EnquirySection = ({ trustCards }) => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="block text-[12px] uppercase font-bold tracking-widest text-slate-400 pl-1">Phone Number</label>
+                  <label className="block text-[12px] uppercase font-medium tracking-widest text-slate-400 pl-1">Phone Number</label>
                   <input 
                     type="tel" 
                     className="w-full bg-white border border-slate-200 focus:border-primary rounded-lg p-3 font-medium text-xs text-slate-900 shadow-sm transition-all outline-none" 
@@ -82,7 +82,7 @@ const EnquirySection = ({ trustCards }) => {
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="block text-[12px] uppercase font-bold tracking-widest text-slate-400 pl-1">Quantity (KG)</label>
+                  <label className="block text-[12px] uppercase font-medium tracking-widest text-slate-400 pl-1">Quantity (KG)</label>
                   <input 
                     type="number" 
                     className="w-full bg-white border border-slate-200 focus:border-primary rounded-lg p-3 font-medium text-xs text-slate-900 shadow-sm transition-all outline-none" 
@@ -93,7 +93,7 @@ const EnquirySection = ({ trustCards }) => {
                   />
                 </div>
               </div>
-              <button type="submit" className="w-full bg-slate-900 hover:bg-primary text-white py-3 rounded-lg font-semibold text-[14px] uppercase tracking-widest shadow-md transition-all duration-300 mt-2">
+              <button type="submit" className="w-full bg-slate-900 hover:bg-primary text-white py-3 rounded-lg font-medium text-[14px] uppercase tracking-widest shadow-md transition-all duration-300 mt-2">
                  Submit Enquiry
               </button>
             </form>

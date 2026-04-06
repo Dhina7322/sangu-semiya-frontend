@@ -144,10 +144,10 @@ const ProductShowcase = () => {
                 {/* Content side */}
                 <div className="flex-1 flex flex-col justify-center text-left space-y-6 lg:max-w-xl animate-fade-in-up delay-100">
                   <div>
-                    <span className={`text-[14px] font-bold uppercase tracking-[0.2em] ${product.accentColor} mb-2 block`}>
+                    <span className={`text-[14px] font-medium uppercase tracking-[0.2em] ${product.accentColor} mb-2 block`}>
                       {product.category}
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-bold text-slate-800 tracking-tight leading-tight mb-6">
+                    <h2 className="text-4xl md:text-5xl font-medium text-slate-800 tracking-tight leading-tight mb-6">
                       {product.name}
                     </h2>
                   </div>
@@ -159,7 +159,7 @@ const ProductShowcase = () => {
                   <div className="pt-6">
                     <Link 
                       to={`/product/${product.name}`}
-                      className={`inline-flex items-center gap-3 text-[14px] font-bold uppercase tracking-widest text-slate-400 hover:text-primary transition-all group/link`}
+                      className={`inline-flex items-center gap-3 text-[14px] font-medium uppercase tracking-widest text-slate-400 hover:text-primary transition-all group/link`}
                     >
                       Know More 
                       <FiArrowRight size={14} className="group-hover/link:translate-x-2 transition-transform duration-300" />
@@ -171,7 +171,7 @@ const ProductShowcase = () => {
             </div>
 
             {/* Background decorative element */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20vw] font-black text-slate-900/5 select-none pointer-events-none uppercase tracking-tighter whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-1000 lg:block hidden">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[20vw] font-medium text-slate-900/5 select-none pointer-events-none uppercase tracking-tighter whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-1000 lg:block hidden">
               {product.name}
             </div>
           </section>
@@ -182,7 +182,7 @@ const ProductShowcase = () => {
       <div className="text-center py-24 bg-white">
         <Link 
           to="/contact-us"
-          className="bg-primary text-white px-10 py-5 rounded-2xl font-bold text-[15px] tracking-widest uppercase hover:bg-secondary transition-all shadow-xl hover:shadow-secondary/20 transform hover:-translate-y-1 active:scale-95"
+          className="bg-primary text-white px-10 py-5 rounded-2xl font-medium text-[15px] tracking-widest uppercase hover:bg-secondary transition-all shadow-xl hover:shadow-secondary/20 transform hover:-translate-y-1 active:scale-95"
         >
           Enquire For Bulk Order
         </Link>

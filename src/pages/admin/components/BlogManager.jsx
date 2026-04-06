@@ -83,11 +83,11 @@ const BlogManager = () => {
               <FiFileText size={24} />
            </div>
            <div>
-              <h2 className="text-2xl font-semibold text-slate-800 tracking-tighter">Blogs Management</h2>
+              <h2 className="text-2xl font-medium text-slate-800 tracking-tighter">Blogs Management</h2>
               <p className="text-xs text-slate-400 font-medium mt-1">Share stories, news, and design inspiration.</p>
            </div>
         </div>
-        <button onClick={openNewBlog} className="w-full lg:w-auto px-10 py-4 bg-primary text-white rounded-2xl flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all text-sm font-semibold uppercase tracking-widest">
+        <button onClick={openNewBlog} className="w-full lg:w-auto px-10 py-4 bg-primary text-white rounded-2xl flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all text-sm font-medium uppercase tracking-widest">
           <FiPlus size={18} strokeWidth={2.5} /> New Blog Post
         </button>
       </div>
@@ -105,7 +105,7 @@ const BlogManager = () => {
               </div>
               <div>
                  <p className="text-[14px] font-medium text-slate-400 uppercase tracking-widest">{stat.label}</p>
-                 <p className="text-3xl font-semibold text-slate-800 tracking-tighter mt-1">{stat.val}</p>
+                 <p className="text-3xl font-medium text-slate-800 tracking-tighter mt-1">{stat.val}</p>
               </div>
            </div>
          ))}
@@ -153,7 +153,7 @@ const BlogManager = () => {
                     </div>
                   </td>
                   <td className="px-6 py-5">
-                    <span className={`px-4 py-1.5 rounded-full text-[13px] font-semibold uppercase tracking-widest ${b.status === 'Published' ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-100 text-slate-400'}`}>
+                    <span className={`px-4 py-1.5 rounded-full text-[13px] font-medium uppercase tracking-widest ${b.status === 'Published' ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-100 text-slate-400'}`}>
                       {b.status}
                     </span>
                   </td>
