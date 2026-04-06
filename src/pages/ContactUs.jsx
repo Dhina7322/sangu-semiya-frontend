@@ -26,7 +26,7 @@ const ContactUs = () => {
       <section className="relative bg-slate-900 py-24 lg:py-36 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 to-transparent"></div>
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 text-center space-y-6">
-          <span className="inline-block py-1 px-3 rounded-full bg-white/10 text-primary border border-white/10 font-bold text-[9px] tracking-widest uppercase mb-2">
+          <span className="inline-block py-1 px-3 rounded-full bg-white/10 text-primary border border-white/10 font-bold text-[13px] tracking-widest uppercase mb-2">
             Get In Touch
           </span>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-4">
@@ -78,11 +78,11 @@ const ContactUs = () => {
                 <div className="space-y-1">
                   {card.lines.map((line, j) => (
                     card.links ? (
-                      <a key={j} href={card.links[j]} className="block text-[13px] text-slate-500 font-normal hover:text-secondary transition-colors">
+                      <a key={j} href={card.links[j]} className="block text-[17px] text-slate-500 font-normal hover:text-secondary transition-colors">
                         {line}
                       </a>
                     ) : (
-                      <p key={j} className="text-[13px] text-slate-500 font-normal">{line}</p>
+                      <p key={j} className="text-[17px] text-slate-500 font-normal">{line}</p>
                     )
                   ))}
                 </div>
@@ -108,13 +108,13 @@ const ContactUs = () => {
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-[9px] uppercase font-bold tracking-widest text-slate-400 mb-2">Your Name *</label>
+                    <label className="block text-[13px] uppercase font-bold tracking-widest text-slate-400 mb-2">Your Name *</label>
                     <input type="text" required value={form.name} onChange={(e) => setForm({...form, name: e.target.value})}
                       className="w-full bg-white border border-slate-200 focus:border-secondary rounded-xl p-4 font-bold text-sm text-slate-900 shadow-sm transition-all outline-none"
                       placeholder="Enter your name" />
                   </div>
                   <div>
-                    <label className="block text-[9px] uppercase font-bold tracking-widest text-slate-400 mb-2">Email Address</label>
+                    <label className="block text-[13px] uppercase font-bold tracking-widest text-slate-400 mb-2">Email Address</label>
                     <input type="email" value={form.email} onChange={(e) => setForm({...form, email: e.target.value})}
                       className="w-full bg-white border border-slate-200 focus:border-secondary rounded-xl p-4 font-bold text-sm text-slate-900 shadow-sm transition-all outline-none"
                       placeholder="your@email.com" />
@@ -122,13 +122,13 @@ const ContactUs = () => {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-[9px] uppercase font-bold tracking-widest text-slate-400 mb-2">Phone Number *</label>
+                    <label className="block text-[13px] uppercase font-bold tracking-widest text-slate-400 mb-2">Phone Number *</label>
                     <input type="tel" required value={form.phone} onChange={(e) => setForm({...form, phone: e.target.value})}
                       className="w-full bg-white border border-slate-200 focus:border-secondary rounded-xl p-4 font-bold text-sm text-slate-900 shadow-sm transition-all outline-none"
                       placeholder="+91..." />
                   </div>
                   <div>
-                    <label className="block text-[9px] uppercase font-bold tracking-widest text-slate-400 mb-2">Product Interest</label>
+                    <label className="block text-[13px] uppercase font-bold tracking-widest text-slate-400 mb-2">Product Interest</label>
                     <select value={form.product} onChange={(e) => setForm({...form, product: e.target.value})}
                       className="w-full bg-white border border-slate-200 focus:border-secondary rounded-xl p-4 font-bold text-sm text-slate-900 shadow-sm transition-all outline-none">
                       <option value="">Select a product</option>
@@ -143,18 +143,18 @@ const ContactUs = () => {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-[9px] uppercase font-bold tracking-widest text-slate-400 mb-2">Quantity (KG)</label>
+                  <label className="block text-[13px] uppercase font-bold tracking-widest text-slate-400 mb-2">Quantity (KG)</label>
                   <input type="text" value={form.quantity} onChange={(e) => setForm({...form, quantity: e.target.value})}
                     className="w-full bg-white border border-slate-200 focus:border-secondary rounded-xl p-4 font-bold text-sm text-slate-900 shadow-sm transition-all outline-none"
                     placeholder="e.g. 500 KG" />
                 </div>
                 <div>
-                  <label className="block text-[9px] uppercase font-bold tracking-widest text-slate-400 mb-2">Your Message</label>
+                  <label className="block text-[13px] uppercase font-bold tracking-widest text-slate-400 mb-2">Your Message</label>
                   <textarea rows="3" value={form.message} onChange={(e) => setForm({...form, message: e.target.value})}
                     className="w-full bg-white border border-slate-200 focus:border-secondary rounded-xl p-4 font-bold text-sm text-slate-900 shadow-sm transition-all outline-none resize-none"
                     placeholder="Tell us about your requirements..." />
                 </div>
-                <button type="submit" className="w-full bg-secondary hover:bg-red-700 text-white py-4 rounded-xl font-bold text-[11px] uppercase tracking-widest shadow-xl transition-all duration-300 flex items-center justify-center gap-2">
+                <button type="submit" className="w-full bg-secondary hover:bg-red-700 text-white py-4 rounded-xl font-bold text-[15px] uppercase tracking-widest shadow-xl transition-all duration-300 flex items-center justify-center gap-2">
                   <FiSend size={16} /> Submit Message
                 </button>
               </form>
@@ -168,7 +168,7 @@ const ContactUs = () => {
                 <h3 className="text-xl font-bold mb-2">Chat on WhatsApp</h3>
                 <p className="text-emerald-50/70 text-sm mb-6">Get instant responses for quick enquiries</p>
                 <a href="https://wa.me/919677707416" target="_blank" rel="noopener noreferrer"
-                  className="inline-block bg-white text-emerald-700 px-8 py-3 rounded-xl font-bold text-[11px] uppercase tracking-widest hover:bg-emerald-50 transition-all duration-300 shadow-lg">
+                  className="inline-block bg-white text-emerald-700 px-8 py-3 rounded-xl font-bold text-[15px] uppercase tracking-widest hover:bg-emerald-50 transition-all duration-300 shadow-lg">
                   WhatsApp Us
                 </a>
               </div>
@@ -177,7 +177,7 @@ const ContactUs = () => {
               <div className="bg-slate-900 rounded-3xl p-8 text-center shadow-md">
                 <h3 className="text-lg font-bold text-white mb-2 uppercase tracking-tight">Business Details</h3>
                 <div className="space-y-1">
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Sangu Brand Semiya™</p>
+                  <p className="text-[14px] font-bold uppercase tracking-widest text-slate-500">Sangu Brand Semiya™</p>
                   <p className="text-primary font-bold text-xs tracking-wide">GST: 33ABKPC7067J1ZK</p>
                 </div>
               </div>

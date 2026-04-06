@@ -36,7 +36,7 @@ const BlogRecipe = () => {
       {/* Modern Compact Hero */}
       <section className="bg-slate-900 pt-32 pb-20 overflow-hidden relative">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 text-center space-y-4">
-           <span className="text-[10px] font-black text-primary uppercase tracking-[0.5em] block animate-fade-in">Editorial</span>
+           <span className="text-[14px] font-black text-primary uppercase tracking-[0.5em] block animate-fade-in">Editorial</span>
            <h1 className="text-4xl md:text-6xl font-black text-white tracking-tighter animate-fade-in-up">Stories & Inspiration</h1>
            <p className="text-slate-400 text-sm md:text-base max-w-xl mx-auto animate-fade-in-up delay-100 font-medium leading-relaxed">
              Everything from kitchen tips to traditional secrets, curated by Sangu Brand.
@@ -49,7 +49,7 @@ const BlogRecipe = () => {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           
           <div className="text-center mb-16 space-y-2">
-            <span className="text-secondary font-medium text-[8px] tracking-widest uppercase block">
+            <span className="text-secondary font-medium text-[12px] tracking-widest uppercase block">
               Read & Learn
             </span>
             <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight">
@@ -74,7 +74,7 @@ const BlogRecipe = () => {
                       className="w-full h-full object-cover transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute top-4 left-4">
-                       <span className="bg-white/90 backdrop-blur px-3 py-1.5 rounded-xl text-[9px] font-black text-slate-900 flex items-center gap-2 border border-slate-100 shadow-sm">
+                       <span className="bg-white/90 backdrop-blur px-3 py-1.5 rounded-xl text-[13px] font-black text-slate-900 flex items-center gap-2 border border-slate-100 shadow-sm">
                           <FiClock className="text-secondary" /> {recipe.time || '15 MIN'}
                        </span>
                     </div>
@@ -82,7 +82,7 @@ const BlogRecipe = () => {
 
                   {/* Concise Content */}
                   <div className="space-y-3 px-1">
-                    <div className="flex items-center gap-2 text-[9px] font-black text-secondary uppercase tracking-widest">
+                    <div className="flex items-center gap-2 text-[13px] font-black text-secondary uppercase tracking-widest">
                        <FiCalendar /> {new Date(recipe.created_at).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric'})}
                     </div>
                     <h3 className="text-xl font-black text-slate-900 group-hover:text-primary transition-colors leading-tight line-clamp-2">
@@ -92,7 +92,7 @@ const BlogRecipe = () => {
                        {recipe.short_description}
                     </p>
                     <div className="pt-2">
-                       <span className="text-[10px] font-black text-slate-900 inline-flex items-center gap-2 border-b-2 border-primary/20 group-hover:border-primary transition-all pb-0.5 uppercase tracking-widest">
+                       <span className="text-[14px] font-black text-slate-900 inline-flex items-center gap-2 border-b-2 border-primary/20 group-hover:border-primary transition-all pb-0.5 uppercase tracking-widest">
                           Read Full Story <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
                        </span>
                     </div>

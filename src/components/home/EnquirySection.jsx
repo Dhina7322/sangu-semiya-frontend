@@ -31,7 +31,7 @@ const EnquirySection = ({ trustCards }) => {
           
           <div className="space-y-10">
             <div className="space-y-2">
-              <span className="inline-block py-1 px-3 rounded-full bg-red-50 border border-red-100 text-primary font-medium text-[8px] tracking-widest uppercase">Partnership Trust</span>
+              <span className="inline-block py-1 px-3 rounded-full bg-red-50 border border-red-100 text-primary font-medium text-[12px] tracking-widest uppercase">Partnership Trust</span>
               <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-none">Built for Business</h2>
             </div>
             
@@ -59,7 +59,7 @@ const EnquirySection = ({ trustCards }) => {
             
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="space-y-1">
-                <label className="block text-[8px] uppercase font-bold tracking-widest text-slate-400 pl-1">Your Name</label>
+                <label className="block text-[12px] uppercase font-bold tracking-widest text-slate-400 pl-1">Your Name</label>
                 <input 
                   type="text" 
                   className="w-full bg-white border border-slate-200 focus:border-primary rounded-lg p-3 font-medium text-xs text-slate-900 shadow-sm transition-all outline-none" 
@@ -71,7 +71,7 @@ const EnquirySection = ({ trustCards }) => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="block text-[8px] uppercase font-bold tracking-widest text-slate-400 pl-1">Phone Number</label>
+                  <label className="block text-[12px] uppercase font-bold tracking-widest text-slate-400 pl-1">Phone Number</label>
                   <input 
                     type="tel" 
                     className="w-full bg-white border border-slate-200 focus:border-primary rounded-lg p-3 font-medium text-xs text-slate-900 shadow-sm transition-all outline-none" 
@@ -82,7 +82,7 @@ const EnquirySection = ({ trustCards }) => {
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="block text-[8px] uppercase font-bold tracking-widest text-slate-400 pl-1">Quantity (KG)</label>
+                  <label className="block text-[12px] uppercase font-bold tracking-widest text-slate-400 pl-1">Quantity (KG)</label>
                   <input 
                     type="number" 
                     className="w-full bg-white border border-slate-200 focus:border-primary rounded-lg p-3 font-medium text-xs text-slate-900 shadow-sm transition-all outline-none" 
@@ -93,7 +93,7 @@ const EnquirySection = ({ trustCards }) => {
                   />
                 </div>
               </div>
-              <button type="submit" className="w-full bg-slate-900 hover:bg-primary text-white py-3 rounded-lg font-semibold text-[10px] uppercase tracking-widest shadow-md transition-all duration-300 mt-2">
+              <button type="submit" className="w-full bg-slate-900 hover:bg-primary text-white py-3 rounded-lg font-semibold text-[14px] uppercase tracking-widest shadow-md transition-all duration-300 mt-2">
                  Submit Enquiry
               </button>
             </form>

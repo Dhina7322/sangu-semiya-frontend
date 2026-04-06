@@ -93,7 +93,7 @@ const Home = () => {
 
             <div className="text-center lg:text-left space-y-8 animate-fade-in-up transform-gpu will-change-transform">
               <div className="inline-block">
-                <span className="px-4 py-1 rounded-full bg-red-50 text-secondary font-bold text-[10px] tracking-widest uppercase border border-red-100">
+                <span className="px-4 py-1 rounded-full bg-red-50 text-secondary font-bold text-[14px] tracking-widest uppercase border border-red-100">
                   Established 1982
                 </span>
               </div>
@@ -108,10 +108,10 @@ const Home = () => {
               </div>
 
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-                <a href="https://amazon.in" target="_blank" rel="noreferrer" className="bg-[#131921] hover:bg-secondary text-white px-8 py-4 rounded-xl font-bold text-[11px] tracking-widest uppercase transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-secondary/20">
+                <a href="https://amazon.in" target="_blank" rel="noreferrer" className="bg-[#131921] hover:bg-secondary text-white px-8 py-4 rounded-xl font-bold text-[15px] tracking-widest uppercase transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-secondary/20">
                   Shop on Amazon <span>→</span>
                 </a>
-                <Link to="/products" className="bg-white border border-gray-200 text-gray-500 hover:border-secondary hover:text-secondary px-8 py-4 rounded-xl font-bold text-[11px] tracking-widest uppercase transition-all duration-300 flex items-center justify-center shadow-sm hover:shadow-md">
+                <Link to="/products" className="bg-white border border-gray-200 text-gray-500 hover:border-secondary hover:text-secondary px-8 py-4 rounded-xl font-bold text-[15px] tracking-widest uppercase transition-all duration-300 flex items-center justify-center shadow-sm hover:shadow-md">
                   View Catalog
                 </Link>
               </div>
@@ -151,7 +151,7 @@ const Home = () => {
 
       <section className="py-14 lg:py-20 bg-slate-50/30 min-h-[400px]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-12 space-y-2 reveal reveal-up">
-          <span className="inline-block py-1 px-3 rounded-full bg-red-50 border border-red-100 text-primary font-medium text-[8px] tracking-widest uppercase mb-1">
+          <span className="inline-block py-1 px-3 rounded-full bg-red-50 border border-red-100 text-primary font-medium text-[12px] tracking-widest uppercase mb-1">
             The Sangu Edge
           </span>
           <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight text-center lg:text-left">
@@ -175,10 +175,10 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4 tracking-tight">
             <div className="space-y-1">
-              <span className="text-secondary font-medium text-[8px] tracking-widest uppercase block animate-fade-in">Premium Selection</span>
+              <span className="text-secondary font-medium text-[12px] tracking-widest uppercase block animate-fade-in">Premium Selection</span>
               <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight">Gold-Standard Range</h2>
             </div>
-            <Link to="/products" className="text-slate-400 font-medium uppercase text-[10px] tracking-widest pb-1 border-b border-slate-100 hover:text-secondary hover:border-secondary transition-all">
+            <Link to="/products" className="text-slate-400 font-medium uppercase text-[14px] tracking-widest pb-1 border-b border-slate-100 hover:text-secondary hover:border-secondary transition-all">
               View All Products
             </Link>
           </div>
@@ -203,7 +203,7 @@ const Home = () => {
                     <Link to={`/product/${p?.name}`}>
                       <h3 className="text-sm font-semibold text-slate-800 hover:text-primary transition-colors line-clamp-1 mb-1 uppercase tracking-tight">{p?.name}</h3>
                     </Link>
-                    <p className="text-[10px] text-slate-400 font-medium uppercase tracking-widest">{p?.category || "Authentic"}</p>
+                    <p className="text-[14px] text-slate-400 font-medium uppercase tracking-widest">{p?.category || "Authentic"}</p>
                   </div>
                 </div>
               ))}

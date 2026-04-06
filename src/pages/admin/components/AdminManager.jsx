@@ -143,13 +143,13 @@ const AdminManager = () => {
          <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col h-full">
             <header className="mb-8">
                <h2 className="text-lg font-semibold text-slate-800 tracking-tight">Access Credentials</h2>
-               <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-widest mt-1">Update your own login details</p>
+               <p className="text-[14px] text-slate-400 font-semibold uppercase tracking-widest mt-1">Update your own login details</p>
             </header>
             
             <form onSubmit={handleUpdateProfile} className="space-y-4 flex-1">
                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                  <div className="space-y-1.5">
-                   <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest pl-1">Verify Current Email</label>
+                   <label className="text-[14px] font-semibold text-slate-400 uppercase tracking-widest pl-1">Verify Current Email</label>
                    <input 
                      required
                      type="email" 
@@ -160,7 +160,7 @@ const AdminManager = () => {
                    />
                  </div>
                  <div className="space-y-1.5">
-                   <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest pl-1">Verify Current Password</label>
+                   <label className="text-[14px] font-semibold text-slate-400 uppercase tracking-widest pl-1">Verify Current Password</label>
                    <input 
                      required
                      type="password" 
@@ -173,10 +173,10 @@ const AdminManager = () => {
                </div>
 
                <div className="pt-4 border-t border-slate-100 mt-2">
-                  <p className="text-[10px] font-semibold text-primary uppercase tracking-widest mb-4">New Credential Setup</p>
+                  <p className="text-[14px] font-semibold text-primary uppercase tracking-widest mb-4">New Credential Setup</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                      <div className="space-y-1.5">
-                       <label className="text-[10px] font-semibold uppercase tracking-widest pl-1 text-slate-500">Proposed Email</label>
+                       <label className="text-[14px] font-semibold uppercase tracking-widest pl-1 text-slate-500">Proposed Email</label>
                        <input 
                          type="email" 
                          value={profileData.newEmail}
@@ -186,7 +186,7 @@ const AdminManager = () => {
                        />
                      </div>
                      <div className="space-y-1.5">
-                       <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest pl-1 text-slate-500">Proposed Password</label>
+                       <label className="text-[14px] font-semibold text-slate-400 uppercase tracking-widest pl-1 text-slate-500">Proposed Password</label>
                        <input 
                          type="password" 
                          value={profileData.newPassword}
@@ -201,13 +201,13 @@ const AdminManager = () => {
                <button 
                  type="submit" 
                  disabled={profileLoading}
-                 className="w-full py-4 mt-4 bg-slate-900 text-white font-semibold uppercase text-[10px] tracking-widest rounded-xl shadow-lg hover:bg-slate-800 transition-all uppercase"
+                 className="w-full py-4 mt-4 bg-slate-900 text-white font-semibold uppercase text-[14px] tracking-widest rounded-xl shadow-lg hover:bg-slate-800 transition-all uppercase"
                >
                  {profileLoading ? 'Authenticating & Updating...' : 'Verify & Commit Credential Change'}
                </button>
             </form>
             <div className="mt-6 p-4 bg-red-50 rounded-2xl border border-red-100">
-              <p className="text-[9px] text-red-500 font-semibold uppercase tracking-tight leading-relaxed">
+              <p className="text-[13px] text-red-500 font-semibold uppercase tracking-tight leading-relaxed">
                 ⚠️ Warning: Security Protocol. Changing credentials will invalidate your current session and require re-authentication.
               </p>
             </div>
@@ -217,12 +217,12 @@ const AdminManager = () => {
          <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col h-full">
             <header className="mb-8">
                <h2 className="text-lg font-semibold text-slate-800 tracking-tight">Create Sub-Admin</h2>
-               <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-widest mt-1">Initialize restricted access accounts</p>
+               <p className="text-[14px] text-slate-400 font-semibold uppercase tracking-widest mt-1">Initialize restricted access accounts</p>
             </header>
             
             <form onSubmit={handleCreateSubAdmin} className="space-y-6 flex-1">
                <div className="space-y-2">
-                 <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest pl-1">Sub-Admin Email</label>
+                 <label className="text-[14px] font-semibold text-slate-400 uppercase tracking-widest pl-1">Sub-Admin Email</label>
                  <input 
                    required
                    type="email" 
@@ -233,7 +233,7 @@ const AdminManager = () => {
                  />
                </div>
                <div className="space-y-2">
-                 <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest pl-1">Initial Password</label>
+                 <label className="text-[14px] font-semibold text-slate-400 uppercase tracking-widest pl-1">Initial Password</label>
                  <input 
                    required
                    type="password" 
@@ -246,7 +246,7 @@ const AdminManager = () => {
                <button 
                  type="submit" 
                  disabled={createLoading}
-                 className="w-full py-4 bg-primary text-white font-semibold uppercase text-[10px] tracking-widest rounded-2xl shadow-xl shadow-red-50 hover:bg-primary-dark transition-all"
+                 className="w-full py-4 bg-primary text-white font-semibold uppercase text-[14px] tracking-widest rounded-2xl shadow-xl shadow-red-50 hover:bg-primary-dark transition-all"
                >
                  {createLoading ? 'Provisioning...' : 'Initialize Sub-Admin Account'}
                </button>
@@ -259,11 +259,11 @@ const AdminManager = () => {
       <div className="bg-white rounded-[2rem] shadow-sm border border-slate-100 overflow-hidden">
         <header className="p-8 border-b border-slate-50">
            <h2 className="text-lg font-semibold text-slate-800 tracking-tight">Administration Inventory</h2>
-           <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-widest mt-1">Manage active system controllers</p>
+           <p className="text-[14px] text-slate-400 font-semibold uppercase tracking-widest mt-1">Manage active system controllers</p>
         </header>
         <div className="overflow-x-auto">
           <table className="w-full text-left">
-            <thead className="bg-slate-50/50 border-b border-slate-100 text-[10px] uppercase text-slate-400 font-semibold tracking-[0.15em]">
+            <thead className="bg-slate-50/50 border-b border-slate-100 text-[14px] uppercase text-slate-400 font-semibold tracking-[0.15em]">
               <tr>
                 <th className="px-8 py-6">Admin Account</th>
                 <th className="px-6 py-6">System Role</th>
@@ -283,7 +283,7 @@ const AdminManager = () => {
                     </div>
                   </td>
                   <td className="px-6 py-5">
-                    <span className={`px-4 py-2 rounded-[1rem] text-[10px] font-semibold uppercase tracking-tighter border ${admin.role === 'Admin' ? 'bg-blue-50 text-blue-600 border-blue-100' : 'bg-slate-50 text-slate-400 border-slate-200'}`}>
+                    <span className={`px-4 py-2 rounded-[1rem] text-[14px] font-semibold uppercase tracking-tighter border ${admin.role === 'Admin' ? 'bg-blue-50 text-blue-600 border-blue-100' : 'bg-slate-50 text-slate-400 border-slate-200'}`}>
                       {admin.role}
                     </span>
                   </td>

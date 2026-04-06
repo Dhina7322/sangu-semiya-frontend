@@ -53,12 +53,12 @@ const RecipeDetail = () => {
                 </div>
 
                 <div className="max-w-5xl mx-auto px-6 relative z-10 text-center space-y-8">
-                    <Link to="/" className="inline-flex items-center gap-2 text-white/50 hover:text-primary transition-all text-[10px] font-black uppercase tracking-widest px-6 py-2.5 rounded-full border border-white/10 backdrop-blur">
+                    <Link to="/" className="inline-flex items-center gap-2 text-white/50 hover:text-primary transition-all text-[14px] font-black uppercase tracking-widest px-6 py-2.5 rounded-full border border-white/10 backdrop-blur">
                         <FiChevronLeft /> Back to Inspiration
                     </Link>
 
                     <div className="space-y-4">
-                        <div className="flex justify-center items-center gap-4 text-primary text-[10px] font-black uppercase tracking-[0.3em]">
+                        <div className="flex justify-center items-center gap-4 text-primary text-[14px] font-black uppercase tracking-[0.3em]">
                             <FiClock className="animate-pulse" /> {recipe.time || '15 MINS'}
                         </div>
 
@@ -88,7 +88,7 @@ const RecipeDetail = () => {
                             ) : (
                                 <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400 space-y-4">
                                     <FiInfo size={48} className="opacity-20" />
-                                    <p className="font-bold uppercase tracking-widest text-[10px]">No Video Guide Available</p>
+                                    <p className="font-bold uppercase tracking-widest text-[14px]">No Video Guide Available</p>
                                 </div>
                             )}
                         </div>
@@ -96,15 +96,15 @@ const RecipeDetail = () => {
                         {/* Quick Facts */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
                              <div className="p-6 bg-slate-50 rounded-3xl space-y-2 border border-slate-100">
-                                <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest block italic">Cooking Duration</span>
+                                <span className="text-[13px] font-black text-slate-400 uppercase tracking-widest block italic">Cooking Duration</span>
                                 <h3 className="text-xl font-black text-slate-900 tracking-tight">{recipe.time || 'Fast'}</h3>
                              </div>
                              <div className="p-6 bg-red-50 rounded-3xl space-y-2 border border-red-100/50">
-                                <span className="text-[9px] font-black text-secondary uppercase tracking-widest block italic">Difficulty</span>
+                                <span className="text-[13px] font-black text-secondary uppercase tracking-widest block italic">Difficulty</span>
                                 <h3 className="text-xl font-black text-slate-900 tracking-tight">Easy To Serve</h3>
                              </div>
                              <div className="p-6 bg-slate-900 rounded-3xl space-y-2 border border-slate-800 shadow-xl shadow-slate-200">
-                                <span className="text-[9px] font-black text-primary uppercase tracking-widest block italic text-center">Video Tutorial</span>
+                                <span className="text-[13px] font-black text-primary uppercase tracking-widest block italic text-center">Video Tutorial</span>
                                 <div className="flex justify-center pt-1">
                                     {recipe.youtubeLink ? (
                                         <a href={recipe.youtubeLink} target="_blank" rel="noreferrer" className="flex items-center gap-2 text-white text-xs font-bold hover:text-primary transition-colors">
@@ -120,7 +120,7 @@ const RecipeDetail = () => {
                         {/* Description / Preparation Method */}
                         <div className="space-y-6 pt-6 border-t border-slate-50">
                            <h2 className="text-2xl font-black text-slate-900 tracking-tight uppercase">Preparation Method</h2>
-                           <div className="text-slate-600 text-[17px] leading-[1.8] font-medium whitespace-pre-wrap max-w-none">
+                           <div className="text-slate-600 text-[21px] leading-[1.8] font-medium whitespace-pre-wrap max-w-none">
                                {recipe.description || "1. Boil 3 cups of water in a large pan.\n2. Add Sangu Brand Semiya slowly to avoid clumping.\n3. Stir constantly for 3-5 minutes until the vermicelli is soft and fully cooked.\n4. Drain excess water and season with your favorite spices.\n5. Serve hot for a healthy breakfast or evening snack!"}
                            </div>
                         </div>
@@ -131,10 +131,10 @@ const RecipeDetail = () => {
                                 <div className="w-12 h-12 bg-primary rounded-2xl flex items-center justify-center text-white text-lg font-black shadow-lg shadow-red-50">S</div>
                                 <div>
                                     <p className="text-sm font-black text-slate-800 tracking-tight">Sangu Brand Semiya</p>
-                                    <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Premium Wholesale Food Products Since 1982</p>
+                                    <p className="text-[13px] text-slate-400 font-bold uppercase tracking-widest">Premium Wholesale Food Products Since 1982</p>
                                 </div>
                             </div>
-                            <Link to="/products" className="px-8 py-4 bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest rounded-2xl shadow-xl hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-3">
+                            <Link to="/products" className="px-8 py-4 bg-slate-900 text-white text-[14px] font-black uppercase tracking-widest rounded-2xl shadow-xl hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-3">
                                 Explore Products <FiArrowRight strokeWidth={3} className="text-primary" />
                             </Link>
                         </div>

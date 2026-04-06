@@ -31,7 +31,7 @@ const StatusPopup = ({ isOpen, message, type = 'success', onClose }) => {
           {icon}
         </div>
         <div>
-          <p className="text-[10px] font-bold text-white/70 uppercase tracking-widest leading-none mb-1">
+          <p className="text-[14px] font-bold text-white/70 uppercase tracking-widest leading-none mb-1">
             {type === 'success' ? 'System Notification' : 'System Error'}
           </p>
           <p className="text-sm font-bold text-white tracking-tight leading-none uppercase">

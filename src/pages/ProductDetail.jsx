@@ -57,7 +57,7 @@ const ProductDetail = () => {
     <div className="min-h-screen flex flex-col items-center justify-center bg-white space-y-4">
       <div className="text-6xl font-bold text-slate-100 tracking-tight">404</div>
       <div className="text-sm font-bold text-slate-800 uppercase tracking-widest">Product Not Found</div>
-      <Link to="/products" className="mt-4 bg-slate-900 text-white px-6 py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-primary transition-colors">
+      <Link to="/products" className="mt-4 bg-slate-900 text-white px-6 py-3 text-[14px] font-bold uppercase tracking-widest hover:bg-primary transition-colors">
         Back to Products
       </Link>
     </div>
@@ -116,7 +116,7 @@ const ProductDetail = () => {
 
       {/* ── Breadcrumb ── */}
       <div className="border-b border-slate-50 py-3 px-6 lg:px-16">
-        <div className="max-w-screen-xl mx-auto flex items-center gap-2 text-[9px] font-bold uppercase tracking-widest text-slate-400">
+        <div className="max-w-screen-xl mx-auto flex items-center gap-2 text-[13px] font-bold uppercase tracking-widest text-slate-400">
           <Link to="/" className="hover:text-slate-900 transition">Home</Link>
           <span className="opacity-30">/</span>
           <Link to="/products" className="hover:text-slate-900 transition">Products</Link>
@@ -154,7 +154,7 @@ const ProductDetail = () => {
               className="w-full h-full object-contain p-8 lg:p-14 transition-transform duration-500 group-hover:scale-105"
               fetchpriority="high"
             />
-            <div className="absolute top-4 left-4 bg-white/80 backdrop-blur-sm shadow-sm text-slate-900 text-[8px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full border border-slate-200">
+            <div className="absolute top-4 left-4 bg-white/80 backdrop-blur-sm shadow-sm text-slate-900 text-[12px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full border border-slate-200">
               Sangu Quality
             </div>
           </div>
@@ -162,9 +162,9 @@ const ProductDetail = () => {
           {/* Right: Product Info */}
           <div className="order-3 flex flex-col justify-start">
             <div className="flex items-center gap-2 mb-3">
-              <span className="text-[8px] font-bold uppercase tracking-widest text-slate-400 bg-slate-50 px-2 py-1 rounded">{product.category || 'Collection'}</span>
+              <span className="text-[12px] font-bold uppercase tracking-widest text-slate-400 bg-slate-50 px-2 py-1 rounded">{product.category || 'Collection'}</span>
               {product.sku && (
-                <span className="text-[8px] font-bold uppercase tracking-widest text-slate-400">SKU: {product.sku}</span>
+                <span className="text-[12px] font-bold uppercase tracking-widest text-slate-400">SKU: {product.sku}</span>
               )}
             </div>
 
@@ -178,13 +178,13 @@ const ProductDetail = () => {
 
             {availableSizes.length > 0 && (
               <div className="mb-8">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-3">Select Pack Size</p>
+                <p className="text-[13px] font-bold uppercase tracking-widest text-slate-400 mb-3">Select Pack Size</p>
                 <div className="flex flex-wrap gap-2">
                   {availableSizes.map(size => (
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`px-5 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest border transition-all ${
+                      className={`px-5 py-2.5 rounded-xl text-[14px] font-bold uppercase tracking-widest border transition-all ${
                         selectedSize === size
                           ? 'bg-slate-900 text-white border-slate-900 shadow-lg'
                           : 'bg-white text-slate-600 border-slate-200 hover:border-slate-400 shadow-sm'
@@ -200,7 +200,7 @@ const ProductDetail = () => {
             <div className="flex flex-col gap-3 mb-8">
               <Link
                 to={`/bulk-order?product=${encodeURIComponent(product.name)}&size=${encodeURIComponent(selectedSize)}`}
-                className="flex items-center justify-center gap-2 bg-primary text-white py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-secondary transition-all shadow-lg active:scale-95 transform-gpu will-change-transform"
+                className="flex items-center justify-center gap-2 bg-primary text-white py-4 rounded-xl text-[14px] font-bold uppercase tracking-widest hover:bg-secondary transition-all shadow-lg active:scale-95 transform-gpu will-change-transform"
               >
                 <FiBox className="w-4 h-4" />
                 Bulk Enquiry
@@ -210,14 +210,14 @@ const ProductDetail = () => {
                   href={product.amazonLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 border border-slate-200 text-slate-600 py-4 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-slate-50 transition-all shadow-sm"
+                  className="flex items-center justify-center gap-2 border border-slate-200 text-slate-600 py-4 rounded-xl text-[14px] font-bold uppercase tracking-widest hover:bg-slate-50 transition-all shadow-sm"
                 >
                   Buy on Amazon
                 </a>
               )}
             </div>
 
-            <p className="text-[13px] text-slate-500 leading-relaxed mb-8">
+            <p className="text-[17px] text-slate-500 leading-relaxed mb-8">
               {product.description || 'Crafted with premium 100% hard wheat semolina. No maida, no additives — just pure, authentic semiya your family deserves.'}
             </p>
 
@@ -225,7 +225,7 @@ const ProductDetail = () => {
               {features.slice(0, 4).map((f, i) => (
                 <li key={i} className="flex flex-col items-center text-center gap-2 p-3 bg-slate-50 rounded-2xl border border-slate-100 transform-gpu will-change-transform">
                   <span className="text-lg text-primary">{f.icon}</span>
-                  <span className="text-[9px] font-bold text-slate-600 uppercase tracking-normal leading-tight">{f.label}</span>
+                  <span className="text-[13px] font-bold text-slate-600 uppercase tracking-normal leading-tight">{f.label}</span>
                 </li>
               ))}
             </ul>
@@ -259,7 +259,7 @@ const ProductDetail = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
           <div className="space-y-8">
             <div className="space-y-2">
-              <span className="text-[9px] font-bold uppercase tracking-widest text-primary">Quality Promise</span>
+              <span className="text-[13px] font-bold uppercase tracking-widest text-primary">Quality Promise</span>
               <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Pure Wheat Excellence</h2>
             </div>
             <div className="grid grid-cols-1 gap-4">
@@ -277,13 +277,13 @@ const ProductDetail = () => {
           </div>
 
           <div className="bg-slate-50 p-8 lg:p-12 rounded-3xl border border-slate-100 shadow-inner">
-            <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-6 flex items-center gap-2">
+            <h3 className="text-[14px] font-bold uppercase tracking-widest text-slate-400 mb-6 flex items-center gap-2">
               <FiZap className="text-primary" /> Nutrition at a Glance
             </h3>
             <div className="space-y-2">
               {nutritionRows.map(([label, val]) => (
                 <div key={label} className="flex justify-between items-center py-3 border-b border-white last:border-0">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">{label}</span>
+                  <span className="text-[14px] font-bold uppercase tracking-widest text-slate-400">{label}</span>
                   <span className="text-xs font-bold text-slate-900">{val}</span>
                 </div>
               ))}
@@ -298,7 +298,7 @@ const ProductDetail = () => {
           <div className="max-w-screen-xl mx-auto px-6 lg:px-16">
             <div className="flex items-end justify-between mb-12">
               <div className="space-y-2">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-slate-400">Recommended</p>
+                <p className="text-[13px] font-bold uppercase tracking-widest text-slate-400">Recommended</p>
                 <h2 className="text-2xl font-bold text-slate-900 tracking-tight uppercase">Related Varieties</h2>
               </div>
               <Link to="/products" className="text-xs font-bold text-slate-400 hover:text-primary transition underline underline-offset-8 decoration-slate-200">

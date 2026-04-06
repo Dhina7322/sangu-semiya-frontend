@@ -40,12 +40,12 @@ const BlogPostDetail = () => {
         </div>
 
         <div className="max-w-4xl mx-auto px-6 relative z-10 text-center space-y-8">
-           <Link to="/blog" className="inline-flex items-center gap-2 text-white/50 hover:text-primary transition-all text-[10px] font-black uppercase tracking-widest px-6 py-2.5 rounded-full border border-white/10 backdrop-blur backdrop-filter">
+           <Link to="/blog" className="inline-flex items-center gap-2 text-white/50 hover:text-primary transition-all text-[14px] font-black uppercase tracking-widest px-6 py-2.5 rounded-full border border-white/10 backdrop-blur backdrop-filter">
               <FiChevronLeft /> Back to Stories
            </Link>
            
            <div className="space-y-4">
-              <div className="flex justify-center items-center gap-4 text-primary text-[10px] font-black uppercase tracking-[0.3em]">
+              <div className="flex justify-center items-center gap-4 text-primary text-[14px] font-black uppercase tracking-[0.3em]">
                  <FiCalendar /> {new Date(blog.created_at).toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric'})}
               </div>
 
@@ -86,14 +86,14 @@ const BlogPostDetail = () => {
                     <div className="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center text-white text-lg font-black shadow-lg">S</div>
                     <div>
                        <p className="text-sm font-black text-slate-800 tracking-tight">Sangu Brand Kitchen</p>
-                       <p className="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Nourishing Generations Since 1982</p>
+                       <p className="text-[13px] text-slate-400 font-bold uppercase tracking-widest">Nourishing Generations Since 1982</p>
                     </div>
                  </div>
                  <div className="flex gap-4">
                     <button className="p-4 bg-slate-50 text-slate-400 hover:text-slate-900 hover:bg-slate-100 transition-all rounded-2xl shadow-sm">
                        <FiShare2 size={20} />
                     </button>
-                    <Link to="/products" className="px-8 py-4 bg-primary text-white text-[10px] font-black uppercase tracking-widest rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-3">
+                    <Link to="/products" className="px-8 py-4 bg-primary text-white text-[14px] font-black uppercase tracking-widest rounded-2xl shadow-lg hover:scale-105 active:scale-95 transition-all inline-flex items-center gap-3">
                        Our Products <FiArrowRight strokeWidth={3} />
                     </Link>
                  </div>
@@ -111,7 +111,7 @@ const BlogPostDetail = () => {
                Discover the authentic taste and health benefits of Sangu Brand's premium vermicelli collection.
             </p>
             <div className="pt-4">
-               <Link to="/blog" className="text-[11px] font-black uppercase tracking-widest text-slate-900 border-b-4 border-primary/20 hover:border-secondary transition-all pb-1 leading-loose">
+               <Link to="/blog" className="text-[15px] font-black uppercase tracking-widest text-slate-900 border-b-4 border-primary/20 hover:border-secondary transition-all pb-1 leading-loose">
                   Explore More Culinary Stories
                </Link>
             </div>

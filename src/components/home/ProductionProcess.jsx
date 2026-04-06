@@ -4,7 +4,7 @@ const ProductionProcess = ({ steps }) => (
   <section className="py-14 lg:py-20 bg-slate-900 overflow-hidden relative">
     <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
       <div className="space-y-3">
-        <span className="inline-block py-1 px-3 rounded-full bg-white/10 text-secondary border border-white/10 font-bold text-[9px] tracking-widest uppercase mb-1">
+        <span className="inline-block py-1 px-3 rounded-full bg-white/10 text-secondary border border-white/10 font-bold text-[13px] tracking-widest uppercase mb-1">
           Production Excellence
         </span>
         <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
@@ -30,7 +30,7 @@ const ProductionProcess = ({ steps }) => (
                   <h3 className="text-sm font-bold text-white uppercase tracking-widest group-hover:text-secondary transition-colors duration-300">Phase 0{i + 1}</h3>
                 </div>
                 <p className="text-white font-bold text-base group-hover:text-secondary transition-colors duration-300">{step.title}</p>
-                <p className="text-slate-400 font-normal text-[13px] leading-relaxed max-w-[200px] mx-auto lg:mx-0 transition-colors duration-300 group-hover:text-slate-200">{step.desc}</p>
+                <p className="text-slate-400 font-normal text-[17px] leading-relaxed max-w-[200px] mx-auto lg:mx-0 transition-colors duration-300 group-hover:text-slate-200">{step.desc}</p>
               </div>
             </div>
           ))}

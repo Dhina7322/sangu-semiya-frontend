@@ -24,7 +24,7 @@ const EnquiryDetailsModal = ({ isOpen, onClose, enquiry }) => {
         <div className="px-8 py-6 bg-slate-50 border-b border-slate-200 flex justify-between items-center shrink-0">
           <div>
             <h2 className="text-lg font-bold text-slate-800 tracking-tight">Lead Details</h2>
-            <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-widest mt-1">Ref ID: {enquiry._id?.slice(-8)}</p>
+            <p className="text-[14px] text-slate-400 font-semibold uppercase tracking-widest mt-1">Ref ID: {enquiry._id?.slice(-8)}</p>
           </div>
           <button onClick={onClose} className="p-2 hover:bg-slate-200 rounded-full transition-colors text-slate-400">
             <FiX size={18} />
@@ -36,7 +36,7 @@ const EnquiryDetailsModal = ({ isOpen, onClose, enquiry }) => {
           
           {/* Customer Info */}
           <div className="space-y-4">
-             <h3 className="text-[10px] font-bold text-primary uppercase tracking-widest flex items-center gap-2">
+             <h3 className="text-[14px] font-bold text-primary uppercase tracking-widest flex items-center gap-2">
                 Customer Information
              </h3>
              <div className="grid grid-cols-1 gap-5">
@@ -45,7 +45,7 @@ const EnquiryDetailsModal = ({ isOpen, onClose, enquiry }) => {
                     <FiClipboard size={16} />
                   </div>
                   <div>
-                    <p className="text-[10px] font-bold uppercase text-slate-400 tracking-wider mb-0.5">Name</p>
+                    <p className="text-[14px] font-bold uppercase text-slate-400 tracking-wider mb-0.5">Name</p>
                     <p className="text-sm font-semibold text-slate-800">{enquiry.name}</p>
                   </div>
                 </div>
@@ -56,7 +56,7 @@ const EnquiryDetailsModal = ({ isOpen, onClose, enquiry }) => {
                       <FiPhone size={16} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold uppercase text-slate-400 tracking-wider mb-0.5">Phone</p>
+                      <p className="text-[14px] font-bold uppercase text-slate-400 tracking-wider mb-0.5">Phone</p>
                       <p className="text-sm font-semibold text-slate-800">{enquiry.phone}</p>
                     </div>
                   </div>
@@ -65,7 +65,7 @@ const EnquiryDetailsModal = ({ isOpen, onClose, enquiry }) => {
                       <FiMail size={16} />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold uppercase text-slate-400 tracking-wider mb-0.5">Email</p>
+                      <p className="text-[14px] font-bold uppercase text-slate-400 tracking-wider mb-0.5">Email</p>
                       <p className="text-sm font-semibold text-slate-800 truncate">{enquiry.email || 'N/A'}</p>
                     </div>
                   </div>
@@ -77,7 +77,7 @@ const EnquiryDetailsModal = ({ isOpen, onClose, enquiry }) => {
 
           {/* Enquiry Details */}
           <div className="space-y-4">
-             <h3 className="text-[10px] font-bold text-primary uppercase tracking-widest flex items-center gap-2">
+             <h3 className="text-[14px] font-bold text-primary uppercase tracking-widest flex items-center gap-2">
                 Requirements
              </h3>
              <div className="grid grid-cols-2 gap-6">
@@ -86,7 +86,7 @@ const EnquiryDetailsModal = ({ isOpen, onClose, enquiry }) => {
                     <FiBox size={16} />
                   </div>
                   <div>
-                    <p className="text-[10px] font-bold uppercase text-slate-400 tracking-wider mb-0.5">Product</p>
+                    <p className="text-[14px] font-bold uppercase text-slate-400 tracking-wider mb-0.5">Product</p>
                     <p className="text-sm font-bold text-primary">{enquiry.product || 'General'}</p>
                   </div>
                 </div>
@@ -95,14 +95,14 @@ const EnquiryDetailsModal = ({ isOpen, onClose, enquiry }) => {
                     <FiCalendar size={16} />
                   </div>
                   <div>
-                    <p className="text-[10px] font-bold uppercase text-slate-400 tracking-wider mb-0.5">Quantity</p>
+                    <p className="text-[14px] font-bold uppercase text-slate-400 tracking-wider mb-0.5">Quantity</p>
                     <p className="text-sm font-semibold text-slate-800">{enquiry.quantity}</p>
                   </div>
                 </div>
              </div>
              {enquiry.message && (
                <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 relative mt-4">
-                 <p className="text-[9px] font-bold uppercase text-slate-400 absolute -top-2 left-4 bg-white px-1 tracking-widest">Message</p>
+                 <p className="text-[13px] font-bold uppercase text-slate-400 absolute -top-2 left-4 bg-white px-1 tracking-widest">Message</p>
                  <p className="text-xs text-slate-600 leading-relaxed font-medium">{enquiry.message}</p>
                </div>
              )}

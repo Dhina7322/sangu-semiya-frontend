@@ -76,7 +76,7 @@ export const ImportModal = ({ isOpen, onClose, refreshProducts }) => {
 
           {/* Required columns info */}
           <div className="bg-slate-50 px-4 py-3 rounded-xl border border-slate-100">
-            <p className="text-[10px] text-slate-400 font-medium mb-1">Required Columns</p>
+            <p className="text-[14px] text-slate-400 font-medium mb-1">Required Columns</p>
             <code className="text-xs text-primary font-medium">sku, name, description, packSize, amazonLink</code>
           </div>
 
@@ -91,7 +91,7 @@ export const ImportModal = ({ isOpen, onClose, refreshProducts }) => {
               <p className="text-xs font-medium text-slate-600">
                 {file ? file.name : 'Drop CSV file here'}
               </p>
-              <p className="text-[10px] text-slate-400 mt-0.5">CSV data file only</p>
+              <p className="text-[14px] text-slate-400 mt-0.5">CSV data file only</p>
             </div>
             <input type="file" accept=".csv" onChange={(e) => setFile(e.target.files[0])} className="hidden" id="csv-upload" />
             <label htmlFor="csv-upload" className="cursor-pointer px-5 py-2 bg-slate-800 text-white text-xs font-medium rounded-lg hover:bg-slate-700 transition">

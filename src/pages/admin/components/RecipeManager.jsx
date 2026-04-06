@@ -137,7 +137,7 @@ const RecipeManager = () => {
           <h2 className="text-lg font-bold text-slate-800 tracking-tight flex items-center gap-2">
             <FiGrid size={20} className="text-primary" /> Cooking Recipe Inventory
           </h2>
-          <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-widest mt-0.5">Manage live homepage recipes</p>
+          <p className="text-[14px] text-slate-400 font-semibold uppercase tracking-widest mt-0.5">Manage live homepage recipes</p>
         </div>
 
         <div className="flex items-center gap-3 w-full lg:w-auto">
@@ -152,7 +152,7 @@ const RecipeManager = () => {
             />
           </div>
           <button onClick={loadRecipes} className="p-3 bg-slate-50 hover:bg-slate-100 rounded-2xl transition text-slate-400"><FiRefreshCw /></button>
-          <button onClick={openAddModal} className="flex-1 lg:flex-none px-8 py-3 bg-primary text-white rounded-2xl flex items-center justify-center gap-2 shadow-xl shadow-red-50 hover:scale-105 active:scale-95 transition-all text-[11px] font-black uppercase tracking-widest">
+          <button onClick={openAddModal} className="flex-1 lg:flex-none px-8 py-3 bg-primary text-white rounded-2xl flex items-center justify-center gap-2 shadow-xl shadow-red-50 hover:scale-105 active:scale-95 transition-all text-[15px] font-black uppercase tracking-widest">
             <FiPlus strokeWidth={3} /> Add Recipe
           </button>
         </div>
@@ -162,7 +162,7 @@ const RecipeManager = () => {
       <div className="bg-white rounded-[2.5rem] shadow-sm border border-slate-50 overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left">
-            <thead className="bg-slate-50/50 border-b border-slate-50 text-[10px] font-black uppercase text-slate-400 tracking-[0.2em] px-8">
+            <thead className="bg-slate-50/50 border-b border-slate-50 text-[14px] font-black uppercase text-slate-400 tracking-[0.2em] px-8">
               <tr>
                 <th className="px-8 py-6">Thumbnail & Name</th>
                 <th className="px-6 py-6 text-center">Time</th>
@@ -181,14 +181,14 @@ const RecipeManager = () => {
                            {r.img ? (
                              <img src={r.img} className="w-full h-full object-cover" alt="" />
                            ) : (
-                             <span className="text-[10px] text-slate-300">VOID</span>
+                             <span className="text-[14px] text-slate-300">VOID</span>
                            )}
                         </div>
                         <div className="font-bold text-slate-800 tracking-tight text-sm">{r.name}</div>
                       </div>
                     </td>
                     <td className="px-6 py-4 text-center">
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-50 rounded-full border border-slate-100 font-bold text-slate-500 text-[10px] uppercase">
+                      <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-50 rounded-full border border-slate-100 font-bold text-slate-500 text-[14px] uppercase">
                         <FiClock size={12} className="text-primary" /> {r.time || 'N/A'}
                       </div>
                     </td>
@@ -198,7 +198,7 @@ const RecipeManager = () => {
                            <FiYoutube size={16} />
                         </a>
                       ) : (
-                        <span className="text-[10px] font-bold text-slate-300 uppercase italic">Null</span>
+                        <span className="text-[14px] font-bold text-slate-300 uppercase italic">Null</span>
                       )}
                     </td>
                     <td className="px-8 py-4 text-right">
@@ -222,7 +222,7 @@ const RecipeManager = () => {
               <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-200">
                 <FiGrid size={32} />
               </div>
-              <p className="text-slate-300 font-bold uppercase text-[10px] tracking-widest italic animate-pulse">No recipes found in your inventory.</p>
+              <p className="text-slate-300 font-bold uppercase text-[14px] tracking-widest italic animate-pulse">No recipes found in your inventory.</p>
             </div>
           )}
         </div>

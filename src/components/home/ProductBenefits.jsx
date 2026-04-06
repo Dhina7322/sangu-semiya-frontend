@@ -14,10 +14,10 @@ const ProductBenefits = ({ benefits }) => (
           <ul className="space-y-3">
             {benefit.items.map((item, j) => (
               <li key={j} className="flex items-center gap-3">
-                <div className={`w-4 h-4 rounded-md flex items-center justify-center text-[8px] font-bold shadow-sm ${i === 1 ? 'bg-white text-primary' : 'bg-primary text-white'}`}>
+                <div className={`w-4 h-4 rounded-md flex items-center justify-center text-[12px] font-bold shadow-sm ${i === 1 ? 'bg-white text-primary' : 'bg-primary text-white'}`}>
                   <FiCheck />
                 </div>
-                <span className={`font-semibold text-[10px] uppercase tracking-widest ${i === 1 ? 'text-white' : 'text-slate-700'}`}>{item}</span>
+                <span className={`font-semibold text-[14px] uppercase tracking-widest ${i === 1 ? 'text-white' : 'text-slate-700'}`}>{item}</span>
               </li>
             ))}
           </ul>

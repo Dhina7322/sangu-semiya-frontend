@@ -25,13 +25,13 @@ const ConfirmPopup = ({ isOpen, onClose, onConfirm, title, message }) => {
         <div className="px-8 py-6 bg-slate-50 border-t border-slate-100 flex gap-4">
           <button 
             onClick={onClose} 
-            className="flex-1 px-4 py-3 text-slate-400 font-bold uppercase text-[10px] tracking-widest border border-slate-200 rounded-xl hover:bg-white transition-all shadow-sm"
+            className="flex-1 px-4 py-3 text-slate-400 font-bold uppercase text-[14px] tracking-widest border border-slate-200 rounded-xl hover:bg-white transition-all shadow-sm"
           >
             Cancel
           </button>
           <button 
             onClick={onConfirm} 
-            className="flex-1 px-4 py-3 bg-red-500 text-white font-bold uppercase text-[10px] tracking-widest rounded-xl hover:bg-red-600 transition-all shadow-lg shadow-red-100"
+            className="flex-1 px-4 py-3 bg-red-500 text-white font-bold uppercase text-[14px] tracking-widest rounded-xl hover:bg-red-600 transition-all shadow-lg shadow-red-100"
           >
             Confirm Delete
           </button>

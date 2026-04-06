@@ -26,10 +26,10 @@ const FounderSection = () => (
                   <FiAward className="text-white" size={24} />
                 </div>
                 <h3 className="text-white text-xl font-semibold mb-1">K. Chandran</h3>
-                <p className="text-white/50 text-[8px] font-semibold uppercase tracking-widest">Founder & Visionary</p>
+                <p className="text-white/50 text-[12px] font-semibold uppercase tracking-widest">Founder & Visionary</p>
                 <div className="mt-4 inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/50">
                   <span className="text-primary font-semibold text-sm">1982</span>
-                  <span className="text-white/40 text-[8px]">EST.</span>
+                  <span className="text-white/40 text-[12px]">EST.</span>
                 </div>
               </div>
             </div>
@@ -42,13 +42,13 @@ const FounderSection = () => (
         {/* Content Side */}
         <div className="space-y-6">
           <div className="space-y-2">
-            <span className="inline-block py-1 px-3 rounded-full bg-red-50 border border-red-100 text-secondary font-medium text-[8px] tracking-widest uppercase mb-1">
+            <span className="inline-block py-1 px-3 rounded-full bg-red-50 border border-red-100 text-secondary font-medium text-[12px] tracking-widest uppercase mb-1">
               Our Legacy
             </span>
             <h2 className="text-2xl lg:text-3xl font-semibold text-slate-900 tracking-tight leading-tight">
               K. Chandran
             </h2>
-            <p className="text-primary font-semibold text-[9px] uppercase tracking-[0.15em] opacity-70">
+            <p className="text-primary font-semibold text-[13px] uppercase tracking-[0.15em] opacity-70">
               Founder, Sangu Brand Semiya
             </p>
           </div>
@@ -65,17 +65,17 @@ const FounderSection = () => (
           <div className="grid grid-cols-2 gap-4 pt-2 text-center">
             <div className="bg-slate-50/50 rounded-2xl p-5 border border-slate-100">
               <p className="text-xl font-semibold text-secondary mb-0.5">1982</p>
-              <p className="text-[8px] font-semibold text-slate-400 uppercase tracking-widest">Established</p>
+              <p className="text-[12px] font-semibold text-slate-400 uppercase tracking-widest">Established</p>
             </div>
             <div className="bg-slate-50/50 rounded-2xl p-5 border border-slate-100">
               <p className="text-xl font-semibold text-secondary mb-0.5">40+</p>
-              <p className="text-[8px] font-semibold text-slate-400 uppercase tracking-widest">Years Legacy</p>
+              <p className="text-[12px] font-semibold text-slate-400 uppercase tracking-widest">Years Legacy</p>
             </div>
           </div>
 
           <Link 
             to="/about" 
-            className="inline-flex items-center gap-2 bg-slate-900 hover:bg-secondary text-white px-6 py-3 rounded-lg font-semibold text-[10px] tracking-widest uppercase transition-all duration-300 shadow-md group"
+            className="inline-flex items-center gap-2 bg-slate-900 hover:bg-secondary text-white px-6 py-3 rounded-lg font-semibold text-[14px] tracking-widest uppercase transition-all duration-300 shadow-md group"
           >
             Know More
             <FiArrowRight className="group-hover:translate-x-1 transition-transform" />

@@ -50,7 +50,7 @@ const EditAdminModal = ({ admin, isOpen, onClose, onUpdate }) => {
            <header className="mb-8 flex justify-between items-start">
               <div>
                 <h2 className="text-xl font-semibold text-slate-800 tracking-tight">Modify Assistant</h2>
-                <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-widest mt-1">Adjust sub-admin credentials</p>
+                <p className="text-[14px] text-slate-400 font-semibold uppercase tracking-widest mt-1">Adjust sub-admin credentials</p>
               </div>
               <button 
                 onClick={onClose}
@@ -62,7 +62,7 @@ const EditAdminModal = ({ admin, isOpen, onClose, onUpdate }) => {
 
            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest pl-1">Sign-in Email</label>
+                <label className="text-[14px] font-semibold text-slate-400 uppercase tracking-widest pl-1">Sign-in Email</label>
                 <input 
                   required
                   type="email" 
@@ -74,7 +74,7 @@ const EditAdminModal = ({ admin, isOpen, onClose, onUpdate }) => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest pl-1">New Password (Secret)</label>
+                <label className="text-[14px] font-semibold text-slate-400 uppercase tracking-widest pl-1">New Password (Secret)</label>
                 <input 
                   type="password" 
                   value={password}
@@ -82,21 +82,21 @@ const EditAdminModal = ({ admin, isOpen, onClose, onUpdate }) => {
                   className="w-full text-sm font-medium border border-slate-200 rounded-2xl p-4 focus:border-primary outline-none transition-all bg-slate-50/30" 
                   placeholder="Leave empty to keep same" 
                 />
-                <p className="text-[9px] text-slate-400 pl-1">Only fill this if you want to reset their password.</p>
+                <p className="text-[13px] text-slate-400 pl-1">Only fill this if you want to reset their password.</p>
               </div>
 
               <div className="pt-4 flex gap-3">
                 <button 
                   type="button"
                   onClick={onClose}
-                  className="flex-1 py-4 border border-slate-200 text-slate-600 font-semibold uppercase text-[10px] tracking-widest rounded-2xl hover:bg-slate-50 transition-all"
+                  className="flex-1 py-4 border border-slate-200 text-slate-600 font-semibold uppercase text-[14px] tracking-widest rounded-2xl hover:bg-slate-50 transition-all"
                 >
                   Cancel
                 </button>
                 <button 
                   type="submit" 
                   disabled={loading}
-                  className="flex-1 py-4 bg-slate-900 text-white font-semibold uppercase text-[10px] tracking-widest rounded-2xl shadow-lg hover:bg-slate-800 transition-all"
+                  className="flex-1 py-4 bg-slate-900 text-white font-semibold uppercase text-[14px] tracking-widest rounded-2xl shadow-lg hover:bg-slate-800 transition-all"
                 >
                   {loading ? 'Processing...' : 'Save Adjustments'}
                 </button>

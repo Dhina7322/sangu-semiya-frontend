@@ -20,7 +20,7 @@ const ProductRange = ({ products = [] }) => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
           <div className="max-w-xl">
-            <span className="text-secondary font-medium text-[8px] tracking-widest uppercase mb-2 block">
+            <span className="text-secondary font-medium text-[12px] tracking-widest uppercase mb-2 block">
               Complete Collection
             </span>
             <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight">
@@ -29,7 +29,7 @@ const ProductRange = ({ products = [] }) => {
           </div>
           <Link
             to="/products"
-            className="group flex items-center gap-2 text-slate-400 font-medium uppercase text-[9px] tracking-widest pb-1 border-b border-slate-50 hover:text-secondary hover:border-secondary transition-all"
+            className="group flex items-center gap-2 text-slate-400 font-medium uppercase text-[13px] tracking-widest pb-1 border-b border-slate-50 hover:text-secondary hover:border-secondary transition-all"
           >
             View All Products
             <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
@@ -66,7 +66,7 @@ const ProductRange = ({ products = [] }) => {
                   {product.name}
                 </h3>
                 
-                <p className="text-[9px] font-medium text-slate-400 uppercase tracking-widest bg-white/50 px-3 py-1 rounded-full relative z-10 border border-white/50">
+                <p className="text-[13px] font-medium text-slate-400 uppercase tracking-widest bg-white/50 px-3 py-1 rounded-full relative z-10 border border-white/50">
                   {isApiProduct ? (product.packSize || "Authentic") : product.sizes}
                 </p>
               </Link>

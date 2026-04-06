@@ -162,7 +162,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
   if (!isOpen) return null;
 
   const inputCls = 'w-full text-sm border border-slate-200 rounded-lg px-3 py-2.5 focus:border-primary outline-none transition-all placeholder:text-slate-300';
-  const labelCls = 'text-[10px] font-semibold text-slate-400 uppercase tracking-widest';
+  const labelCls = 'text-[14px] font-semibold text-slate-400 uppercase tracking-widest';
 
   return createPortal(
     <div style={{ position: 'fixed', inset: 0, zIndex: 99999, backgroundColor: 'rgba(15,23,42,0.5)' }}
@@ -183,7 +183,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
         <div className="flex border-b border-slate-100 shrink-0">
           {['basic', 'content'].map(tab => (
             <button key={tab} onClick={() => setActiveTab(tab)}
-              className={`flex-1 py-3 text-[11px] font-bold uppercase tracking-widest transition-colors flex items-center justify-center gap-2 ${activeTab === tab ? 'text-primary border-b-2 border-primary' : 'text-slate-400 hover:text-slate-600'}`}>
+              className={`flex-1 py-3 text-[15px] font-bold uppercase tracking-widest transition-colors flex items-center justify-center gap-2 ${activeTab === tab ? 'text-primary border-b-2 border-primary' : 'text-slate-400 hover:text-slate-600'}`}>
               {tab === 'basic' ? <><FiInfo size={14} /> Basic Info</> : <><FiEdit3 size={14} /> Page Content</>}
             </button>
           ))}
@@ -244,7 +244,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
                   <div className="flex gap-2">
                     <input type="url" value={formData.amazonLink} onChange={e => setFormData({ ...formData, amazonLink: e.target.value })} className="flex-1 text-sm border border-slate-200 rounded-lg px-3 py-2.5 outline-none transition-all placeholder:text-slate-300" placeholder="https://amazon.in/dp/..." />
                     <button type="button" onClick={handleFetchPrice} disabled={fetchingPrice}
-                      className="px-3 bg-amber-500 text-white rounded-lg text-[10px] font-bold uppercase tracking-wide transition disabled:opacity-50 hover:bg-amber-600 shrink-0">
+                      className="px-3 bg-amber-500 text-white rounded-lg text-[14px] font-bold uppercase tracking-wide transition disabled:opacity-50 hover:bg-amber-600 shrink-0">
                       {fetchingPrice ? '...' : 'Fetch'}
                     </button>
                   </div>
@@ -279,11 +279,11 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
                     <label className="cursor-pointer aspect-square rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 flex flex-col items-center justify-center hover:border-primary hover:bg-white transition text-slate-400 group">
                       <input type="file" multiple accept="image/*" onChange={handleFiles} className="hidden" />
                       <FiPlus size={18} className="group-hover:text-primary transition-colors" />
-                      <span className="text-[8px] font-bold uppercase mt-1">Add Image</span>
+                      <span className="text-[12px] font-bold uppercase mt-1">Add Image</span>
                     </label>
                   )}
                 </div>
-                <p className="text-[9px] text-slate-400 font-medium italic">Supports multiple JPG/PNG up to 2MB each. Drag & drop coming soon.</p>
+                <p className="text-[13px] text-slate-400 font-medium italic">Supports multiple JPG/PNG up to 2MB each. Drag & drop coming soon.</p>
               </div>
             </>
           )}
@@ -294,7 +294,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
                 <div className="flex justify-between items-end">
                    <div className="flex-1 space-y-1">
                       <label className={labelCls}>🖼️ Lifestyle Banner Headline</label>
-                      <p className="text-[10px] text-slate-400">Large text over the banner image. Use line breaks.</p>
+                      <p className="text-[14px] text-slate-400">Large text over the banner image. Use line breaks.</p>
                       <textarea
                         rows="3"
                         value={metadata.bannerHeadline}
@@ -318,7 +318,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
               <div className="space-y-3 pt-2">
                 <div className="flex justify-between items-center">
                   <label className={labelCls}>⭐ Product Features (Mini List)</label>
-                  <button type="button" onClick={addFeature} className="text-[10px] font-bold text-primary hover:underline flex items-center gap-1"><FiPlus /> Add Row</button>
+                  <button type="button" onClick={addFeature} className="text-[14px] font-bold text-primary hover:underline flex items-center gap-1"><FiPlus /> Add Row</button>
                 </div>
                 <div className="grid grid-cols-1 gap-3">
                   {metadata.features.map((f, i) => (
@@ -371,7 +371,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
               <div className="space-y-2 pt-2 pb-4">
                 <div className="flex justify-between items-center">
                   <label className={labelCls}>📊 Nutrition Facts (per 100g)</label>
-                  <button type="button" onClick={addNutrition} className="text-[10px] font-bold text-primary hover:underline flex items-center gap-1"><FiPlus /> Add Row</button>
+                  <button type="button" onClick={addNutrition} className="text-[14px] font-bold text-primary hover:underline flex items-center gap-1"><FiPlus /> Add Row</button>
                 </div>
                 <div className="grid grid-cols-1 gap-2">
                   {metadata.nutrition.map((n, i) => (

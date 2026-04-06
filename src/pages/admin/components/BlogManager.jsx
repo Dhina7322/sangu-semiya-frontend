@@ -71,7 +71,7 @@ const BlogManager = () => {
 
   const filteredBlogs = blogs.filter(b => b.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
-  if (loading) return <div className="text-center py-20 text-slate-400 font-medium uppercase text-[10px] tracking-widest animate-pulse">Syncing stories...</div>;
+  if (loading) return <div className="text-center py-20 text-slate-400 font-medium uppercase text-[14px] tracking-widest animate-pulse">Syncing stories...</div>;
 
   return (
     <div className="space-y-8 animate-fade-in font-sans">
@@ -104,7 +104,7 @@ const BlogManager = () => {
                 {stat.icon}
               </div>
               <div>
-                 <p className="text-[10px] font-medium text-slate-400 uppercase tracking-widest">{stat.label}</p>
+                 <p className="text-[14px] font-medium text-slate-400 uppercase tracking-widest">{stat.label}</p>
                  <p className="text-3xl font-semibold text-slate-800 tracking-tighter mt-1">{stat.val}</p>
               </div>
            </div>
@@ -128,7 +128,7 @@ const BlogManager = () => {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left">
-            <thead className="bg-slate-50/50 text-[10px] font-medium uppercase text-slate-400 tracking-widest">
+            <thead className="bg-slate-50/50 text-[14px] font-medium uppercase text-slate-400 tracking-widest">
               <tr>
                 <th className="px-8 py-5">Post</th>
                 <th className="px-6 py-5">Status</th>
@@ -148,16 +148,16 @@ const BlogManager = () => {
                       </div>
                       <div>
                         <div className="font-medium text-slate-800 text-sm tracking-tight leading-tight">{b.title}</div>
-                        <div className="text-[10px] text-slate-400 font-medium mt-1">/blog/{b.slug}</div>
+                        <div className="text-[14px] text-slate-400 font-medium mt-1">/blog/{b.slug}</div>
                       </div>
                     </div>
                   </td>
                   <td className="px-6 py-5">
-                    <span className={`px-4 py-1.5 rounded-full text-[9px] font-semibold uppercase tracking-widest ${b.status === 'Published' ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-100 text-slate-400'}`}>
+                    <span className={`px-4 py-1.5 rounded-full text-[13px] font-semibold uppercase tracking-widest ${b.status === 'Published' ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-100 text-slate-400'}`}>
                       {b.status}
                     </span>
                   </td>
-                  <td className="px-6 py-5 font-medium text-slate-400 text-[11px] uppercase tracking-tighter">
+                  <td className="px-6 py-5 font-medium text-slate-400 text-[15px] uppercase tracking-tighter">
                     {new Date(b.created_at).toLocaleDateString()}
                   </td>
                   <td className="px-8 py-5 text-right">

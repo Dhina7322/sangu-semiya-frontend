@@ -93,13 +93,13 @@ const Navbar = () => {
                     >
                       Shop All Products (Grid View)
                     </Link>
-                    <div className="px-4 py-1 text-[8px] font-bold text-slate-300 uppercase tracking-[0.2em] mt-1">Individual Varieties</div>
+                    <div className="px-4 py-1 text-[12px] font-bold text-slate-300 uppercase tracking-[0.2em] mt-1">Individual Varieties</div>
                     {products.length > 0 ? (
                       products.map((product) => (
                         <Link
                           key={product._id || product.id}
                           to={`/product/${product.name}`}
-                          className={`block px-4 py-2 text-[11px] font-medium hover:bg-yellow-50 hover:text-secondary transition-colors ${isActive(`/product/${product.name}`) ? 'text-secondary' : 'text-gray-600'}`}
+                          className={`block px-4 py-2 text-[15px] font-medium hover:bg-yellow-50 hover:text-secondary transition-colors ${isActive(`/product/${product.name}`) ? 'text-secondary' : 'text-gray-600'}`}
                           onClick={() => setProductsOpen(false)}
                         >
                           {product.name}
@@ -172,7 +172,7 @@ const Navbar = () => {
                 Our Company
               </Link>
               <div className="py-2">
-                <div className="block text-secondary/60 text-[13px] uppercase font-black tracking-widest mb-2 px-4 text-center">Products</div>
+                <div className="block text-secondary/60 text-[17px] uppercase font-black tracking-widest mb-2 px-4 text-center">Products</div>
                 <div className="space-y-1">
                   <Link
                     to="/our-product-range"
@@ -188,7 +188,7 @@ const Navbar = () => {
                   >
                     Shop All Products (Grid View)
                   </Link>
-                  <div className="text-[10px] uppercase tracking-widest text-gray-500 mb-2 mt-4 font-bold">Individual Varieties</div>
+                  <div className="text-[14px] uppercase tracking-widest text-gray-500 mb-2 mt-4 font-bold">Individual Varieties</div>
                   {products.length > 0 ? (
                     products.map((product) => (
                       <Link
@@ -201,7 +201,7 @@ const Navbar = () => {
                       </Link>
                     ))
                   ) : (
-                    <p className="text-gray-500 text-[10px] italic px-4">Loading varieties...</p>
+                    <p className="text-gray-500 text-[14px] italic px-4">Loading varieties...</p>
                   )}
                 </div>
               </div>

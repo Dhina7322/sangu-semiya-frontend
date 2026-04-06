@@ -100,7 +100,7 @@ const EnquiryManager = () => {
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead className="bg-[#fcfdff] border-b border-slate-200">
-              <tr className="text-[11px] font-bold text-slate-500 uppercase tracking-widest">
+              <tr className="text-[15px] font-bold text-slate-500 uppercase tracking-widest">
                 <th className="px-6 py-5">Time Received</th>
                 <th className="px-6 py-5">Customer Profile</th>
                 <th className="px-6 py-5">Required Item</th>
@@ -113,14 +113,14 @@ const EnquiryManager = () => {
                 <tr key={e._id} className="hover:bg-slate-50/50 transition duration-150">
                   <td className="px-6 py-4">
                     <p className="text-xs font-medium text-slate-700">{new Date(e.createdAt || Date.now()).toLocaleDateString()}</p>
-                    <p className="text-[10px] text-slate-400 font-mono mt-0.5">#{e._id?.slice(-6)}</p>
+                    <p className="text-[14px] text-slate-400 font-mono mt-0.5">#{e._id?.slice(-6)}</p>
                   </td>
                   <td className="px-6 py-4">
                     <p className="text-sm font-bold text-slate-800 leading-tight">{e.name}</p>
                     <p className="text-xs text-slate-500 mt-0.5 font-medium">{e.phone}</p>
                   </td>
                   <td className="px-6 py-4">
-                    <p className="text-[11px] font-bold text-primary uppercase">{e.product || 'General'}</p>
+                    <p className="text-[15px] font-bold text-primary uppercase">{e.product || 'General'}</p>
                     <p className="text-xs text-slate-600 mt-1 font-medium">Qty: {e.quantity || 'TBD'}</p>
                   </td>
                   <td className="px-6 py-4">
@@ -128,7 +128,7 @@ const EnquiryManager = () => {
                        <select 
                         value={e.status || 'Pending'} 
                         onChange={(ev) => handleStatusChange(e._id, ev.target.value)}
-                        className={`text-[10px] font-bold px-3 py-1.5 rounded-lg border outline-none cursor-pointer tracking-wider ${getStatusColor(e.status || 'Pending')}`}
+                        className={`text-[14px] font-bold px-3 py-1.5 rounded-lg border outline-none cursor-pointer tracking-wider ${getStatusColor(e.status || 'Pending')}`}
                       >
                         <option value="Pending">PENDING</option>
                         <option value="In-Progress">IN-PROGRESS</option>

@@ -35,7 +35,7 @@ const MilestoneSection = () => (
     
     <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
       <div className="text-center mb-16 space-y-2">
-        <span className="inline-block py-1 px-3 rounded-full bg-white/5 text-primary border border-white/5 font-medium text-[8px] tracking-widest uppercase mb-1">
+        <span className="inline-block py-1 px-3 rounded-full bg-white/5 text-primary border border-white/5 font-medium text-[12px] tracking-widest uppercase mb-1">
           Our Journey
         </span>
         <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight">

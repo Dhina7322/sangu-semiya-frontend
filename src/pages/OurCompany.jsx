@@ -20,7 +20,7 @@ const OurCompany = () => {
           </svg>
         </div>
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 text-center space-y-6">
-          <span className="inline-block py-1 px-3 rounded-full bg-white/10 text-primary border border-white/10 font-bold text-[9px] tracking-widest uppercase mb-2">
+          <span className="inline-block py-1 px-3 rounded-full bg-white/10 text-primary border border-white/10 font-bold text-[13px] tracking-widest uppercase mb-2">
             Since 1982
           </span>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight mb-4">
@@ -55,10 +55,10 @@ const OurCompany = () => {
                       <FiAward className="text-white" size={48} />
                     </div>
                     <h3 className="text-white text-3xl font-bold mb-1">K. Chandran</h3>
-                    <p className="text-white/70 text-[10px] font-bold uppercase tracking-widest">Founder & Visionary</p>
+                    <p className="text-white/70 text-[14px] font-bold uppercase tracking-widest">Founder & Visionary</p>
                     <div className="mt-4 inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/10">
                       <span className="text-primary font-bold text-lg">1982</span>
-                      <span className="text-white/60 text-[10px]">EST.</span>
+                      <span className="text-white/60 text-[14px]">EST.</span>
                     </div>
                   </div>
                 </div>
@@ -67,13 +67,13 @@ const OurCompany = () => {
 
             <div className="space-y-6">
               <div className="space-y-3">
-                <span className="inline-block py-1 px-3 rounded-full bg-red-50 border border-red-100 text-secondary font-bold text-[9px] tracking-widest uppercase mb-1">
+                <span className="inline-block py-1 px-3 rounded-full bg-red-50 border border-red-100 text-secondary font-bold text-[13px] tracking-widest uppercase mb-1">
                   Our Founder
                 </span>
                 <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight leading-tight">
                   K. Chandran
                 </h2>
-                <p className="text-primary font-bold text-[11px] uppercase tracking-widest opacity-80">
+                <p className="text-primary font-bold text-[15px] uppercase tracking-widest opacity-80">
                   Founder, Sangu Brand Semiya
                 </p>
               </div>
@@ -102,7 +102,7 @@ const OurCompany = () => {
                 <FiEye size={28} />
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-4 uppercase tracking-tight">Our Vision</h3>
-              <p className="text-[15px] text-slate-600 font-normal leading-relaxed">
+              <p className="text-[19px] text-slate-600 font-normal leading-relaxed">
                 To be the leading provider of food products, empowering tradition through quality. We envision a future where every Indian household enjoys authentic, healthy traditional meals.
               </p>
             </div>
@@ -111,7 +111,7 @@ const OurCompany = () => {
                 <FiTarget size={28} />
               </div>
               <h3 className="text-xl font-bold text-slate-900 mb-4 uppercase tracking-tight">Our Mission</h3>
-              <p className="text-[15px] text-slate-600 font-normal leading-relaxed">
+              <p className="text-[19px] text-slate-600 font-normal leading-relaxed">
                 To deliver the highest quality vermicelli products while preserving authentic flavors. We aim to reach every kitchen through trusted dealer partnerships and uncompromising standards.
               </p>
             </div>
@@ -124,7 +124,7 @@ const OurCompany = () => {
         <div className="absolute top-0 left-0 w-80 h-80 bg-secondary/5 rounded-full blur-[100px]"></div>
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16 space-y-3">
-             <span className="text-primary font-bold text-[9px] uppercase tracking-widest">Our Journey</span>
+             <span className="text-primary font-bold text-[13px] uppercase tracking-widest">Our Journey</span>
             <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">Key Milestones</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -150,7 +150,7 @@ const OurCompany = () => {
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16 space-y-3">
-            <span className="inline-block py-1 px-3 rounded-full bg-red-50 border border-red-100 text-secondary font-bold text-[9px] tracking-widest uppercase">
+            <span className="inline-block py-1 px-3 rounded-full bg-red-50 border border-red-100 text-secondary font-bold text-[13px] tracking-widest uppercase">
               Core Values
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">What Drives Us</h2>

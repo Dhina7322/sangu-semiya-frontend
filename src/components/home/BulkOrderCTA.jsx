@@ -18,7 +18,7 @@ const BulkOrderCTA = () => (
         </div>
 
         <div className="relative z-10 max-w-2xl space-y-6">
-          <span className="text-secondary font-bold uppercase tracking-widest text-[9px] px-4 py-2 bg-white/5 border border-white/10 rounded-full inline-block">Grow with Sangu</span>
+          <span className="text-secondary font-bold uppercase tracking-widest text-[13px] px-4 py-2 bg-white/5 border border-white/10 rounded-full inline-block">Grow with Sangu</span>
           <h2 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">Distributor & Wholesale Partnership</h2>
           <p className="text-base text-slate-400 font-normal leading-relaxed opacity-80">Partnering with over 10+ dealers across Tamil Nadu. Access premium margins, high-converting marketing collateral, and priority shipping. Partner with Coimbatore's most trusted vermicelli brand — established in 1982.</p>
 
