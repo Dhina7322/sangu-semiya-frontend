@@ -52,7 +52,7 @@ export const ImportModal = ({ isOpen, onClose, refreshProducts }) => {
 
         {/* Header */}
         <div className="px-6 py-4 border-b border-slate-100 flex justify-between items-center">
-          <h2 className="text-sm font-semibold text-slate-800">Bulk Import</h2>
+          <h2 className="text-sm font-medium text-slate-800">Bulk Import</h2>
           <button onClick={onClose} className="p-1.5 hover:bg-slate-100 rounded-full transition-colors">
             <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12"/>
@@ -76,7 +76,7 @@ export const ImportModal = ({ isOpen, onClose, refreshProducts }) => {
 
           {/* Required columns info */}
           <div className="bg-slate-50 px-4 py-3 rounded-xl border border-slate-100">
-            <p className="text-[10px] text-slate-400 font-medium mb-1">Required Columns</p>
+            <p className="text-[14px] text-slate-400 font-medium mb-1">Required Columns</p>
             <code className="text-xs text-primary font-medium">sku, name, description, packSize, amazonLink</code>
           </div>
 
@@ -91,7 +91,7 @@ export const ImportModal = ({ isOpen, onClose, refreshProducts }) => {
               <p className="text-xs font-medium text-slate-600">
                 {file ? file.name : 'Drop CSV file here'}
               </p>
-              <p className="text-[10px] text-slate-400 mt-0.5">CSV data file only</p>
+              <p className="text-[14px] text-slate-400 mt-0.5">CSV data file only</p>
             </div>
             <input type="file" accept=".csv" onChange={(e) => setFile(e.target.files[0])} className="hidden" id="csv-upload" />
             <label htmlFor="csv-upload" className="cursor-pointer px-5 py-2 bg-slate-800 text-white text-xs font-medium rounded-lg hover:bg-slate-700 transition">
@@ -106,7 +106,7 @@ export const ImportModal = ({ isOpen, onClose, refreshProducts }) => {
           <button
             onClick={handleImport}
             disabled={loading}
-            className="w-full py-3 bg-primary text-white font-semibold text-sm rounded-xl shadow-md shadow-red-100 hover:bg-primary-dark transition-all"
+            className="w-full py-3 bg-primary text-white font-medium text-sm rounded-xl shadow-md shadow-red-100 hover:bg-primary-dark transition-all"
           >
             {loading ? 'Uploading...' : 'Commit Sync'}
           </button>
@@ -159,7 +159,7 @@ export const ExportModal = ({ isOpen, onClose }) => {
 
           {/* Title */}
           <div>
-            <h2 className="text-sm font-semibold text-slate-800">Export Products</h2>
+            <h2 className="text-sm font-medium text-slate-800">Export Products</h2>
             <p className="text-xs text-slate-400 font-normal mt-1">Download all products as a CSV file</p>
           </div>
 
@@ -167,7 +167,7 @@ export const ExportModal = ({ isOpen, onClose }) => {
           <div className="space-y-2 pt-1">
             <button
               onClick={handleExport}
-              className="w-full py-3 bg-primary text-white font-semibold text-sm rounded-xl shadow-md shadow-red-100 hover:bg-primary-dark transition-all"
+              className="w-full py-3 bg-primary text-white font-medium text-sm rounded-xl shadow-md shadow-red-100 hover:bg-primary-dark transition-all"
             >
               Download CSV
             </button>

@@ -39,6 +39,7 @@ body {
   background-color: #F9FAFB;
   color: #111827;
   overflow-x: hidden;
+  font-size: 18px; /* Base font size increased from 16px to 18px */
 }
 
 .glass-panel {

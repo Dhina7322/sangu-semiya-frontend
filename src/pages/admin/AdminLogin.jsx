@@ -32,7 +32,7 @@ const AdminLogin = () => {
         <div className="w-16 h-16 bg-primary rounded-2xl mx-auto flex items-center justify-center text-white shadow-xl mb-6">
           <FiLock size={30} />
         </div>
-        <h2 className="text-center text-3xl font-extrabold text-gray-900 tracking-tight">
+        <h2 className="text-center text-3xl font-bold text-gray-900 tracking-tight">
           Portal Gateway
         </h2>
         <p className="mt-2 text-center text-sm text-gray-400 font-medium tracking-wide">
@@ -61,7 +61,7 @@ const AdminLogin = () => {
             </div>
 
             <div>
-              <button type="submit" disabled={loading} className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-md text-sm font-bold text-white bg-primary hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition disabled:opacity-50">
+              <button type="submit" disabled={loading} className="w-full flex justify-center py-3 px-4 border border-transparent rounded-xl shadow-md text-sm font-medium text-white bg-primary hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition disabled:opacity-50">
                 {loading ? 'Authenticating...' : 'Sign in'}
               </button>
             </div>

@@ -8,10 +8,10 @@ const CookingInspiration = ({ recipes = [] }) => {
     <section className="py-14 lg:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="text-center mb-16 space-y-2">
-          <span className="text-secondary font-medium text-[8px] tracking-widest uppercase block">
+          <span className="text-secondary font-medium text-[12px] tracking-widest uppercase block">
             Creative Kitchen
           </span>
-          <h2 className="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight">
+          <h2 className="text-2xl md:text-3xl font-medium text-slate-900 tracking-tight">
             Cooking Inspiration
           </h2>
           <p className="text-xs text-slate-400 font-normal max-w-md mx-auto">
@@ -34,19 +34,19 @@ const CookingInspiration = ({ recipes = [] }) => {
                 />
                 
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-slate-100 shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-300">
-                  <span className="text-[8px] font-bold text-slate-900 tracking-widest uppercase text-center">
+                  <span className="text-[12px] font-medium text-slate-900 tracking-widest uppercase text-center">
                     {recipe.time || "10 MINS"}
                   </span>
                 </div>
               </div>
 
               <div className="space-y-1 px-1">
-                <h3 className="text-sm font-semibold text-slate-800 tracking-tight transition-colors duration-300 group-hover:text-primary">
+                <h3 className="text-sm font-medium text-slate-800 tracking-tight transition-colors duration-300 group-hover:text-primary">
                   {recipe.name || `Delicious Recipe #${i+1}`}
                 </h3>
                 <div className="flex items-center gap-2">
                   <span className="w-4 h-px bg-slate-100 group-hover:bg-primary transition-colors"></span>
-                  <p className="text-[10px] text-slate-400 font-medium uppercase tracking-widest group-hover:text-primary transition-colors">
+                  <p className="text-[14px] text-slate-400 font-medium uppercase tracking-widest group-hover:text-primary transition-colors">
                     Quick & Healthy
                   </p>
                 </div>

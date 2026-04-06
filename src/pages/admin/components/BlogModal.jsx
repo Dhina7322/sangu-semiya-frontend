@@ -95,7 +95,7 @@ const BlogModal = ({ isOpen, onClose, blog, onSave, loading }) => {
   };
 
   const inputCls = 'w-full text-sm border border-slate-100 rounded-xl px-4 py-3.5 focus:border-primary outline-none transition-all placeholder:text-slate-300 bg-slate-50/50';
-  const labelCls = 'text-[9px] font-semibold text-slate-400 uppercase tracking-widest pl-1 mb-2 block';
+  const labelCls = 'text-[13px] font-medium text-slate-400 uppercase tracking-widest pl-1 mb-2 block';
 
   return createPortal(
     <div style={{ position: 'fixed', inset: 0, zIndex: 99999, backgroundColor: 'rgba(15,23,42,0.6)', backdropFilter: 'blur(4px)' }}
@@ -109,10 +109,10 @@ const BlogModal = ({ isOpen, onClose, blog, onSave, loading }) => {
                 <FiFileText size={20} />
              </div>
              <div>
-                <h2 className="text-lg font-semibold text-slate-800 tracking-tight">
+                <h2 className="text-lg font-medium text-slate-800 tracking-tight">
                   {blog ? 'Modify Blog Post' : 'Craft New Story'}
                 </h2>
-                <p className="text-[10px] text-slate-400 font-medium uppercase tracking-[0.2em]">{blog ? 'Update detail' : 'Publish inspiration for your audience'}</p>
+                <p className="text-[14px] text-slate-400 font-medium uppercase tracking-[0.2em]">{blog ? 'Update detail' : 'Publish inspiration for your audience'}</p>
              </div>
           </div>
           <button onClick={onClose} className="p-2 hover:bg-slate-50 rounded-full transition-colors text-slate-400 hover:text-slate-600">
@@ -194,8 +194,8 @@ const BlogModal = ({ isOpen, onClose, blog, onSave, loading }) => {
                         <FiImage size={24} />
                       </div>
                       <div>
-                        <p className="text-[10px] text-slate-800 font-bold uppercase tracking-widest">Pick Cover</p>
-                        <p className="text-[8px] text-slate-400 uppercase font-semibold mt-1">JPG, PNG, WebP</p>
+                        <p className="text-[14px] text-slate-800 font-medium uppercase tracking-widest">Pick Cover</p>
+                        <p className="text-[12px] text-slate-400 uppercase font-medium mt-1">JPG, PNG, WebP</p>
                       </div>
                     </div>
                   )}
@@ -212,7 +212,7 @@ const BlogModal = ({ isOpen, onClose, blog, onSave, loading }) => {
                     type="text" 
                     value={formData.slug} 
                     onChange={e => setFormData({ ...formData, slug: e.target.value })} 
-                    className={inputCls + ' pl-11 text-xs font-bold text-slate-400'} 
+                    className={inputCls + ' pl-11 text-xs font-medium text-slate-400'} 
                     placeholder="url-friendly-slug" 
                    />
                 </div>
@@ -233,8 +233,8 @@ const BlogModal = ({ isOpen, onClose, blog, onSave, loading }) => {
               {/* Status Toggle */}
               <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 flex justify-between items-center">
                  <div>
-                    <p className="text-[10px] font-black text-slate-800 uppercase tracking-widest">Published</p>
-                    <p className="text-[9px] font-bold text-slate-400 uppercase mt-0.5">{formData.status}</p>
+                    <p className="text-[14px] font-medium text-slate-800 uppercase tracking-widest">Published</p>
+                    <p className="text-[13px] font-medium text-slate-400 uppercase mt-0.5">{formData.status}</p>
                  </div>
                  <button 
                   type="button"
@@ -252,13 +252,13 @@ const BlogModal = ({ isOpen, onClose, blog, onSave, loading }) => {
         {/* Modal Footer */}
         <div className="px-8 py-6 bg-slate-50 border-t border-slate-50 flex gap-4 justify-end items-center shrink-0">
           <div className="flex gap-3">
-             <button onClick={onClose} className="px-8 py-3 text-slate-500 font-bold text-[10px] uppercase tracking-widest hover:bg-slate-100 rounded-2xl transition">
+             <button onClick={onClose} className="px-8 py-3 text-slate-500 font-medium text-[14px] uppercase tracking-widest hover:bg-slate-100 rounded-2xl transition">
                Cancel
              </button>
              <button 
               onClick={handleSubmit} 
               disabled={loading}
-              className="px-12 py-3 bg-primary text-white font-bold text-[10px] uppercase tracking-widest rounded-2xl shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all disabled:opacity-50"
+              className="px-12 py-3 bg-primary text-white font-medium text-[14px] uppercase tracking-widest rounded-2xl shadow-xl shadow-primary/20 hover:scale-105 active:scale-95 transition-all disabled:opacity-50"
              >
                {loading ? 'Sharing...' : blog ? 'Update' : 'Publish Story'}
              </button>

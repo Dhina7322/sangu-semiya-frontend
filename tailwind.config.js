@@ -10,6 +10,14 @@ export default {
         primary: "#FDB913", // Sangu Brand Yellow
         secondary: "#DA291C", // Sangu Brand Red
       },
+      fontSize: {
+        'xs': ['14px', { lineHeight: '20px' }],
+        'sm': ['16px', { lineHeight: '24px' }],
+        'base': ['18px', { lineHeight: '28px' }],
+        'lg': ['20px', { lineHeight: '28px' }],
+        'xl': ['22px', { lineHeight: '28px' }],
+        '2xl': ['26px', { lineHeight: '32px' }],
+      },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out',
         'fade-in-up': 'fadeInUp 0.7s ease-out',

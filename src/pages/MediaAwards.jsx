@@ -9,10 +9,10 @@ const MediaAwards = () => {
       <section className="relative bg-slate-900 py-32 lg:py-44 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent"></div>
         <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10 text-center">
-          <span className="inline-block py-1.5 px-4 rounded-full bg-white/10 text-primary border border-white/10 font-black text-[10px] tracking-[0.3em] uppercase mb-6">
+          <span className="inline-block py-1.5 px-4 rounded-full bg-white/10 text-primary border border-white/10 font-medium text-[14px] tracking-[0.3em] uppercase mb-6">
             Recognition
           </span>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter mb-6">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium text-white tracking-tighter mb-6">
             Media & Awards
           </h1>
           <p className="text-xl text-slate-400 font-medium max-w-2xl mx-auto">
@@ -25,10 +25,10 @@ const MediaAwards = () => {
       <section className="py-24 lg:py-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-20 space-y-4">
-            <span className="inline-block py-1.5 px-4 rounded-full bg-red-50 border border-red-100 text-secondary font-black text-[10px] tracking-[0.3em] uppercase">
+            <span className="inline-block py-1.5 px-4 rounded-full bg-red-50 border border-red-100 text-secondary font-medium text-[14px] tracking-[0.3em] uppercase">
               Achievements
             </span>
-            <h2 className="text-5xl md:text-6xl font-black text-slate-900 tracking-tighter">Awards & Recognition</h2>
+            <h2 className="text-5xl md:text-6xl font-medium text-slate-900 tracking-tighter">Awards & Recognition</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -59,8 +59,8 @@ const MediaAwards = () => {
                 <div className={`w-24 h-24 mx-auto mb-8 rounded-3xl bg-gradient-to-br ${award.color} flex items-center justify-center text-white shadow-2xl transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
                   {award.icon}
                 </div>
-                <span className="inline-block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 bg-slate-100 px-4 py-1.5 rounded-full">{award.year}</span>
-                <h3 className="text-2xl font-black text-slate-900 mb-4">{award.title}</h3>
+                <span className="inline-block text-[14px] font-medium uppercase tracking-widest text-slate-400 mb-4 bg-slate-100 px-4 py-1.5 rounded-full">{award.year}</span>
+                <h3 className="text-2xl font-medium text-slate-900 mb-4">{award.title}</h3>
                 <p className="text-slate-500 font-medium leading-relaxed">{award.description}</p>
               </div>
             ))}
@@ -76,7 +76,7 @@ const MediaAwards = () => {
             <div className="w-24 h-24 mx-auto rounded-3xl bg-gradient-to-br from-primary to-yellow-600 flex items-center justify-center shadow-2xl">
               <FiFileText className="text-white" size={40} />
             </div>
-            <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter italic">
+            <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tighter italic">
               "Empowering tradition through quality food products since 1982"
             </h2>
             <p className="text-xl text-slate-400 font-medium max-w-2xl mx-auto leading-relaxed">
@@ -90,8 +90,8 @@ const MediaAwards = () => {
                 { num: '1000s', label: 'Happy Families' },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
-                  <p className="text-4xl font-black text-primary">{stat.num}</p>
-                  <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mt-1">{stat.label}</p>
+                  <p className="text-4xl font-medium text-primary">{stat.num}</p>
+                  <p className="text-xs text-slate-500 font-medium uppercase tracking-widest mt-1">{stat.label}</p>
                 </div>
               ))}
             </div>

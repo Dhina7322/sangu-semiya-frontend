@@ -36,15 +36,15 @@ const Products = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
         <div className="text-center mb-16 max-w-2xl mx-auto animate-fade-in-down transform-gpu will-change-transform">
-          <span className="text-primary font-bold text-[9px] tracking-widest uppercase mb-3 block">Premium Selection</span>
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight leading-tight">Authentic Taste, <br/><span className="text-primary italic text-3xl md:text-4xl">Modern Choice</span></h1>
+          <span className="text-primary font-medium text-[13px] tracking-widest uppercase mb-3 block">Premium Selection</span>
+          <h1 className="text-4xl md:text-5xl font-medium text-slate-900 mb-6 tracking-tight leading-tight">Authentic Taste, <br/><span className="text-primary italic text-3xl md:text-4xl">Modern Choice</span></h1>
           <p className="text-base text-slate-500 font-normal leading-relaxed">Discover our range of gold-standard vermicelli, crafted with 100% hard wheat for the perfect texture in every dish.</p>
         </div>
 
         {!loading && products.length === 0 ? (
           <div className="text-center py-20 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-100">
             <div className="text-3xl mb-4">🌾</div>
-            <p className="text-slate-400 font-bold text-sm uppercase tracking-widest italic">Our kitchen is preparing new varieties</p>
+            <p className="text-slate-400 font-medium text-sm uppercase tracking-widest italic">Our kitchen is preparing new varieties</p>
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8 min-h-[800px]">
@@ -65,7 +65,7 @@ const Products = () => {
                       />
                       
                       {product.featured && (
-                        <div className="absolute top-3 right-3 bg-secondary text-white text-[8px] font-bold uppercase py-1 px-3 rounded-full shadow-lg z-10">
+                        <div className="absolute top-3 right-3 bg-secondary text-white text-[12px] font-medium uppercase py-1 px-3 rounded-full shadow-lg z-10">
                           Best Seller
                         </div>
                       )}
@@ -75,7 +75,7 @@ const Products = () => {
                       <Link to={`/product/${product.name}`}>
                         <h3 className="text-xs font-medium text-slate-800 hover:text-primary transition-colors line-clamp-1 mb-1 uppercase tracking-tight">{product.name}</h3>
                       </Link>
-                      <p className="text-[10px] text-slate-400 font-medium uppercase tracking-widest mt-1">{product.category || "Authentic"}</p>
+                      <p className="text-[14px] text-slate-400 font-medium uppercase tracking-widest mt-1">{product.category || "Authentic"}</p>
                     </div>
                   </>
                 )}

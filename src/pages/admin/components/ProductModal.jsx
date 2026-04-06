@@ -162,7 +162,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
   if (!isOpen) return null;
 
   const inputCls = 'w-full text-sm border border-slate-200 rounded-lg px-3 py-2.5 focus:border-primary outline-none transition-all placeholder:text-slate-300';
-  const labelCls = 'text-[10px] font-semibold text-slate-400 uppercase tracking-widest';
+  const labelCls = 'text-[14px] font-medium text-slate-400 uppercase tracking-widest';
 
   return createPortal(
     <div style={{ position: 'fixed', inset: 0, zIndex: 99999, backgroundColor: 'rgba(15,23,42,0.5)' }}
@@ -170,7 +170,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
       <div className="bg-white rounded-2xl w-full max-w-2xl shadow-xl overflow-hidden border border-slate-100 font-sans flex flex-col" style={{ maxHeight: '90vh' }}>
 
         <div className="px-6 py-4 border-b border-slate-100 flex justify-between items-center shrink-0">
-          <h2 className="text-sm font-bold text-slate-800 tracking-tight">
+          <h2 className="text-sm font-medium text-slate-800 tracking-tight">
             {product ? 'Edit Product' : 'Add New Product'}
           </h2>
           <button onClick={onClose} className="p-1.5 hover:bg-slate-100 rounded-full transition-colors">
@@ -183,7 +183,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
         <div className="flex border-b border-slate-100 shrink-0">
           {['basic', 'content'].map(tab => (
             <button key={tab} onClick={() => setActiveTab(tab)}
-              className={`flex-1 py-3 text-[11px] font-bold uppercase tracking-widest transition-colors flex items-center justify-center gap-2 ${activeTab === tab ? 'text-primary border-b-2 border-primary' : 'text-slate-400 hover:text-slate-600'}`}>
+              className={`flex-1 py-3 text-[15px] font-medium uppercase tracking-widest transition-colors flex items-center justify-center gap-2 ${activeTab === tab ? 'text-primary border-b-2 border-primary' : 'text-slate-400 hover:text-slate-600'}`}>
               {tab === 'basic' ? <><FiInfo size={14} /> Basic Info</> : <><FiEdit3 size={14} /> Page Content</>}
             </button>
           ))}
@@ -235,7 +235,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
 
               <div className="flex items-center gap-2 py-1">
                 <input type="checkbox" id="featured" checked={formData.featured} onChange={e => setFormData({ ...formData, featured: e.target.checked })} className="w-4 h-4 text-primary border-slate-200 rounded" />
-                <label htmlFor="featured" className="text-xs font-semibold text-slate-600">Mark as Featured (shown on Homepage)</label>
+                <label htmlFor="featured" className="text-xs font-medium text-slate-600">Mark as Featured (shown on Homepage)</label>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
@@ -244,14 +244,14 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
                   <div className="flex gap-2">
                     <input type="url" value={formData.amazonLink} onChange={e => setFormData({ ...formData, amazonLink: e.target.value })} className="flex-1 text-sm border border-slate-200 rounded-lg px-3 py-2.5 outline-none transition-all placeholder:text-slate-300" placeholder="https://amazon.in/dp/..." />
                     <button type="button" onClick={handleFetchPrice} disabled={fetchingPrice}
-                      className="px-3 bg-amber-500 text-white rounded-lg text-[10px] font-bold uppercase tracking-wide transition disabled:opacity-50 hover:bg-amber-600 shrink-0">
+                      className="px-3 bg-amber-500 text-white rounded-lg text-[14px] font-medium uppercase tracking-wide transition disabled:opacity-50 hover:bg-amber-600 shrink-0">
                       {fetchingPrice ? '...' : 'Fetch'}
                     </button>
                   </div>
                 </div>
                 <div className="space-y-1">
                   <label className={labelCls}>Live Price</label>
-                  <input type="text" value={formData.price} onChange={e => setFormData({ ...formData, price: e.target.value })} className={inputCls + ' font-bold text-primary'} placeholder="₹0.00" />
+                  <input type="text" value={formData.price} onChange={e => setFormData({ ...formData, price: e.target.value })} className={inputCls + ' font-medium text-primary'} placeholder="₹0.00" />
                 </div>
               </div>
 
@@ -279,11 +279,11 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
                     <label className="cursor-pointer aspect-square rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 flex flex-col items-center justify-center hover:border-primary hover:bg-white transition text-slate-400 group">
                       <input type="file" multiple accept="image/*" onChange={handleFiles} className="hidden" />
                       <FiPlus size={18} className="group-hover:text-primary transition-colors" />
-                      <span className="text-[8px] font-bold uppercase mt-1">Add Image</span>
+                      <span className="text-[12px] font-medium uppercase mt-1">Add Image</span>
                     </label>
                   )}
                 </div>
-                <p className="text-[9px] text-slate-400 font-medium italic">Supports multiple JPG/PNG up to 2MB each. Drag & drop coming soon.</p>
+                <p className="text-[13px] text-slate-400 font-medium italic">Supports multiple JPG/PNG up to 2MB each. Drag & drop coming soon.</p>
               </div>
             </>
           )}
@@ -294,7 +294,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
                 <div className="flex justify-between items-end">
                    <div className="flex-1 space-y-1">
                       <label className={labelCls}>🖼️ Lifestyle Banner Headline</label>
-                      <p className="text-[10px] text-slate-400">Large text over the banner image. Use line breaks.</p>
+                      <p className="text-[14px] text-slate-400">Large text over the banner image. Use line breaks.</p>
                       <textarea
                         rows="3"
                         value={metadata.bannerHeadline}
@@ -318,7 +318,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
               <div className="space-y-3 pt-2">
                 <div className="flex justify-between items-center">
                   <label className={labelCls}>⭐ Product Features (Mini List)</label>
-                  <button type="button" onClick={addFeature} className="text-[10px] font-bold text-primary hover:underline flex items-center gap-1"><FiPlus /> Add Row</button>
+                  <button type="button" onClick={addFeature} className="text-[14px] font-medium text-primary hover:underline flex items-center gap-1"><FiPlus /> Add Row</button>
                 </div>
                 <div className="grid grid-cols-1 gap-3">
                   {metadata.features.map((f, i) => (
@@ -371,7 +371,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
               <div className="space-y-2 pt-2 pb-4">
                 <div className="flex justify-between items-center">
                   <label className={labelCls}>📊 Nutrition Facts (per 100g)</label>
-                  <button type="button" onClick={addNutrition} className="text-[10px] font-bold text-primary hover:underline flex items-center gap-1"><FiPlus /> Add Row</button>
+                  <button type="button" onClick={addNutrition} className="text-[14px] font-medium text-primary hover:underline flex items-center gap-1"><FiPlus /> Add Row</button>
                 </div>
                 <div className="grid grid-cols-1 gap-2">
                   {metadata.nutrition.map((n, i) => (
@@ -379,7 +379,7 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
                       <input type="text" value={n.label} onChange={e => updateNutrition(i, 'label', e.target.value)}
                         className="flex-1 text-sm border border-slate-200 rounded-xl px-4 py-2 outline-none focus:border-primary" placeholder="e.g. Protein" />
                       <input type="text" value={n.value} onChange={e => updateNutrition(i, 'value', e.target.value)}
-                        className="w-32 text-sm border border-slate-200 rounded-xl px-4 py-2 outline-none font-bold" placeholder="360 kcal" />
+                        className="w-32 text-sm border border-slate-200 rounded-xl px-4 py-2 outline-none font-medium" placeholder="360 kcal" />
                       <button type="button" onClick={() => removeNutrition(i)} className="text-slate-300 hover:text-red-400 transition p-2">
                         <FiTrash2 size={16} />
                       </button>
@@ -393,11 +393,11 @@ const ProductModal = ({ isOpen, onClose, product, refreshProducts, onSuccess }) 
 
         {/* Footer */}
         <div className="px-6 py-4 bg-slate-50/50 border-t border-slate-100 flex gap-3 justify-end shrink-0">
-          <button onClick={onClose} className="px-6 py-2.5 text-slate-500 font-semibold text-xs border border-slate-200 rounded-lg hover:bg-slate-100 transition tracking-wide">
+          <button onClick={onClose} className="px-6 py-2.5 text-slate-500 font-medium text-xs border border-slate-200 rounded-lg hover:bg-slate-100 transition tracking-wide">
             Cancel
           </button>
           <button onClick={handleSubmit} disabled={loading}
-            className="px-8 py-2.5 bg-primary text-white font-bold text-xs rounded-lg shadow-md shadow-red-100 hover:bg-red-700 transition-all tracking-wide disabled:opacity-60">
+            className="px-8 py-2.5 bg-primary text-white font-medium text-xs rounded-lg shadow-md shadow-red-100 hover:bg-red-700 transition-all tracking-wide disabled:opacity-60">
             {loading ? 'Saving...' : product ? 'Save Product' : 'Create Product'}
           </button>
         </div>
