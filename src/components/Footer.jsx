@@ -71,7 +71,7 @@ const Footer = () => {
                 categories.slice(0, 6).map((cat) => (
                   <li key={cat._id || cat.id}>
                     <Link
-                      to="/categories"
+                      to="/products"
                       className="text-sm text-red-100 hover:text-white transition-colors duration-200"
                     >
                       {cat.name}

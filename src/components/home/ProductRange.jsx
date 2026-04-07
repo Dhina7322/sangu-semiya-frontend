@@ -31,7 +31,7 @@ const ProductRange = ({ products = [] }) => {
             to="/products"
             className="group flex items-center gap-2 text-slate-400 font-medium uppercase text-[13px] tracking-widest pb-1 border-b border-slate-50 hover:text-secondary hover:border-secondary transition-all"
           >
-            View All Categories
+            View All Products
             <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
