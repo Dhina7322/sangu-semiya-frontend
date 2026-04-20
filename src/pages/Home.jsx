@@ -80,6 +80,39 @@ const Home = () => {
     fetchFeaturedProducts();
   }, []);
 
+  const renderCustomSections = (pos) => {
+    const sections = data.customSections?.filter(s => s.isActive && (s.position === pos || (!s.position && pos === 'top'))) || [];
+    if (sections.length === 0) return null;
+
+    return sections.map((section, idx) => (
+      <section key={`${pos}-${idx}`} className="relative py-14 lg:py-20 overflow-hidden bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-20`}>
+            <div className="w-full lg:w-1/2 aspect-[16/9] lg:aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl reveal-up">
+              <img src={section.image} alt={section.title} className="w-full h-full object-cover" />
+            </div>
+            <div className="w-full lg:w-1/2 space-y-6 text-center lg:text-left reveal-up delay-200">
+              <h2 className="text-3xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
+                {section.title}
+              </h2>
+              <p className="text-lg text-slate-600 font-medium leading-relaxed">
+                {section.subtitle}
+              </p>
+              {section.buttonText && (
+                <Link 
+                  to={section.buttonLink || '/products'} 
+                  className="inline-block bg-primary text-white px-10 py-4 rounded-2xl font-bold uppercase tracking-widest text-[13px] shadow-xl shadow-primary/20 hover:scale-105 transition-all"
+                >
+                  {section.buttonText}
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+    ));
+  };
+
   return (
     <div className="w-full bg-white font-sans selection:bg-secondary selection:text-white">
 
@@ -146,34 +179,8 @@ const Home = () => {
         <AmazonStrip />
       </Suspense>
 
-      {/* Dynamic Custom Banners */}
-      {data.customSections?.filter(s => s.isActive).map((section, idx) => (
-        <section key={idx} className="relative py-14 lg:py-20 overflow-hidden">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-20`}>
-              <div className="w-full lg:w-1/2 aspect-[16/9] lg:aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl reveal reveal-up">
-                <img src={section.image} alt={section.title} className="w-full h-full object-cover" />
-              </div>
-              <div className="w-full lg:w-1/2 space-y-6 text-center lg:text-left reveal reveal-up delay-200">
-                <h2 className="text-3xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
-                  {section.title}
-                </h2>
-                <p className="text-lg text-slate-600 font-medium leading-relaxed">
-                  {section.subtitle}
-                </p>
-                {section.buttonText && (
-                  <Link 
-                    to={section.buttonLink || '/products'} 
-                    className="inline-block bg-primary text-white px-10 py-4 rounded-2xl font-bold uppercase tracking-widest text-[13px] shadow-xl shadow-primary/20 hover:scale-105 transition-all"
-                  >
-                    {section.buttonText}
-                  </Link>
-                )}
-              </div>
-            </div>
-          </div>
-        </section>
-      ))}
+      {/* Top Banners Placement */}
+      {renderCustomSections('top')}
 
       <section className="py-14 lg:py-20 min-h-[400px]">
         <Suspense fallback={<div className="animate-pulse bg-slate-50 w-full h-96 rounded-3xl" />}>
@@ -202,6 +209,8 @@ const Home = () => {
         </Suspense>
       </div>
 
+      {/* Middle Banners Placement */}
+      {renderCustomSections('middle')}
 
       {/* Featured Gallery with Skeleton loaders */}
       <section className="py-14 lg:py-20 bg-white min-h-[600px]">
@@ -261,6 +270,10 @@ const Home = () => {
           <EnquirySection trustCards={trustCards} />
         </Suspense>
       </section>
+
+      {/* Bottom Banners Placement */}
+      {renderCustomSections('bottom')}
+
       <div className="min-h-[500px]">
         <Suspense fallback={<div className="animate-pulse bg-slate-50 h-[500px]" />}>
           <CookingInspiration recipes={data.recipes} />

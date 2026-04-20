@@ -20,7 +20,8 @@ const CMSManager = () => {
     image: '',
     buttonText: '',
     buttonLink: '',
-    isActive: true
+    isActive: true,
+    position: 'top'
   });
 
   const loadData = async () => {
@@ -78,7 +79,7 @@ const CMSManager = () => {
       setStatus({ isOpen: true, message: 'Sections updated successfully!', type: 'success' });
       setIsSectionModalOpen(false);
       setEditingSection(null);
-      setSectionForm({ title: '', subtitle: '', image: '', buttonText: '', buttonLink: '', isActive: true });
+      setSectionForm({ title: '', subtitle: '', image: '', buttonText: '', buttonLink: '', isActive: true, position: 'top' });
     } catch (err) {
       console.error(err);
       setStatus({ isOpen: true, message: 'Database schema sync required: Failed to store sections', type: 'error' });
@@ -192,7 +193,7 @@ const CMSManager = () => {
             <button 
               onClick={() => {
                 setEditingSection(null);
-                setSectionForm({ title: '', subtitle: '', image: '', buttonText: '', buttonLink: '', isActive: true });
+                setSectionForm({ title: '', subtitle: '', image: '', buttonText: '', buttonLink: '', isActive: true, position: 'top' });
                 setIsSectionModalOpen(true);
               }}
               className="bg-primary text-white text-[11px] font-semibold uppercase px-6 py-2.5 rounded-lg hover:scale-105 transition-all shadow-lg shadow-primary/20"
@@ -217,6 +218,7 @@ const CMSManager = () => {
                     <p className="text-sm text-slate-500 line-clamp-2">{section.subtitle}</p>
                     <div className="pt-2 flex flex-wrap justify-center md:justify-start gap-2">
                        <span className="text-[10px] font-semibold bg-white px-2 py-1 rounded border border-slate-100 uppercase text-slate-400">CTA: {section.buttonText || 'None'}</span>
+                       <span className="text-[10px] font-semibold bg-slate-100 px-2 py-1 rounded border border-slate-200 uppercase text-slate-500">POS: {section.position || 'Top'}</span>
                        <span className={`text-[10px] font-semibold px-2 py-1 rounded uppercase ${section.isActive ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
                          {section.isActive ? 'Live' : 'Hidden'}
                        </span>
@@ -352,18 +354,33 @@ const CMSManager = () => {
                     </div>
                   </div>
 
-                  <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 flex justify-between items-center">
-                    <div>
-                        <p className="text-[14px] font-medium text-slate-800 uppercase tracking-widest">Live Status</p>
-                        <p className="text-[13px] font-medium text-slate-400 uppercase mt-0.5">{sectionForm.isActive ? 'Active' : 'Hidden'}</p>
+                  <div className="bg-slate-50 border border-slate-100 rounded-2xl p-6 space-y-6">
+                    <div className="flex justify-between items-center">
+                      <div>
+                          <p className="text-[14px] font-medium text-slate-800 uppercase tracking-widest">Live Status</p>
+                          <p className="text-[13px] font-medium text-slate-400 uppercase mt-0.5">{sectionForm.isActive ? 'Active' : 'Hidden'}</p>
+                      </div>
+                      <button 
+                        type="button"
+                        onClick={() => setSectionForm(prev => ({ ...prev, isActive: !prev.isActive }))}
+                        className={`w-12 h-6 rounded-full transition-all relative ${sectionForm.isActive ? 'bg-primary' : 'bg-slate-300'}`}
+                      >
+                          <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${sectionForm.isActive ? 'right-1' : 'left-1'}`} />
+                      </button>
                     </div>
-                    <button 
-                      type="button"
-                      onClick={() => setSectionForm(prev => ({ ...prev, isActive: !prev.isActive }))}
-                      className={`w-12 h-6 rounded-full transition-all relative ${sectionForm.isActive ? 'bg-primary' : 'bg-slate-300'}`}
-                    >
-                        <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${sectionForm.isActive ? 'right-1' : 'left-1'}`} />
-                    </button>
+
+                    <div className="pt-5 border-t border-slate-200/60">
+                      <label className="text-[13px] font-medium text-slate-500 uppercase tracking-widest block mb-3">Placement Zone</label>
+                      <select 
+                        value={sectionForm.position || 'top'} 
+                        onChange={e => setSectionForm({...sectionForm, position: e.target.value})}
+                        className="w-full text-sm font-medium border border-slate-200 rounded-xl px-4 py-3 focus:border-primary outline-none bg-white text-slate-700 cursor-pointer"
+                      >
+                        <option value="top">Top (Below Hero Banner)</option>
+                        <option value="middle">Middle (Above Gallery)</option>
+                        <option value="bottom">Bottom (Above Footer)</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
 
