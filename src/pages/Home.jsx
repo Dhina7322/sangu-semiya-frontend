@@ -44,7 +44,7 @@ const Home = () => {
   ];
 
   const benefits = [
-    { title: "Ingredients", image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=300&auto=format&fit=crop", desc: "100% Hard Wheat Semolina / Durum Wheat.", items: ["No Maida", "No Bleach", "No Additives"] },
+    { title: "Ingredients", image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=300&auto=format&fit=crop", desc: "Made with Wheat Semolina (Durum Wheat) & Refined Wheat Flour (Maida).", items: ["SOFT & NON-STICKY", "NO ARTIFICIAL COLORS OR PRESERVATIVES", "DELICIOUS EVERY BITE"] },
     { title: "Health Benefits", image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=300&auto=format&fit=crop", desc: "Rich in complex carbohydrates and gluten-friendly.", items: ["Zero Cholesterol", "Low GI", "Fiber Rich"] },
     { title: "Usage Ideas", image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=300&auto=format&fit=crop", desc: "Versatile base for global and local recipes.", items: ["Breakfast Upma", "Classic Payasam", "Vermicelli Pasta"] }
   ];
