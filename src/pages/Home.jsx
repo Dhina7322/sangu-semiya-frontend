@@ -14,7 +14,7 @@ const ProductBenefits = memo(lazy(() => import('../components/home/ProductBenefi
 const MilestoneSection = memo(lazy(() => import('../components/home/MilestoneSection')));
 const BulkOrderCTA = memo(lazy(() => import('../components/home/BulkOrderCTA')));
 const EnquirySection = memo(lazy(() => import('../components/home/EnquirySection')));
-import heroSemiya from '../assets/hero-semiya.png';
+import heroSemiya from '../assets/Sangu-Semiya.jpeg';
 import step1Raw from '../assets/step1-raw.png';
 import step2Cleaning from '../assets/step2-cleaning.png';
 import step3Production from '../assets/step3-production.png';
@@ -99,8 +99,8 @@ const Home = () => {
                 {section.subtitle}
               </p>
               {section.buttonText && (
-                <Link 
-                  to={section.buttonLink || '/products'} 
+                <Link
+                  to={section.buttonLink || '/products'}
                   className="inline-block bg-primary text-white px-10 py-4 rounded-2xl font-bold uppercase tracking-widest text-[13px] shadow-xl shadow-primary/20 hover:scale-105 transition-all"
                 >
                   {section.buttonText}
