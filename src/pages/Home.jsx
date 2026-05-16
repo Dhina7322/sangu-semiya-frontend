@@ -145,7 +145,7 @@ const Home = () => {
               </div>
 
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-                <a href="https://amazon.in" target="_blank" rel="noreferrer" className="bg-[#131921] hover:bg-secondary text-white px-8 py-4 rounded-xl font-medium text-[15px] tracking-widest uppercase transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-secondary/20">
+                <a href="https://www.amazon.in/s?k=SANGU+BRAND+ROASTED+VERMICELLI&ref=bl_dp_s_web_0" target="_blank" rel="noreferrer" className="bg-[#131921] hover:bg-secondary text-white px-8 py-4 rounded-xl font-medium text-[15px] tracking-widest uppercase transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-secondary/20">
                   Shop on Amazon <span>→</span>
                 </a>
                 <Link to="/products" className="bg-white border border-gray-200 text-gray-500 hover:border-secondary hover:text-secondary px-8 py-4 rounded-xl font-medium text-[15px] tracking-widest uppercase transition-all duration-300 flex items-center justify-center shadow-sm hover:shadow-md">
